@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Landing Page - Estilos de Foto</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Segoe UI', sans-serif; background:#f9f9f9; color:#333; }
+
+/* Hero */
+header {
+  background: linear-gradient(135deg, #4a90e2, #6a11cb);
+  color:#fff; text-align:center; padding:5rem 1rem 3rem;
+}
+header h1 { font-size:2.8rem; margin-bottom:1rem; }
+header p { font-size:1.2rem; margin-bottom:2rem; color:#e9e9e9; }
+.video-container { display:flex; justify-content:center; margin-bottom:1.5rem; }
+.video-container iframe { width:100%; max-width:800px; height:450px; border-radius:16px; }
+.buy-button {
+  display:inline-block; background: linear-gradient(90deg, #ff6b6b, #f94d6a);
+  color:#fff; padding:1rem 2.5rem; border-radius:30px; font-size:1.2rem;
+  text-decoration:none; font-weight:bold; transition:.3s;
+}
+.buy-button:hover { transform:translateY(-3px); box-shadow:0 6px 20px rgba(249,77,106,.4); }
+
+/* Galeria */
+.gallery-container { padding:4rem 1rem; background:#fff; }
+.gallery-container h2 {
+  text-align:center; font-size:2rem; margin-bottom:2rem; color:#333;
+}
+.gallery-container h2 i { margin-right:10px; color:#6a11cb; }
+.gallery {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:2rem; max-width:1200px; margin:auto;
+}
+.card {
+  background:#fff; border-radius:16px; overflow:hidden;
+  box-shadow:0 8px 25px rgba(0,0,0,.1); transition:.3s;
+}
+.card:hover { transform:translateY(-6px); box-shadow:0 12px 35px rgba(0,0,0,.15); }
+.card-content { padding:1.2rem; text-align:center; }
+.card-content h3 { margin-bottom:.8rem; font-size:1.3rem; color:#333; }
+
+/* Prompt */
+.prompt-box {
+  margin-top:.8rem; padding:.8rem; background:#eef2f7;
+  border-radius:8px; font-size:.95rem;
+}
+.copy-btn {
+  margin-top:.8rem; background:linear-gradient(90deg,#4a90e2,#6a11cb);
+  color:#fff; border:none; padding:.6rem 1.4rem; border-radius:30px;
+  cursor:pointer; font-size:.95rem; transition:.3s;
+}
+.copy-btn:hover { opacity:.9; }
+
+/* Antes/Depois Slider */
+.before-after {
+  position:relative; width:100%; overflow:hidden;
+}
+.before-after img {
+  display:block; width:100%; height:auto;
+}
+.before-after .after-wrapper {
+  position:absolute; top:0; left:0; height:100%; width:50%;
+  overflow:hidden; transition:width .2s ease;
+}
+.before-after .after-wrapper img { width:100%; height:100%; object-fit:cover; }
+.slider-handle {
+  position:absolute; top:0; left:50%; transform:translateX(-50%);
+  width:6px; height:100%; background:linear-gradient(180deg,#6a11cb,#4a90e2);
+  border-radius:4px; cursor:ew-resize; z-index:5;
+  display:flex; align-items:center; justify-content:center;
+}
+.slider-handle::before {
+  content:"\f337"; /* ícone de arrastar FontAwesome */
+  font-family:"Font Awesome 6 Free"; font-weight:900;
+  color:#fff; font-size:1.2rem;
+  background:rgba(0,0,0,0.3); padding:6px; border-radius:50%;
+}
+
+/* Responsivo */
+@media(max-width:768px){
+  header h1 { font-size:2.2rem; }
+  .video-container iframe { height:280px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><i class="fa-solid fa-camera-retro"></i> Descubra o Estilo Ideal de Sua Foto</h1>
+  <p>Veja exemplos de antes e depois e copie os prompts para gerar imagens incríveis</p>
+  <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <a href="https://www.seusite.com/curso" class="buy-button"><i class="fa-solid fa-cart-shopping"></i> Comprar Curso Agora</a>
+</header>
+
+<section class="gallery-container">
+  <h2><i class="fa-solid fa-image"></i> Galeria Antes e Depois</h2>
+  <div class="gallery" id="gallery"></div>
+</section>
+
+<script>
+const styles = [
+  {
+    name:"Retrato Clássico",
+    before:"retrato-antes.jpg",
+    after:"retrato-depois.jpg",
+    prompt:"Um retrato clássico com iluminação suave e fundo desfocado."
+  },
+  {
+    name:"Paisagem Urbana",
+    before:"urbano-antes.jpg",
+    after:"urbano-depois.jpg",
+    prompt:"Uma paisagem urbana ao pôr do sol, com luzes da cidade refletindo."
+  },
+  {
+    name:"Estilo Cyberpunk",
+    before:"cyber-antes.jpg",
+    after:"cyber-depois.jpg",
+    prompt:"Cena noturna em estilo cyberpunk, com neon e neblina."
+  }
+];
+
+const gallery = document.getElementById("gallery");
+
+styles.forEach(style => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <div class="before-after" onmousemove="moveSlider(event,this)" ontouchmove="moveSlider(event.touches[0],this)">
+      <img src="${style.before}" alt="${style.name} antes">
+      <div class="after-wrapper">
+        <img src="${style.after}" alt="${style.name} depois">
+      </div>
+      <div class="slider-handle"></div>
+    </div>
+    <div class="card-content">
+      <h3><i class="fa-solid fa-wand-magic-sparkles"></i> ${style.name}</h3>
+      <div class="prompt-box" id="prompt-${style.name.replace(/\s/g,'')}">${style.prompt}</div>
+      <button class="copy-btn" onclick="copyPrompt('${style.name.replace(/\s/g,'')}')"><i class="fa-solid fa-copy"></i> Copiar Prompt</button>
+    </div>
+  `;
+  gallery.appendChild(card);
+});
+
+function copyPrompt(id){
+  const promptText=document.getElementById(`prompt-${id}`).innerText;
+  navigator.clipboard.writeText(promptText).then(()=>alert("✅ Prompt copiado!"));
+}
+
+function moveSlider(e,container){
+  const rect=container.getBoundingClientRect();
+  let x=e.clientX-rect.left;
+  if(x<0) x=0;
+  if(x>rect.width) x=rect.width;
+  const afterWrapper=container.querySelector('.after-wrapper');
+  const handle=container.querySelector('.slider-handle');
+  afterWrapper.style.width=x+"px";
+  handle.style.left=x+"px";
+}
+</script>
+
+</body>
+</html>
