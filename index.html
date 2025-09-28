@@ -39,18 +39,28 @@ header p { font-size:1.2rem; margin-bottom:2rem; color:#e9e9e9; }
 .card {
   background:#fff; border-radius:16px; overflow:hidden;
   box-shadow:0 8px 25px rgba(0,0,0,.1); transition:.3s;
+  display:flex; flex-direction:column; height:100%;
 }
 .card:hover { transform:translateY(-6px); box-shadow:0 12px 35px rgba(0,0,0,.15); }
-.card-content { padding:1.2rem; text-align:center; }
+.card-content { 
+  padding:1.2rem; text-align:center; 
+  flex-grow:1; display:flex; flex-direction:column; justify-content:space-between;
+}
 .card-content h3 { margin-bottom:.8rem; font-size:1.3rem; color:#333; }
 
 /* Prompt */
 .prompt-box {
   margin-top:.8rem; padding:.8rem; background:#eef2f7;
   border-radius:8px; font-size:.95rem;
+  max-height:120px; overflow-y:auto;
+  text-align:left;
 }
+.prompt-box::-webkit-scrollbar { width:6px; }
+.prompt-box::-webkit-scrollbar-thumb { background:#bbb; border-radius:6px; }
+.prompt-box::-webkit-scrollbar-track { background:transparent; }
+
 .copy-btn {
-  margin-top:.8rem; background:linear-gradient(90deg,#4a90e2,#6a11cb);
+  margin-top:1rem; background:linear-gradient(90deg,#4a90e2,#6a11cb);
   color:#fff; border:none; padding:.6rem 1.4rem; border-radius:30px;
   cursor:pointer; font-size:.95rem; transition:.3s;
 }
@@ -110,19 +120,19 @@ const styles = [
     name:"Retrato Clássico",
     before:"2.jpeg",
     after:"1.jpeg",
-    prompt:"Retrato pessoal high-end, ultra realista da pessoa na foto fornecida, preservando sua fisionomia, idade aparente, gênero, tom de pele, cabelo, olhos e expressão única.não distorça traços, sem mudança de idade ou gênero, sem pele morta, sem roupa inventadas, exceto o contingente indicado, sem dedos ou buracos extras, sem ruídos, sem texto ou marcas de d'água.texturas foto realista de pele, cabelos e tecido.assunto principal é uma mulher com cabelos soltos e peitos bagunçado, com uma tonalidade marrom escura. Seu cabelo é brilhante iluminado por trás, criando um Halo Dourado luminoso que contrasta nitidamente com o fundo escuro.expressão e pose: ela vira o rosto para câmera, com o olhar diretamente, mas principalmente coberto por sombras. sua boca está ligeiramente entreaberta, ok adiciona um ar expressivo em líquido a foto. O peito no e atira fina de uma roupa quase invisível sugerem um retrato artístico, mais sensual do que documental iluminação luz de fundo muito potente e quente provavelmente com um gel amarelo, laranja, que banho ou contorno do cabelo. uma fonte secundária fria ( luz verde) ilumina o rosto e parte do peito, criando um contraste de cores completamente (quente no cabelo, frio na pele).o fundo é completamente escuro o que isola completamente a modelo e destaca o brilho nos seus cabelos. cor e atmosfera: a imagem joga com o esquema de duas cores quente frio. O resultado é dramático, cinematográfico e com um toque estéreo.lente fixa (prime) entre 50 mm e 85 mm em formato full frame.isso pode ser deduzido pela compreensão suave do rosto e dos ombros, típica das lentes de retratoabertura ampla (f / 1,4 - f / 2.8).gênero fotográfico: retrato artístico com uma forte intenção dramático."
+    prompt:"Retrato pessoal high-end, ultra realista da pessoa na foto fornecida, preservando sua fisionomia, idade aparente, gênero, tom de pele, cabelo, olhos e expressão única. Não distorça traços, sem mudança de idade ou gênero. Iluminação dramática com luz quente no cabelo e luz fria no rosto, fundo totalmente escuro, lente fixa 50mm-85mm, abertura f/1.4 - f/2.8. Gênero: retrato artístico com forte intenção dramática."
   },
   {
     name:"Paisagem Urbana",
     before:"11.jpeg",
     after:"3.jpeg",
-    prompt:"Crie um retrato vertical hiper-realista em preto e branco do homem da foto enviada, em pé em uma rua urbana noturna, vestindo terno preto de corte perfeito e camisa branca. Ele segura um guarda-chuva fechado em uma das mãos e olha para o lado, iluminado apenas por um poste de luz, que cria sombras fortes e contraste dramático. O chão molhado reflete a luz, ampliando o clima noir. Sua expressão é firme e contemplativa, transmitindo mistério e poder."
+    prompt:"Crie um retrato vertical hiper-realista em preto e branco do homem da foto enviada, em pé em uma rua urbana noturna, vestindo terno preto de corte perfeito e camisa branca. Ele segura um guarda-chuva fechado em uma das mãos e olha para o lado, iluminado apenas por um poste de luz, que cria sombras fortes e contraste dramático. O chão molhado reflete a luz, ampliando o clima noir."
   },
   {
     name:"Estilo Cyberpunk",
     before:"6.jpeg",
     after:"5.jpeg",
-    prompt:"Faça Um retrato profissional da pessoa da imagem, sombras profundas, fundo branco, fotografia alta resolução, 8K, estilo uso corporativo com terno azul escuro de alta alfaiataria"
+    prompt:"Faça um retrato profissional da pessoa da imagem, sombras profundas, fundo branco, fotografia alta resolução, 8K, estilo corporativo com terno azul escuro de alta alfaiataria."
   }
 ];
 
