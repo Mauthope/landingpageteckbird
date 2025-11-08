@@ -11,6 +11,6 @@ Para conferir a versão atual da landing page:
 
 Prévia estática mais recente:
 
-![Landing Preview](browser:/invocations/xyntfpqg/artifacts/artifacts/landing-preview.png)
+![Landing Preview](browser:/invocations/doghkcei/artifacts/artifacts/landing-page-preview.png)
 
-Capturada em 06 Nov 2025.
+Capturada em 07 Nov 2025.
