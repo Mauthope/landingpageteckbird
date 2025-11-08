@@ -1240,201 +1240,7 @@
         box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
       }
 
-      .floating-preview {
-        position: fixed;
-        bottom: 2rem;
-        right: 2rem;
-        width: min(420px, 92vw);
-        background: rgba(6, 0, 26, 0.82);
-        border-radius: 18px;
-        border: 1px solid rgba(0, 240, 255, 0.35);
-        box-shadow: 0 40px 140px rgba(0, 0, 0, 0.75), 0 0 40px rgba(0, 240, 255, 0.32);
-        backdrop-filter: blur(22px);
-        overflow: hidden;
-        transform: translate3d(0, 0, 0);
-        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.45s ease;
-        z-index: 50;
-      }
-
-      .floating-preview::before {
-        content: "";
-        position: absolute;
-        inset: -2px;
-        border-radius: inherit;
-        padding: 1px;
-        background: linear-gradient(135deg, rgba(0, 240, 255, 0.65), rgba(255, 77, 255, 0.65));
-        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-        -webkit-mask-composite: xor;
-        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-        mask-composite: exclude;
-        opacity: 0.55;
-        animation: previewGlow 8s linear infinite;
-        pointer-events: none;
-      }
-
-      .floating-preview.collapsed {
-        transform: translate3d(0, calc(100% - 72px), 0);
-        opacity: 0.85;
-      }
-
-      .preview-toggle {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.75rem;
-        padding: 0.95rem 1.25rem;
-        background: linear-gradient(120deg, rgba(0, 240, 255, 0.22), rgba(255, 77, 255, 0.18));
-        color: var(--text);
-        font-size: 0.95rem;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-        border: none;
-        cursor: pointer;
-        position: relative;
-        z-index: 2;
-      }
-
-      .preview-toggle span {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .preview-toggle .preview-state {
-        font-size: 0.85rem;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        opacity: 0.75;
-      }
-
-      .preview-body {
-        overflow: hidden;
-        max-height: 560px;
-        transition: max-height 0.6s ease, opacity 0.45s ease;
-        opacity: 1;
-      }
-
-      .floating-preview.collapsed .preview-body {
-        max-height: 0;
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .preview-content {
-        display: grid;
-        gap: 1rem;
-        padding: 1rem 1.25rem 1.4rem;
-        position: relative;
-        z-index: 1;
-      }
-
-      .preview-headline {
-        display: grid;
-        gap: 0.35rem;
-      }
-
-      .preview-headline strong {
-        font-size: 0.95rem;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: var(--primary);
-      }
-
-      .preview-headline span {
-        font-size: 0.9rem;
-        color: rgba(244, 243, 255, 0.78);
-      }
-
-      .preview-close {
-        justify-self: flex-end;
-        background: rgba(4, 0, 20, 0.68);
-        border: 1px solid rgba(255, 77, 255, 0.35);
-        border-radius: 999px;
-        color: var(--text);
-        padding: 0.35rem 0.65rem;
-        cursor: pointer;
-        transition: background 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .preview-close:hover {
-        background: rgba(255, 77, 255, 0.35);
-        box-shadow: 0 0 18px rgba(255, 77, 255, 0.45);
-      }
-
-      .preview-frame-wrapper {
-        position: relative;
-        border-radius: 14px;
-        border: 1px solid rgba(0, 240, 255, 0.25);
-        overflow: hidden;
-        box-shadow: inset 0 0 35px rgba(0, 240, 255, 0.2);
-      }
-
-      .preview-frame-wrapper::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, rgba(0, 240, 255, 0.16), transparent 55%);
-        pointer-events: none;
-      }
-
-      .preview-frame {
-        width: 100%;
-        height: 460px;
-        border: none;
-        background: var(--light);
-      }
-
-      .preview-frame::-webkit-scrollbar {
-        width: 6px;
-      }
-
-      .preview-frame::-webkit-scrollbar-thumb {
-        background: linear-gradient(180deg, rgba(0, 240, 255, 0.6), rgba(255, 77, 255, 0.6));
-        border-radius: 999px;
-      }
-
-      .is-preview-canvas .floating-preview {
-        display: none;
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          transform: rotate(0deg) scale(1);
-        }
-        50% {
-          transform: rotate(3deg) scale(1.05);
-        }
-      }
-
-      @keyframes previewGlow {
-        0% {
-          filter: hue-rotate(0deg);
-        }
-        50% {
-          filter: hue-rotate(30deg);
-        }
-        100% {
-          filter: hue-rotate(0deg);
-        }
-      }
-
       @media (max-width: 768px) {
-        .floating-preview {
-          right: auto;
-          left: 50%;
-          bottom: 1.25rem;
-          width: min(94vw, 420px);
-          transform: translate3d(-50%, 0, 0);
-        }
-
-        .floating-preview.collapsed {
-          transform: translate3d(-50%, calc(100% - 70px), 0);
-        }
-
         header {
           padding-bottom: 4rem;
         }
@@ -1796,8 +1602,6 @@
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-      const pageParams = new URLSearchParams(window.location.search);
-      const isPreviewMode = pageParams.get("mode") === "preview";
       let heroPlayer;
 
       function onYouTubeIframeAPIReady() {
@@ -1806,6 +1610,9 @@
         if (!heroFrame) {
           return;
         }
+
+        const pageParams = new URLSearchParams(window.location.search);
+        const isPreviewMode = pageParams.get("mode") === "preview";
 
         heroPlayer = new YT.Player("heroYoutube", {
           events: {
@@ -1828,73 +1635,6 @@
           },
         });
       }
-
-      document.addEventListener("DOMContentLoaded", () => {
-
-        if (isPreviewMode) {
-          document.body.classList.add("is-preview-canvas");
-          return;
-        }
-
-        const previewShell = document.createElement("aside");
-        previewShell.className = "floating-preview collapsed";
-        previewShell.innerHTML = `
-          <button type="button" class="preview-toggle" aria-expanded="false">
-            <span>
-              <i class="fa-solid fa-eye"></i>
-              Prévia instantânea
-            </span>
-            <span class="preview-state">Mostrar</span>
-          </button>
-          <div class="preview-body" aria-hidden="true">
-            <div class="preview-content">
-              <div class="preview-headline">
-                <strong>Pré-visualização sempre atualizada</strong>
-                <span>Abra para conferir o layout completo sem precisar rolar.</span>
-              </div>
-              <button type="button" class="preview-close" aria-label="Fechar pré-visualização">
-                <i class="fa-solid fa-xmark"></i>
-              </button>
-              <div class="preview-frame-wrapper">
-                <iframe class="preview-frame" title="Pré-visualização da landing page" loading="lazy"></iframe>
-              </div>
-            </div>
-          </div>
-        `;
-
-        const toggleButton = previewShell.querySelector(".preview-toggle");
-        const closeButton = previewShell.querySelector(".preview-close");
-        const previewBody = previewShell.querySelector(".preview-body");
-        const stateLabel = previewShell.querySelector(".preview-state");
-        const previewFrame = previewShell.querySelector(".preview-frame");
-        let previewLoaded = false;
-
-        const setPreviewState = (isOpen) => {
-          previewShell.classList.toggle("collapsed", !isOpen);
-          previewBody.setAttribute("aria-hidden", String(!isOpen));
-          toggleButton.setAttribute("aria-expanded", String(isOpen));
-          stateLabel.textContent = isOpen ? "Ocultar" : "Mostrar";
-
-          if (isOpen && !previewLoaded) {
-            const frameUrl = new URL(window.location.href);
-            frameUrl.searchParams.set("mode", "preview");
-            frameUrl.hash = "";
-            previewFrame.src = frameUrl.toString();
-            previewLoaded = true;
-          }
-        };
-
-        toggleButton.addEventListener("click", () => {
-          const shouldOpen = previewShell.classList.contains("collapsed");
-          setPreviewState(shouldOpen);
-        });
-
-        closeButton.addEventListener("click", () => {
-          setPreviewState(false);
-        });
-
-        document.body.appendChild(previewShell);
-      });
     </script>
   </body>
 </html>
