@@ -1335,9 +1335,11 @@
       <div class="container hero">
         <div class="hero-heading">
           <img
-            src="hero-banner.svg"
+            src="hero-banner.png"
+            data-fallback="hero-banner.svg"
             alt="Curso I.A. Me Clonei — Curso de IA"
             class="hero-banner"
+            loading="lazy"
           />
           <h1 class="sr-only">Curso “I.A. Me Clonei”</h1>
         </div>
@@ -1745,6 +1747,21 @@
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
+      const heroBannerImage = document.querySelector('.hero-banner[data-fallback]');
+
+      if (heroBannerImage) {
+        heroBannerImage.addEventListener('error', () => {
+          const fallback = heroBannerImage.getAttribute('data-fallback');
+
+          if (!fallback || heroBannerImage.dataset.fallbackApplied === 'true') {
+            return;
+          }
+
+          heroBannerImage.dataset.fallbackApplied = 'true';
+          heroBannerImage.src = fallback;
+        });
+      }
+
       let heroPlayer;
 
       function onYouTubeIframeAPIReady() {
