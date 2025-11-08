@@ -108,6 +108,18 @@
         width: min(1280px, 94vw);
       }
 
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
       header {
         background: linear-gradient(160deg, rgba(4, 0, 19, 0.92), rgba(26, 0, 54, 0.92));
         color: #fff;
@@ -152,12 +164,20 @@
         margin: 0 auto;
       }
 
-      .hero-heading h1 {
-        font-size: clamp(2.5rem, 5vw, 3.6rem);
-        margin-bottom: 1rem;
-        font-weight: 800;
-        line-height: 1.2;
-        text-shadow: 0 0 25px rgba(0, 240, 255, 0.45);
+      .hero-heading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .hero-heading .hero-banner {
+        width: min(100%, 820px);
+        height: auto;
+        border-radius: 24px;
+        box-shadow: 0 24px 60px rgba(0, 240, 255, 0.18), 0 28px 90px rgba(255, 77, 255, 0.16);
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        background: radial-gradient(circle at 20% 20%, rgba(0, 240, 255, 0.12), transparent 55%);
       }
 
       .hero-content {
@@ -1314,7 +1334,12 @@
     <header>
       <div class="container hero">
         <div class="hero-heading">
-          <h1>Curso “I.A. Me Clonei”</h1>
+          <img
+            src="hero-banner.svg"
+            alt="Curso I.A. Me Clonei — Curso de IA"
+            class="hero-banner"
+          />
+          <h1 class="sr-only">Curso “I.A. Me Clonei”</h1>
         </div>
         <div class="hero-media">
           <iframe
