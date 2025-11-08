@@ -1511,20 +1511,14 @@
           </p>
         </div>
         <div class="hero-media">
-          <video
-            id="heroShowcase"
-            class="hero-video"
-            muted
-            playsinline
-            preload="metadata"
-            poster="11.jpeg"
-          >
-            <source
-              src="https://cdn.coverr.co/videos/coverr-cyberpunk-cityscape-4040/1080p.mp4"
-              type="video/mp4"
-            />
-            Seu navegador não suporta a reprodução de vídeos.
-          </video>
+          <iframe
+            id="heroYoutube"
+            src="https://www.youtube.com/embed/dNRDvLACg5Q?enablejsapi=1&rel=0&controls=1&playsinline=1&mute=1"
+            title="Demonstração de criação com IA"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
     </header>
@@ -1800,24 +1794,42 @@
       </div>
     </footer>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const heroVideo = document.getElementById("heroShowcase");
+      const pageParams = new URLSearchParams(window.location.search);
+      const isPreviewMode = pageParams.get("mode") === "preview";
+      let heroPlayer;
 
-        if (heroVideo) {
-          setTimeout(() => {
-            const playPromise = heroVideo.play();
+      function onYouTubeIframeAPIReady() {
+        const heroFrame = document.getElementById("heroYoutube");
 
-            if (playPromise !== undefined) {
-              playPromise.catch(() => {
-                /* Caso o navegador bloqueie a reprodução automática, o usuário ainda pode iniciar manualmente. */
-              });
-            }
-          }, 2000);
+        if (!heroFrame) {
+          return;
         }
 
-        const params = new URLSearchParams(window.location.search);
-        const isPreviewMode = params.get("mode") === "preview";
+        heroPlayer = new YT.Player("heroYoutube", {
+          events: {
+            onReady: (event) => {
+              if (isPreviewMode) {
+                event.target.stopVideo();
+                return;
+              }
+
+              event.target.mute();
+
+              setTimeout(() => {
+                try {
+                  event.target.playVideo();
+                } catch (error) {
+                  /* Caso o navegador bloqueie a reprodução automática, o usuário ainda pode iniciar manualmente. */
+                }
+              }, 2000);
+            },
+          },
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
 
         if (isPreviewMode) {
           document.body.classList.add("is-preview-canvas");
