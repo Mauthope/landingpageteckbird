@@ -104,6 +104,10 @@
         margin: 0 auto;
       }
 
+      .container.hero {
+        width: min(1280px, 94vw);
+      }
+
       header {
         background: linear-gradient(160deg, rgba(4, 0, 19, 0.92), rgba(26, 0, 54, 0.92));
         color: #fff;
@@ -272,15 +276,18 @@
       .hero-media {
         background: rgba(4, 0, 19, 0.55);
         border-radius: 24px;
-        padding: 1.5rem;
+        padding: clamp(1.4rem, 3.5vw, 2.3rem);
         backdrop-filter: blur(12px);
         box-shadow: 0 35px 80px rgba(0, 0, 0, 0.55), 0 0 35px rgba(0, 240, 255, 0.2);
         border: 1px solid rgba(0, 240, 255, 0.25);
+        width: min(1100px, 100%);
+        margin: 0 auto;
       }
 
       .hero-media iframe {
         width: 100%;
         aspect-ratio: 16 / 9;
+        min-height: clamp(260px, 52vh, 620px);
         border: none;
         border-radius: 16px;
         box-shadow: 0 0 25px rgba(255, 77, 255, 0.35);
