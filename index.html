@@ -1546,7 +1546,7 @@
         <div class="hero-media">
           <iframe
             id="heroYoutube"
-            src="https://www.youtube.com/embed/2HIMhcP-pgk?enablejsapi=1&rel=0&controls=1&playsinline=1&mute=1"
+            src="https://www.youtube.com/embed/2HIMhcP-pgk?enablejsapi=1&rel=0&controls=1&playsinline=1&autoplay=0"
             title="Vídeo 1 – Você Real (I.A. Me Clonei)"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -1979,15 +1979,27 @@
     <script>
       let heroPlayer;
 
+      const setBestQuality = (player) => {
+        if (!player || typeof player.getAvailableQualityLevels !== "function") {
+          return;
+        }
+
+        const qualities = player.getAvailableQualityLevels();
+
+        if (qualities && qualities.length) {
+          player.setPlaybackQuality(qualities[0]);
+          return;
+        }
+
+        player.setPlaybackQuality("highres");
+      };
+
       const initHeroPlayer = () => {
         const heroFrame = document.getElementById("heroYoutube");
 
         if (!heroFrame || !window.YT || !window.YT.Player) {
           return;
         }
-
-        const pageParams = new URLSearchParams(window.location.search);
-        const isPreviewMode = pageParams.get("mode") === "preview";
 
         if (heroPlayer) {
           return;
@@ -1996,20 +2008,17 @@
         heroPlayer = new YT.Player("heroYoutube", {
           events: {
             onReady: (event) => {
-              if (isPreviewMode) {
-                event.target.stopVideo();
-                return;
+              event.target.unMute();
+              event.target.setVolume(100);
+              setBestQuality(event.target);
+            },
+            onStateChange: (event) => {
+              if (
+                event.data === window.YT.PlayerState.BUFFERING ||
+                event.data === window.YT.PlayerState.PLAYING
+              ) {
+                setBestQuality(event.target);
               }
-
-              event.target.mute();
-
-              setTimeout(() => {
-                try {
-                  event.target.playVideo();
-                } catch (error) {
-                  /* Caso o navegador bloqueie a reprodução automática, o usuário ainda pode iniciar manualmente. */
-                }
-              }, 2000);
             },
           },
         });
