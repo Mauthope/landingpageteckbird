@@ -270,7 +270,7 @@
         align-items: center;
       }
 
-      .offer-details .cta-group {
+      .offer-pricing .cta-group {
         justify-content: center;
       }
 
@@ -850,21 +850,80 @@
         font-size: 0.98rem;
         color: rgba(244, 243, 255, 0.76);
       }
-      .offer-intro {
-        margin: 2rem auto 0;
-        padding: 2.4rem;
+      .offer-section .container {
         display: grid;
-        gap: 1rem;
-        background: rgba(4, 0, 19, 0.75);
-        border-radius: 22px;
-        border: 1px solid rgba(0, 240, 255, 0.25);
-        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), inset 0 0 28px rgba(255, 77, 255, 0.18);
-        line-height: 1.65;
-        color: rgba(244, 243, 255, 0.86);
+        gap: clamp(1.8rem, 4vw, 2.6rem);
+        padding: clamp(1.8rem, 4vw, 3.2rem);
+        background: linear-gradient(135deg, rgba(4, 0, 19, 0.74), rgba(11, 0, 34, 0.78));
+        border-radius: 28px;
+        border: 1px solid rgba(0, 240, 255, 0.22);
+        box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6), 0 0 45px rgba(0, 240, 255, 0.18);
+        backdrop-filter: blur(18px);
       }
 
-      .offer-intro p strong {
+      .offer-copy {
+        display: grid;
+        gap: 1rem;
+        line-height: 1.7;
+        color: rgba(244, 243, 255, 0.88);
+      }
+
+      .offer-copy p strong {
         color: var(--primary);
+      }
+
+      .offer-benefits {
+        background: rgba(4, 0, 19, 0.75);
+        border-radius: 20px;
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        box-shadow: 0 28px 75px rgba(0, 0, 0, 0.55), inset 0 0 28px rgba(255, 77, 255, 0.18);
+        padding: clamp(1.8rem, 3.2vw, 2.4rem);
+        display: grid;
+        gap: 1.2rem;
+      }
+
+      .offer-benefits h3 {
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--primary);
+        text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+      }
+
+      .offer-benefit-list {
+        list-style: none;
+        display: grid;
+        gap: 0.85rem;
+        margin: 0;
+        padding: 0;
+      }
+
+      .offer-benefit-list li {
+        display: flex;
+        gap: 0.65rem;
+        align-items: flex-start;
+        padding: 0.9rem 1.2rem;
+        border-radius: 14px;
+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.14), rgba(255, 77, 255, 0.12));
+        border: 1px solid rgba(139, 93, 255, 0.28);
+        box-shadow: inset 0 0 22px rgba(0, 240, 255, 0.14);
+        color: rgba(244, 243, 255, 0.9);
+      }
+
+      .offer-benefit-list li span {
+        font-size: 1.05rem;
+        line-height: 1.6;
+      }
+
+      .offer-tools {
+        background: rgba(4, 0, 19, 0.78);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 77, 255, 0.28);
+        box-shadow: 0 28px 75px rgba(0, 0, 0, 0.55), inset 0 0 26px rgba(0, 240, 255, 0.16);
+        padding: clamp(1.8rem, 3.2vw, 2.3rem);
+        display: grid;
+        gap: 1rem;
+        color: rgba(244, 243, 255, 0.86);
       }
 
       .founder-schedule {
@@ -934,7 +993,7 @@
         border: 1px solid rgba(0, 240, 255, 0.25);
       }
 
-      .offer-details {
+      .offer-pricing {
         margin-top: 2.5rem;
         display: grid;
         gap: 1.2rem;
@@ -1232,7 +1291,7 @@
         .program-section::before,
         .program-card::before,
         .story-card::before,
-        .final-cta::before,
+        .final-section .container::before,
         .section-video::before {
           content: none;
         }
@@ -1261,14 +1320,13 @@
         .program-card,
         .program-intro p,
         .program-demo,
-        .offer-intro,
         .founder-schedule,
         .bonuses,
         .bonus-card,
         .offer-testimonial,
         .offer-progress,
         .guarantee-block,
-        .final-cta,
+        .final-section .container,
         details,
         .testimonial,
         .section-video {
@@ -1301,13 +1359,12 @@
         .hero-support,
         .program-intro p,
         .program-demo,
-        .offer-intro,
         .founder-schedule,
         .bonuses,
         .bonus-card,
         .offer-progress,
         .guarantee-block,
-        .final-cta,
+        .final-section .container,
         details,
         .testimonial {
           padding: 1.6rem;
@@ -1351,7 +1408,7 @@
           opacity: 0.25;
         }
 
-        .final-cta {
+        .final-section .container {
           padding: 2.4rem 1.6rem;
         }
       }
@@ -1438,7 +1495,7 @@
         font-weight: 600;
       }
 
-      .final-cta {
+      .final-section .container {
         background: linear-gradient(135deg, rgba(9, 0, 25, 0.92), rgba(4, 0, 19, 0.92));
         color: #fff;
         border-radius: 24px;
@@ -1453,7 +1510,7 @@
         overflow: hidden;
       }
 
-      .final-cta::before {
+      .final-section .container::before {
         content: "";
         position: absolute;
         inset: -40% -60%;
@@ -1462,18 +1519,18 @@
         z-index: 0;
       }
 
-      .final-cta > * {
+      .final-section .container > * {
         position: relative;
         z-index: 1;
       }
 
-      .final-cta .final-note {
+      .final-section .final-note {
         margin: 0;
         color: rgba(244, 243, 255, 0.82);
         font-size: 1.05rem;
       }
 
-      .final-cta h2 {
+      .final-section h2 {
         color: #fff;
         margin-bottom: 0;
       }
@@ -1655,16 +1712,36 @@
         </div>
       </section>
 
-      <section>
+      <section class="offer-section">
         <div class="container">
           <p class="section-title">o valor · a oferta · o método profissional (turma fundadora)</p>
           <h2>Curso completo: I.A. Me Clonei</h2>
-          <div class="offer-intro">
-            
-          <div class="offer-text">
+          <div class="offer-copy">
+            <p>
+              Aprenda a criar seus clones digitais, gerar vídeos, vozes e personagens completos com a
+              mesma tecnologia usada por grandes criadores e marcas do mundo inteiro.
+            </p>
+            <p>
+              Nada de perder horas testando mil sites de IA. Aqui você aprende um método direto, prático
+              e profissional, que te leva do zero ao resultado real — com qualidade de estúdio e sem
+              confusão.
+            </p>
+          </div>
+          <div class="offer-benefits">
+            <h3>🎓 Você vai receber:</h3>
+            <ul class="offer-benefit-list">
+              <li><span>✅ Acesso vitalício ao curso completo</span></li>
+              <li><span>✅ Passo a passo pra criar clones digitais realistas</span></li>
+              <li><span>✅ Biblioteca de prompts e roteiros prontos</span></li>
+              <li><span>✅ Modelos configurados pra produção rápida</span></li>
+              <li><span>✅ Suporte humano via comunidade e e-mail</span></li>
+              <li><span>✅ Atualizações gratuitas sempre que novas tecnologias surgirem</span></li>
+            </ul>
+          </div>
+          <div class="offer-tools">
             <p>
               💬 Sobre o uso das ferramentas: durante o curso você vai trabalhar com a mesma tecnologia
-              que uso nas minhas produções reais. Ela possui um plano pago, acessível e direto, e é o
+              que uso nas minhas produções reais. Ela possui um plano pago, acessível e direto, mas é o
               que garante o resultado profissional que você vai alcançar.
             </p>
             <p>
@@ -1691,9 +1768,8 @@
               valor volta ao que realmente vale.
             </p>
           </div>
-
-          <div class="offer-details">
-            <p class="offer-text"><strong>💸 Valor real do conteúdo:</strong> R$ 1.400,00</p>
+          <div class="offer-pricing">
+            <p class="offer-price-label"><strong>💸 Valor real do conteúdo:</strong> R$ 1.400,00</p>
             <div class="price-highlight">
               <span class="price-badge">🔖 OFERTA DE PRÉ-LANÇAMENTO — 64% OFF até o dia 10/12!</span>
               <span class="price-offer">🔥 Oferta especial de pré-lançamento (Turma Fundadora)</span>
@@ -1732,28 +1808,26 @@
           </div>
         </div>
       </section>
-      <section>
+      <section class="final-section">
         <div class="container">
-          <div class="final-cta">
-            <span class="highlight">🛡️ Garantia total de 7 dias</span>
-            <h2>A IA não vai esperar você entender.</h2>
-            <p>
-              Você tem 7 dias de garantia total pra testar o curso. Se não fizer sentido, devolvemos o
-              seu dinheiro — sem perguntas e sem enrolação.
-            </p>
-            <p>
-              Enquanto você pensa, tem gente criando clones, vídeos e vozes com IA. A diferença é que
-              agora você também pode fazer parte disso.
-            </p>
-            <a class="cta-primary" href="https://wa.me/49988971962" target="_blank">
-              <i class="fa-solid fa-bolt"></i> Quero meu acesso ao I.A. Me Clonei por R$ 497
-            </a>
-            <small>Oferta de lançamento — 64% OFF + acesso vitalício + garantia total de 7 dias.</small>
-            <p class="offer-text final-note">
-              I.A. Me Clonei — menos que um café por dia pra aprender a ser quem você quiser (e todas as
-              versões de você ao mesmo tempo).
-            </p>
-          </div>
+          <span class="highlight">🛡️ Garantia total de 7 dias</span>
+          <h2>A IA não vai esperar você entender.</h2>
+          <p>
+            Você tem 7 dias de garantia total pra testar o curso. Se não fizer sentido, devolvemos o seu
+            dinheiro — sem perguntas e sem enrolação.
+          </p>
+          <p>
+            Enquanto você pensa, tem gente criando clones, vídeos e vozes com IA. A diferença é que agora
+            você também pode fazer parte disso.
+          </p>
+          <a class="cta-primary" href="https://wa.me/49988971962" target="_blank">
+            <i class="fa-solid fa-bolt"></i> Quero meu acesso ao I.A. Me Clonei por R$ 497
+          </a>
+          <small>Oferta de lançamento — 64% OFF + acesso vitalício + garantia total de 7 dias.</small>
+          <p class="offer-text final-note">
+            I.A. Me Clonei — menos que um café por dia pra aprender a ser quem você quiser (e todas as
+            versões de você ao mesmo tempo).
+          </p>
         </div>
       </section>
     </main>
@@ -1840,6 +1914,10 @@
 
       const heroFrame = document.getElementById("heroYoutube");
 
+      if (heroFrame) {
+        heroFrame.setAttribute("tabindex", "-1");
+      }
+
       if ("IntersectionObserver" in window && heroFrame) {
         const heroObserver = new IntersectionObserver(
           (entries, observer) => {
@@ -1868,16 +1946,20 @@
         history.scrollRestoration = "manual";
       }
 
-      const resetScrollOnLoad = () => {
-        if (window.matchMedia("(max-width: 768px)").matches) {
-          window.scrollTo(0, 0);
-        }
+      const ensureScrollTop = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       };
 
-      document.addEventListener("DOMContentLoaded", resetScrollOnLoad);
+      const scheduleScrollReset = () => {
+        ensureScrollTop();
+        setTimeout(ensureScrollTop, 120);
+      };
+
+      document.addEventListener("DOMContentLoaded", scheduleScrollReset);
+      window.addEventListener("load", scheduleScrollReset);
       window.addEventListener("pageshow", (event) => {
         if (event.persisted) {
-          resetScrollOnLoad();
+          scheduleScrollReset();
         }
       });
     </script>
