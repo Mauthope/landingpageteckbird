@@ -339,6 +339,37 @@
         box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);
       }
 
+      .section-video {
+        position: relative;
+        border-radius: 18px;
+        padding: clamp(0.75rem, 2vw, 1rem);
+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.12), rgba(255, 77, 255, 0.12));
+        border: 1px solid rgba(0, 240, 255, 0.28);
+        box-shadow: 0 25px 65px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 240, 255, 0.18);
+        overflow: hidden;
+        margin-bottom: clamp(1.2rem, 3vw, 1.8rem);
+      }
+
+      .section-video::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 25% 25%, rgba(0, 240, 255, 0.2), transparent 55%),
+          radial-gradient(circle at 70% 75%, rgba(255, 77, 255, 0.22), transparent 60%);
+        opacity: 0.85;
+        pointer-events: none;
+      }
+
+      .section-video iframe {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.24);
+      }
+
       section {
         padding: 5rem 0;
         position: relative;
@@ -751,12 +782,6 @@
         border-radius: 18px;
         border: 1px solid rgba(0, 240, 255, 0.25);
         background: linear-gradient(135deg, rgba(0, 240, 255, 0.12), rgba(255, 77, 255, 0.12));
-        min-height: 240px;
-        display: grid;
-        place-items: center;
-        color: rgba(244, 243, 255, 0.78);
-        text-align: center;
-        padding: 2rem;
         overflow: hidden;
       }
 
@@ -768,12 +793,16 @@
           radial-gradient(circle at 70% 70%, rgba(255, 77, 255, 0.2), transparent 60%);
         opacity: 0.8;
         pointer-events: none;
+        z-index: 0;
       }
 
-      .demo-video span {
+      .demo-video iframe {
         position: relative;
-        font-size: 1.05rem;
-        max-width: 420px;
+        z-index: 1;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: none;
+        display: block;
       }
 
       .demo-cta {
@@ -1567,7 +1596,15 @@
           <h2>Avatar 1: Corretor de Imóveis (Charme e Persuasão)</h2>
           <div class="authority">
             <article class="authority-card story-card">
-              
+              <div class="section-video">
+                <iframe
+                  src="https://www.youtube.com/embed/2HIMhcP-pgk?rel=0&controls=1"
+                  title="Vídeo 2 – Avatar Corretor"
+                  loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
               <div class="story-points">
                 <span><i class="fa-solid fa-video"></i> 🎥 Vídeo 2 – Avatar Corretor</span>
                 <span><i class="fa-solid fa-handshake"></i> Charme e persuasão sem precisar aparecer</span>
@@ -1603,21 +1640,26 @@
                 <span><i class="fa-solid fa-fire"></i> Conteúdo constante sem gravar todo dia</span>
               </div>
             </div>
-            <div class="program-body">
-              <h3>Entretenimento neon sem travar diante da câmera.</h3>
-              
-              <div class="program-demo">
-                <div class="demo-video">
-                  <span>
+              <div class="program-body">
+                <h3>Entretenimento neon sem travar diante da câmera.</h3>
+                <div class="program-demo">
+                  <div class="demo-video">
+                    <iframe
+                      src="https://www.youtube.com/embed/2HIMhcP-pgk?rel=0&controls=1"
+                      title="Vídeo 3 – Avatar Gamer"
+                      loading="lazy"
+                      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                  <p class="demo-note">
                     🎥 Vídeo 3 – Avatar Gamer (energético e divertido). O clone neon comenta, reage e
                     entretém enquanto você pensa na próxima missão.
-                  </span>
+                  </p>
+                  <a class="cta-secondary demo-cta" href="#" target="_blank">Assistir ao Avatar Gamer em ação</a>
                 </div>
-                <a class="cta-secondary demo-cta" href="#" target="_blank">Assistir ao Avatar Gamer em ação</a>
-                
               </div>
             </div>
-          </div>
         </div>
       </section>
 
@@ -1627,7 +1669,15 @@
           <h2>Avatar 3: Professor / Especialista (Autoridade e Ensino)</h2>
           <div class="proof">
             <div class="proof-highlight">
-              
+              <div class="section-video">
+                <iframe
+                  src="https://www.youtube.com/embed/2HIMhcP-pgk?rel=0&controls=1"
+                  title="Vídeo 4 – Avatar Professor"
+                  loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
               <div class="proof-feature-block">
                 <p class="proof-feature-title">🎥 Vídeo 4 – Avatar Professor</p>
                 <ul class="proof-feature-list">
@@ -1651,7 +1701,15 @@
           <h2>Avatar 4: Influencer (Presença e Impacto)</h2>
           <div class="authority">
             <article class="authority-card story-card">
-              
+              <div class="section-video">
+                <iframe
+                  src="https://www.youtube.com/embed/2HIMhcP-pgk?rel=0&controls=1"
+                  title="Vídeo 5 – Avatar Influencer"
+                  loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
               <div class="story-points">
                 <span><i class="fa-solid fa-camera"></i> 🎥 Vídeo 5 – Avatar Influencer</span>
                 <span><i class="fa-solid fa-wand-magic-sparkles"></i> Presença impactante em qualquer feed</span>
