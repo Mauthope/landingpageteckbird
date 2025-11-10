@@ -192,6 +192,14 @@
         box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55), inset 0 0 35px rgba(0, 240, 255, 0.12);
       }
 
+      .hero-banner {
+        width: min(820px, 95%);
+        display: block;
+        height: auto;
+        border-radius: 22px;
+        box-shadow: 0 22px 65px rgba(0, 0, 0, 0.55), 0 0 40px rgba(0, 240, 255, 0.28);
+      }
+
       @supports (background-clip: text) {
         .hero-title {
           color: transparent;
@@ -1635,7 +1643,13 @@
     <header>
       <div class="container hero">
         <div class="hero-heading">
-          <h1 class="hero-title">Curso “I.A. Me Clonei”</h1>
+          <h1 class="sr-only">Curso “I.A. Me Clonei”</h1>
+          <img
+            class="hero-banner"
+            src="hero-banner.png"
+            alt="Curso I.A. Me Clonei"
+            loading="lazy"
+          />
         </div>
         <div class="hero-media">
           <iframe
