@@ -1,1994 +1,3425 @@
-diff --git a/index.html b/index.html
-index 3bf954916a47b68c8a9d3145b26e30d3f11eb69c..2b5d7406c8a8989745989cf7e41578e028c36ac0 100644
---- a/index.html
-+++ b/index.html
-@@ -1,235 +1,1758 @@
- <!DOCTYPE html>
- <html lang="pt-BR">
--<head>
--<meta charset="UTF-8">
--<meta name="viewport" content="width=device-width, initial-scale=1.0">
--<title>Landing Page - Estilos de Foto</title>
--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
--<style>
--/* Reset */
--* { margin:0; padding:0; box-sizing:border-box; }
--body { font-family:'Segoe UI', sans-serif; background:#f9f9f9; color:#333; }
--
--/* Hero */
--header {
--  background: linear-gradient(135deg, #4a90e2, #6a11cb);
--  color:#fff; text-align:center; padding:5rem 1rem 3rem;
--}
--header h1 { font-size:2.8rem; margin-bottom:1rem; }
--header p { font-size:1.2rem; margin-bottom:2rem; color:#e9e9e9; }
--.video-container { display:flex; justify-content:center; margin-bottom:1.5rem; }
--.video-container iframe { width:100%; max-width:800px; height:450px; border-radius:16px; }
--
--/* Botões */
--.button-group {
--  display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;
--}
--.buy-button {
--  display:inline-flex; align-items:center; gap:10px;
--  background: linear-gradient(90deg, #ff6b6b, #f94d6a);
--  color:#fff; padding:1rem 2.2rem; border-radius:30px; font-size:1.1rem;
--  text-decoration:none; font-weight:bold; transition:.3s;
--}
--.buy-button:hover { transform:translateY(-3px); box-shadow:0 6px 20px rgba(249,77,106,.4); }
--
--.ebook-button {
--  display:inline-flex; align-items:center; gap:10px;
--  background: linear-gradient(90deg, #4a90e2, #50c9ce);
--  color:#fff; padding:1rem 2.2rem; border-radius:30px; font-size:1.1rem;
--  text-decoration:none; font-weight:bold; transition:.3s;
--}
--.ebook-button:hover { transform:translateY(-3px); box-shadow:0 6px 20px rgba(74,144,226,.4); }
--
--.mentoria-button {
--  display:inline-flex; align-items:center; gap:10px;
--  background: linear-gradient(90deg, #6a11cb, #b91372);
--  color:#fff; padding:1rem 2.2rem; border-radius:30px; font-size:1.1rem;
--  text-decoration:none; font-weight:bold; transition:.3s;
--}
--.mentoria-button:hover { transform:translateY(-3px); box-shadow:0 6px 20px rgba(185,19,114,.4); }
--
--/* Galeria */
--.gallery-container { padding:4rem 1rem; background:#fff; }
--.gallery-container h2 {
--  text-align:center; font-size:2rem; margin-bottom:2rem; color:#333;
--}
--.gallery-container h2 i { margin-right:10px; color:#6a11cb; }
--.gallery {
--  display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
--  gap:2rem; max-width:1200px; margin:auto;
--}
--.card {
--  background:#fff; border-radius:16px; overflow:hidden;
--  box-shadow:0 8px 25px rgba(0,0,0,.1); transition:.3s;
--  display:flex; flex-direction:column; height:100%;
--}
--.card:hover { transform:translateY(-6px); box-shadow:0 12px 35px rgba(0,0,0,.15); }
--.card-content { 
--  padding:1.2rem; text-align:center; 
--  flex-grow:1; display:flex; flex-direction:column; justify-content:space-between;
--}
--.card-content h3 { margin-bottom:.8rem; font-size:1.3rem; color:#333; }
--
--/* Prompt */
--.prompt-box {
--  margin-top:.8rem; padding:.8rem; background:#eef2f7;
--  border-radius:8px; font-size:.95rem;
--  max-height:120px; overflow-y:auto;
--  text-align:left;
--}
--.prompt-box::-webkit-scrollbar { width:6px; }
--.prompt-box::-webkit-scrollbar-thumb { background:#bbb; border-radius:6px; }
--.prompt-box::-webkit-scrollbar-track { background:transparent; }
--
--.copy-btn {
--  margin-top:1rem; background:linear-gradient(90deg,#4a90e2,#6a11cb);
--  color:#fff; border:none; padding:.6rem 1.4rem; border-radius:30px;
--  cursor:pointer; font-size:.95rem; transition:.3s;
--}
--.copy-btn:hover { opacity:.9; }
--
--/* Antes/Depois Slider */
--.before-after {
--  position:relative; width:100%; overflow:hidden;
--}
--.before-after img {
--  display:block; width:100%; height:auto;
--}
--.before-after .after-wrapper {
--  position:absolute; top:0; left:0; height:100%; width:50%;
--  overflow:hidden; transition:width .2s ease;
--}
--.before-after .after-wrapper img { width:100%; height:100%; object-fit:cover; }
--.slider-handle {
--  position:absolute; top:0; left:50%; transform:translateX(-50%);
--  width:6px; height:100%; background:linear-gradient(180deg,#6a11cb,#4a90e2);
--  border-radius:4px; cursor:ew-resize; z-index:5;
--  display:flex; align-items:center; justify-content:center;
--}
--.slider-handle::before {
--  content:"\f337"; /* ícone de arrastar FontAwesome */
--  font-family:"Font Awesome 6 Free"; font-weight:900;
--  color:#fff; font-size:1.2rem;
--  background:rgba(0,0,0,0.3); padding:6px; border-radius:50%;
--}
--
--/* Responsivo */
--@media(max-width:768px){
--  header h1 { font-size:2.2rem; }
--  .video-container iframe { height:280px; }
--  .button-group { flex-direction:column; align-items:center; }
--}
--</style>
--</head>
--<body>
--
--<header>
--  <h1><i class="fa-solid fa-camera-retro"></i> Descubra o Estilo Ideal de Sua Foto</h1>
--  <p>Veja exemplos de antes e depois e copie os prompts para gerar imagens incríveis</p>
--  <div class="video-container">
--    <iframe 
--    width="560" 
--    height="315" 
--    src="https://www.youtube.com/embed/Bif_5h8k8_A" 
--    frameborder="0" 
--    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
--    allowfullscreen>
--</iframe>
--  </div>
--
--  <!-- Grupo de botões -->
--  <div class="button-group">
--    <a href="https://www.seusite.com/curso" class="buy-button">
--      <i class="fa-solid fa-cart-shopping"></i> Comprar Curso Agora
--    </a>
--
--    <a href="https://www.seusite.com/ebook-gratuito.pdf" download class="ebook-button">
--      <i class="fa-solid fa-book-open"></i> Ebook Gratuito
--    </a>
--
--    <a href="https://wa.me/49988971962?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20mentoria." target="_blank" class="mentoria-button">
--      <i class="fa-solid fa-user-graduate"></i> Contato para Mentoria
--    </a>
--  </div>
--</header>
--
--<section class="gallery-container">
--  <h2><i class="fa-solid fa-image"></i> Galeria Antes e Depois</h2>
--  <div class="gallery" id="gallery"></div>
--</section>
--
--<script>
--const styles = [
--  {
--    name:"Mulher cinematografica",
--    before:"2.jpeg",
--    after:"1.jpeg",
--    prompt:"Retrato pessoal high-end, ultra realista da pessoa na foto fornecida, preservando sua fisionomia, idade aparente, gênero, tom de pele, cabelo, olhos e expressão única. não distorça traços, sem mudança de idade ou gênero, sem pele morta, sem roupa inventadas, exceto o contingente indicado, sem dedos ou buracos extras, sem ruídos, sem texto ou marcas de d'água.texturas foto realista de pele, cabelos e tecido.assunto principal é uma mulher com cabelos soltos e peitos bagunçado, com uma tonalidade marrom escura. Seu cabelo é brilhante iluminado por trás, criando um Halo Dourado luminoso que contrasta nitidamente com o fundo escuro.expressão e pose: ela vira o rosto para câmera, com o olhar diretamente, mas principalmente coberto por sombras. sua boca está ligeiramente entreaberta, ok adiciona um ar expressivo em líquido a foto. O peito no e atira fina de uma roupa quase invisível sugerem um retrato artístico, mais sensual do que documental iluminação luz de fundo muito potente e quente provavelmente com um gel amarelo, laranja, que banho ou contorno do cabelo. uma fonte secundária fria ( luz verde) ilumina o rosto e parte do peito, criando um contraste de cores completamente (quente no cabelo, frio na pele).o fundo é completamente escuro o que isola completamente a modelo e destaca o brilho nos seus cabelos. cor e atmosfera: a imagem joga com o esquema de duas cores quente frio. O resultado é dramático, cinematográfico e com um toque estéreo.lente fixa (prime) entre 50 mm e 85 mm em formato full frame.isso pode ser deduzido pela compreensão suave do rosto e dos ombros, típica das lentes de retratoabertura ampla (f / 1,4 - f / 2.8).gênero fotográfico: retrato artístico com uma forte intenção dramático."
--  },
--  {
--    name:"Foto de formatura",
--    before:"8.jpeg",
--    after:"7.jpeg",
--    prompt:"Retrato de um casal jovem em estilo de fotografia de formatura ou evento formal. O homem veste um terno azul marinho de alta alfaiataria com uma camisa branca e gravata preta, com sombras profundas para um visual sofisticado. A mulher está ao lado dele, vestindo um vestido elegante em tom pastel, com maquiagem suave e cabelos bem penteados. Fundo branco limpo. Fotografia de alta qualidade, 8K, com iluminação de estúdio que cria sombras profundas e suaves."
--  },
--  {
--    name:"Homem de terno",
--    before:"6.jpeg",
--    after:"5.jpeg",
--    prompt:"Faça um retrato profissional da pessoa da imagem, sombras profundas, fundo branco, fotografia alta resolução, 8K, estilo corporativo com terno azul escuro de alta alfaiataria."
--  },
--  {
--    name:"Paisagem noturna",
--    before:"11.jpeg",
--    after:"3.jpeg",
--    prompt:"Crie um retrato vertical hiper-realista em preto e branco do homem da foto enviada, em pé em uma rua urbana noturna, vestindo terno preto de corte perfeito e camisa branca. Ele segura um guarda-chuva fechado em uma das mãos e olha para o lado, iluminado apenas por um poste de luz, que cria sombras fortes e contraste dramático. O chão molhado reflete a luz, ampliando o clima noir."
--  },
--  {
--    name:"Mundo corporativo",
--    before:"10.jpeg",
--    after:"9.jpeg",
--    prompt:"Crie um retrato vertical hiper-realista em preto e branco do homem da foto enviada, em pé em uma rua urbana noturna, vestindo terno preto de corte perfeito e camisa branca. Ele segura um guarda-chuva fechado em uma das mãos e olha para o lado, iluminado apenas por um poste de luz, que cria sombras fortes e contraste dramático. O chão molhado reflete a luz, ampliando o clima noir."
--  }
--];
--
--const gallery = document.getElementById("gallery");
--
--styles.forEach(style => {
--  const card = document.createElement("div");
--  card.className = "card";
--  card.innerHTML = `
--    <div class="before-after" onmousemove="moveSlider(event,this)" ontouchmove="moveSlider(event.touches[0],this)">
--      <img src="${style.before}" alt="${style.name} antes">
--      <div class="after-wrapper">
--        <img src="${style.after}" alt="${style.name} depois">
-+  <head>
-+    <meta charset="UTF-8" />
-+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-+    <title>I.A. Me Clonei — Curso de Clones Digitais com Inteligência Artificial</title>
-+    <link
-+      rel="stylesheet"
-+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-+    />
-+    <link
-+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
-+      rel="stylesheet"
-+    />
-+    <style>
-+      :root {
-+        --primary: #00f0ff;
-+        --secondary: #ff4dff;
-+        --accent: #8b5dff;
-+        --dark: #040013;
-+        --light: #090019;
-+        --gray: #b0a9d9;
-+        --text: #f4f3ff;
-+        --gradient: linear-gradient(135deg, rgba(0, 240, 255, 0.92), rgba(255, 77, 255, 0.92));
-+        --glass: rgba(10, 4, 32, 0.7);
-+      }
-+
-+      * {
-+        margin: 0;
-+        padding: 0;
-+        box-sizing: border-box;
-+      }
-+
-+      body {
-+        font-family: "Montserrat", sans-serif;
-+        color: var(--text);
-+        background: radial-gradient(circle at 20% 20%, rgba(255, 77, 255, 0.12), transparent 45%),
-+          radial-gradient(circle at 80% 0%, rgba(0, 240, 255, 0.15), transparent 50%),
-+          var(--dark);
-+        line-height: 1.7;
-+        min-height: 100vh;
-+        position: relative;
-+        z-index: 0;
-+        overflow-x: hidden;
-+        font-weight: 500;
-+      }
-+
-+      p {
-+        font-size: clamp(1.05rem, 2.3vw, 1.22rem);
-+      }
-+
-+      p,
-+      li,
-+      .section-text,
-+      .section-lede,
-+      .story-text,
-+      .module-copy,
-+      .offer-text,
-+      .cta-caption {
-+        font-weight: 500;
-+        letter-spacing: 0.01em;
-+      }
-+
-+      body::before,
-+      body::after {
-+        content: "";
-+        position: fixed;
-+        inset: -30%;
-+        pointer-events: none;
-+        z-index: -2;
-+      }
-+
-+      body::before {
-+        background: radial-gradient(circle at 15% 20%, rgba(0, 240, 255, 0.25), transparent 55%),
-+          radial-gradient(circle at 85% 75%, rgba(255, 77, 255, 0.2), transparent 60%);
-+        filter: blur(90px);
-+        opacity: 0.85;
-+      }
-+
-+      body::after {
-+        background-image: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(255, 77, 255, 0.08)),
-+          linear-gradient(90deg, rgba(0, 240, 255, 0.08) 1px, transparent 1px),
-+          linear-gradient(0deg, rgba(255, 77, 255, 0.08) 1px, transparent 1px);
-+        background-size: cover, 180px 180px, 180px 180px;
-+        mix-blend-mode: screen;
-+        opacity: 0.65;
-+        z-index: -1;
-+      }
-+
-+      header,
-+      main,
-+      footer {
-+        position: relative;
-+        z-index: 1;
-+      }
-+
-+      a {
-+        color: inherit;
-+        text-decoration: none;
-+      }
-+
-+      .container {
-+        width: min(1200px, 92vw);
-+        margin: 0 auto;
-+      }
-+
-+      .container.hero {
-+        width: min(1280px, 94vw);
-+      }
-+
-+      header {
-+        background: linear-gradient(160deg, rgba(4, 0, 19, 0.92), rgba(26, 0, 54, 0.92));
-+        color: #fff;
-+        padding: 2rem 0 6rem;
-+        position: relative;
-+        overflow: hidden;
-+        box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6);
-+      }
-+
-+      header::before {
-+        content: "";
-+        position: absolute;
-+        inset: -10%;
-+        background: conic-gradient(from 120deg at 50% 50%, rgba(0, 240, 255, 0.18), rgba(255, 77, 255, 0.25), rgba(0, 240, 255, 0.18));
-+        filter: blur(60px);
-+        opacity: 0.9;
-+      }
-+
-+      header::after {
-+        content: "";
-+        position: absolute;
-+        inset: 0;
-+        background: url("4.jpeg") center/cover no-repeat;
-+        mix-blend-mode: screen;
-+        opacity: 0.18;
-+      }
-+
-+      .hero {
-+        position: relative;
-+        display: flex;
-+        flex-direction: column;
-+        align-items: center;
-+        justify-content: center;
-+        gap: 2.5rem;
-+        z-index: 2;
-+        text-align: center;
-+      }
-+
-+      .hero-heading,
-+      .hero-content {
-+        max-width: min(900px, 100%);
-+        margin: 0 auto;
-+      }
-+
-+      .hero-heading h1 {
-+        font-size: clamp(2.5rem, 5vw, 3.6rem);
-+        margin-bottom: 1rem;
-+        font-weight: 800;
-+        line-height: 1.2;
-+        text-shadow: 0 0 25px rgba(0, 240, 255, 0.45);
-+      }
-+
-+      .hero-content {
-+        display: flex;
-+        flex-direction: column;
-+        align-items: center;
-+        gap: 1.5rem;
-+      }
-+
-+      .hero-content p {
-+        font-size: 1.125rem;
-+        opacity: 0.88;
-+      }
-+
-+      .hero-subtitle {
-+        background: linear-gradient(120deg, rgba(0, 240, 255, 0.12), rgba(255, 77, 255, 0.08));
-+        border-left: 3px solid rgba(255, 77, 255, 0.55);
-+        padding: 1rem 1.25rem;
-+        border-radius: 18px;
-+        box-shadow: 0 20px 45px rgba(0, 240, 255, 0.18);
-+        display: inline-block;
-+        text-align: left;
-+        max-width: 780px;
-+        margin: 0 auto;
-+      }
-+
-+      .hero-support {
-+        background: rgba(4, 0, 19, 0.65);
-+        border: 1px solid rgba(0, 240, 255, 0.25);
-+        padding: 1.2rem 1.35rem;
-+        border-radius: 20px;
-+        backdrop-filter: blur(8px);
-+        box-shadow: inset 0 0 25px rgba(255, 77, 255, 0.12), 0 18px 40px rgba(0, 0, 0, 0.45);
-+        opacity: 0.95;
-+        text-align: left;
-+        max-width: 720px;
-+        margin: 0 auto;
-+      }
-+
-+      .hero-microcopy {
-+        font-size: 0.95rem;
-+        margin-top: 1.25rem;
-+        max-width: 520px;
-+        color: rgba(244, 243, 255, 0.78);
-+        text-align: center;
-+      }
-+
-+      .hero-badges {
-+        display: flex;
-+        flex-wrap: wrap;
-+        gap: 1rem;
-+        margin-bottom: 1.5rem;
-+        justify-content: center;
-+      }
-+
-+      .badge {
-+        background: rgba(4, 0, 19, 0.55);
-+        border: 1px solid rgba(0, 240, 255, 0.5);
-+        border-radius: 999px;
-+        padding: 0.6rem 1.2rem;
-+        font-weight: 600;
-+        display: inline-flex;
-+        align-items: center;
-+        gap: 0.5rem;
-+        box-shadow: 0 0 15px rgba(0, 240, 255, 0.35);
-+      }
-+
-+      .cta-group {
-+        display: flex;
-+        flex-wrap: wrap;
-+        gap: 1rem;
-+        align-items: center;
-+      }
-+
-+      .offer-details .cta-group {
-+        justify-content: center;
-+      }
-+
-+      .cta-primary,
-+      .cta-secondary {
-+        display: inline-flex;
-+        align-items: center;
-+        gap: 0.6rem;
-+        padding: 0.9rem 2.2rem;
-+        border-radius: 999px;
-+        font-size: 1rem;
-+        font-weight: 700;
-+        letter-spacing: 0.02em;
-+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-+      }
-+
-+      .cta-primary {
-+        background: var(--gradient);
-+        color: #0b001f;
-+        box-shadow: 0 20px 50px rgba(0, 240, 255, 0.35);
-+      }
-+
-+      .cta-primary:hover {
-+        transform: translateY(-3px);
-+        box-shadow: 0 30px 60px rgba(255, 77, 255, 0.45);
-+      }
-+
-+      .cta-secondary {
-+        border: 2px solid rgba(0, 240, 255, 0.4);
-+        color: #fff;
-+        background: rgba(4, 0, 19, 0.65);
-+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
-+      }
-+
-+      .cta-secondary:hover {
-+        transform: translateY(-3px);
-+        border-color: rgba(255, 77, 255, 0.8);
-+        box-shadow: 0 0 30px rgba(255, 77, 255, 0.35);
-+      }
-+
-+      .hero-media {
-+        background: rgba(4, 0, 19, 0.55);
-+        border-radius: 24px;
-+        padding: clamp(1.4rem, 3.5vw, 2.3rem);
-+        backdrop-filter: blur(12px);
-+        box-shadow: 0 35px 80px rgba(0, 0, 0, 0.55), 0 0 35px rgba(0, 240, 255, 0.2);
-+        border: 1px solid rgba(0, 240, 255, 0.25);
-+        width: min(1100px, 100%);
-+        margin: 0 auto;
-+      }
-+
-+      .hero-media iframe {
-+        width: 100%;
-+        aspect-ratio: 16 / 9;
-+        min-height: clamp(260px, 52vh, 620px);
-+        border: none;
-+        border-radius: 16px;
-+        box-shadow: 0 0 25px rgba(255, 77, 255, 0.35);
-+      }
-+
-+      .hero-media img,
-+      .hero-media video {
-+        width: 100%;
-+        border-radius: 16px;
-+        object-fit: cover;
-+        display: block;
-+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);
-+      }
-+
-+      section {
-+        padding: 5rem 0;
-+        position: relative;
-+      }
-+
-+      section::before {
-+        content: "";
-+        position: absolute;
-+        top: 0;
-+        left: 50%;
-+        transform: translateX(-50%);
-+        width: min(1200px, 92vw);
-+        height: 1px;
-+        background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.4), transparent);
-+        opacity: 0.4;
-+        pointer-events: none;
-+        z-index: 0;
-+      }
-+
-+      section::after {
-+        content: "";
-+        position: absolute;
-+        width: 70%;
-+        height: 70%;
-+        top: 45%;
-+        left: 25%;
-+        transform: translate(-50%, -50%);
-+        background: radial-gradient(circle, rgba(0, 240, 255, 0.18), transparent 60%);
-+        filter: blur(70px);
-+        opacity: 0.8;
-+        pointer-events: none;
-+        z-index: 0;
-+      }
-+
-+      section:nth-of-type(even)::after {
-+        left: auto;
-+        right: 20%;
-+        top: 35%;
-+        transform: translate(50%, -50%);
-+        background: radial-gradient(circle, rgba(255, 77, 255, 0.2), transparent 60%);
-+      }
-+
-+      section:not(:last-of-type) > .container {
-+        padding: clamp(1.6rem, 4vw, 3.4rem);
-+        background: linear-gradient(135deg, rgba(4, 0, 19, 0.72), rgba(11, 0, 34, 0.78));
-+        border-radius: 28px;
-+        border: 1px solid rgba(0, 240, 255, 0.22);
-+        box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6), 0 0 45px rgba(0, 240, 255, 0.18);
-+        backdrop-filter: blur(18px);
-+        overflow: hidden;
-+      }
-+
-+      section:not(:last-of-type) > .container::before {
-+        content: "";
-+        position: absolute;
-+        inset: 12% 8% auto 8%;
-+        height: 1px;
-+        background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.4), transparent);
-+        opacity: 0.2;
-+        pointer-events: none;
-+        z-index: 0;
-+      }
-+
-+      section > .container {
-+        position: relative;
-+        z-index: 1;
-+      }
-+
-+      section:not(:last-of-type) > .container > * {
-+        position: relative;
-+        z-index: 1;
-+      }
-+
-+      main p + p {
-+        margin-top: 1rem;
-+      }
-+
-+      .section-title {
-+        text-transform: uppercase;
-+        color: var(--primary);
-+        font-size: 0.9rem;
-+        letter-spacing: 0.2rem;
-+        font-weight: 700;
-+        margin-bottom: 0.75rem;
-+      }
-+
-+      h2 {
-+        font-size: clamp(2rem, 4vw, 2.8rem);
-+        margin-bottom: 1.5rem;
-+        color: #fff;
-+        text-shadow: 0 0 18px rgba(139, 93, 255, 0.45);
-+      }
-+
-+      .authority {
-+        display: grid;
-+        gap: 1.5rem;
-+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-+      }
-+
-+      .authority-card {
-+        background: rgba(11, 4, 37, 0.8);
-+        border-radius: 18px;
-+        padding: 2rem;
-+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 25px rgba(0, 240, 255, 0.18);
-+        border: 1px solid rgba(139, 93, 255, 0.35);
-+      }
-+
-+      .story-section .authority {
-+        justify-items: center;
-+      }
-+
-+      .story-card {
-+        max-width: 820px;
-+        text-align: center;
-+        background: linear-gradient(140deg, rgba(9, 0, 28, 0.9), rgba(26, 0, 59, 0.82));
-+        border: 1px solid rgba(255, 77, 255, 0.35);
-+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 55px rgba(255, 77, 255, 0.2);
-+        position: relative;
-+        overflow: hidden;
-+        padding: clamp(2rem, 4vw, 3rem);
-+      }
-+
-+      .story-card::before {
-+        content: "";
-+        position: absolute;
-+        inset: -40% -10% auto -10%;
-+        height: 65%;
-+        background: radial-gradient(circle, rgba(0, 240, 255, 0.3), transparent 70%);
-+        opacity: 0.7;
-+        filter: blur(70px);
-+        pointer-events: none;
-+      }
-+
-+      .story-card p {
-+        color: rgba(245, 242, 255, 0.96);
-+        font-size: clamp(1.15rem, 2.6vw, 1.35rem);
-+        line-height: 1.85;
-+      }
-+
-+      .story-card > * {
-+        position: relative;
-+        z-index: 1;
-+      }
-+
-+      .story-highlight {
-+        color: #fff;
-+        font-weight: 700;
-+        letter-spacing: 0.01em;
-+        text-shadow: 0 0 20px rgba(0, 240, 255, 0.5), 0 0 35px rgba(255, 77, 255, 0.4);
-+        font-size: clamp(1.2rem, 2.8vw, 1.4rem);
-+      }
-+
-+      .story-highlight-alt {
-+        color: var(--primary);
-+        font-weight: 700;
-+        background: linear-gradient(120deg, rgba(0, 240, 255, 0.25), rgba(255, 77, 255, 0.25));
-+        padding: 0.1rem 0.45rem;
-+        border-radius: 6px;
-+        box-shadow: inset 0 0 18px rgba(0, 240, 255, 0.2);
-+        font-size: clamp(1.18rem, 2.7vw, 1.38rem);
-+      }
-+
-+      .story-points {
-+        display: flex;
-+        flex-wrap: wrap;
-+        justify-content: center;
-+        gap: 0.75rem;
-+        margin: 1.8rem 0 0;
-+      }
-+
-+      .story-points span {
-+        display: inline-flex;
-+        align-items: center;
-+        gap: 0.5rem;
-+        padding: 0.7rem 1.25rem;
-+        border-radius: 999px;
-+        background: rgba(4, 0, 19, 0.7);
-+        border: 1px solid rgba(0, 240, 255, 0.45);
-+        box-shadow: 0 0 18px rgba(0, 240, 255, 0.2);
-+        font-size: clamp(1.05rem, 2.3vw, 1.2rem);
-+        color: #fefbff;
-+        font-weight: 600;
-+      }
-+
-+      .story-section .highlight-cta {
-+        margin-top: 2.2rem;
-+        background: linear-gradient(130deg, rgba(0, 240, 255, 0.95), rgba(255, 77, 255, 0.95));
-+        color: #080015;
-+        border: none;
-+        box-shadow: 0 22px 60px rgba(0, 240, 255, 0.35), 0 0 38px rgba(255, 77, 255, 0.4);
-+        letter-spacing: 0.04em;
-+      }
-+
-+      .story-section .highlight-cta:hover {
-+        transform: translateY(-4px);
-+        box-shadow: 0 30px 70px rgba(255, 77, 255, 0.5), 0 0 45px rgba(0, 240, 255, 0.4);
-+      }
-+
-+      .authority-card h3 {
-+        font-size: 1.3rem;
-+        margin-bottom: 0.6rem;
-+        color: #fff;
-+      }
-+
-+      .authority-card p {
-+        color: var(--gray);
-+        font-size: 0.95rem;
-+      }
-+
-+      .authority-card p + p {
-+        margin-top: 1rem;
-+      }
-+
-+      .authority-card .cta-secondary {
-+        margin-top: 1.5rem;
-+      }
-+
-+      .divider {
-+        height: 1px;
-+        background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.35), transparent);
-+        margin: 4rem 0;
-+      }
-+
-+      .program-section {
-+        position: relative;
-+        padding: 6rem 0;
-+      }
-+
-+      .program-section::before {
-+        content: "";
-+        position: absolute;
-+        inset: 10% 0 20% 0;
-+        background: radial-gradient(circle at 30% 20%, rgba(0, 240, 255, 0.16), transparent 60%),
-+          radial-gradient(circle at 70% 80%, rgba(255, 77, 255, 0.14), transparent 60%);
-+        opacity: 0.9;
-+        filter: blur(70px);
-+        z-index: 0;
-+        pointer-events: none;
-+      }
-+
-+      .program-card {
-+        position: relative;
-+        background: linear-gradient(160deg, rgba(12, 2, 40, 0.9), rgba(33, 0, 68, 0.78));
-+        border-radius: 26px;
-+        padding: clamp(2.5rem, 5vw, 3.5rem);
-+        box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6), 0 0 50px rgba(139, 93, 255, 0.25);
-+        border: 1px solid rgba(0, 240, 255, 0.25);
-+        overflow: hidden;
-+      }
-+
-+      .program-card::before {
-+        content: "";
-+        position: absolute;
-+        inset: -40% -20% auto 50%;
-+        width: 120%;
-+        height: 70%;
-+        background: radial-gradient(circle, rgba(0, 240, 255, 0.22), transparent 70%);
-+        filter: blur(90px);
-+        opacity: 0.9;
-+        transform: translateX(-50%);
-+        pointer-events: none;
-+      }
-+
-+      .program-card > * {
-+        position: relative;
-+        z-index: 1;
-+      }
-+
-+      .program-head {
-+        display: grid;
-+        gap: 1.5rem;
-+        justify-items: start;
-+      }
-+
-+      .program-intro {
-+        display: grid;
-+        gap: 1.2rem;
-+        max-width: 860px;
-+        font-size: 1.1rem;
-+        line-height: 1.75;
-+        color: rgba(244, 243, 255, 0.92);
-+      }
-+
-+      .program-intro p {
-+        margin: 0;
-+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(255, 77, 255, 0.08));
-+        border-left: 3px solid rgba(0, 240, 255, 0.45);
-+        padding: 1.2rem 1.5rem;
-+        border-radius: 18px;
-+        box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.35);
-+      }
-+
-+      .program-intro strong {
-+        color: #fff;
-+      }
-+
-+      .glow-text {
-+        color: var(--primary);
-+        font-weight: 700;
-+        text-shadow: 0 0 18px rgba(0, 240, 255, 0.6);
-+      }
-+
-+      .program-tags {
-+        display: flex;
-+        flex-wrap: wrap;
-+        gap: 0.75rem;
-+      }
-+
-+      .program-tags span {
-+        display: inline-flex;
-+        align-items: center;
-+        gap: 0.5rem;
-+        padding: 0.65rem 1.1rem;
-+        border-radius: 999px;
-+        background: rgba(0, 240, 255, 0.12);
-+        border: 1px solid rgba(255, 77, 255, 0.35);
-+        color: rgba(244, 243, 255, 0.9);
-+        font-size: 0.95rem;
-+        letter-spacing: 0.01em;
-+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.18);
-+      }
-+
-+      .program-tags i {
-+        color: var(--secondary);
-+      }
-+
-+      .program-body {
-+        margin-top: 2.5rem;
-+        display: grid;
-+        gap: 2rem;
-+      }
-+
-+      .program-body h3 {
-+        font-size: clamp(1.4rem, 3vw, 1.9rem);
-+        color: #fff;
-+        text-shadow: 0 0 22px rgba(255, 77, 255, 0.4);
-+      }
-+
-+      .program-narrative {
-+        display: grid;
-+        gap: 1.1rem;
-+        font-size: 1.06rem;
-+        line-height: 1.8;
-+        color: rgba(244, 243, 255, 0.92);
-+        background: linear-gradient(140deg, rgba(9, 0, 32, 0.78), rgba(32, 0, 64, 0.72));
-+        border: 1px solid rgba(0, 240, 255, 0.22);
-+        border-radius: 20px;
-+        padding: 1.6rem 1.9rem;
-+        box-shadow: inset 0 0 30px rgba(255, 77, 255, 0.16), 0 25px 60px rgba(0, 0, 0, 0.55);
-+      }
-+
-+      .program-narrative p {
-+        margin: 0;
-+        background: rgba(4, 0, 19, 0.45);
-+        padding: 1.2rem 1.4rem;
-+        border-radius: 16px;
-+        border-left: 3px solid rgba(255, 77, 255, 0.4);
-+        box-shadow: inset 0 0 18px rgba(0, 240, 255, 0.14);
-+      }
-+
-+      .program-list {
-+        list-style: none;
-+        margin: 0;
-+        padding: 0;
-+        display: grid;
-+        gap: 1rem;
-+      }
-+
-+      .program-list li {
-+        display: flex;
-+        align-items: flex-start;
-+        gap: 1rem;
-+        background: rgba(9, 0, 25, 0.82);
-+        border-radius: 16px;
-+        padding: 1.1rem 1.4rem;
-+        border: 1px solid rgba(0, 240, 255, 0.22);
-+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), inset 0 0 20px rgba(255, 77, 255, 0.12);
-+      }
-+
-+      .program-list .icon {
-+        font-size: 1.4rem;
-+        display: inline-flex;
-+        align-items: center;
-+        justify-content: center;
-+        width: 42px;
-+        height: 42px;
-+        border-radius: 50%;
-+        background: rgba(0, 240, 255, 0.18);
-+        box-shadow: 0 0 18px rgba(0, 240, 255, 0.35);
-+      }
-+
-+      .program-list span + span {
-+        flex: 1;
-+        color: rgba(244, 243, 255, 0.88);
-+        font-size: 1.05rem;
-+        line-height: 1.6;
-+      }
-+
-+      .program-demo {
-+        display: grid;
-+        gap: 1.4rem;
-+        background: rgba(9, 0, 32, 0.78);
-+        border-radius: 20px;
-+        padding: 1.8rem;
-+        border: 1px solid rgba(255, 77, 255, 0.28);
-+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), inset 0 0 25px rgba(0, 240, 255, 0.14);
-+      }
-+
-+      .demo-video {
-+        position: relative;
-+        border-radius: 18px;
-+        border: 1px solid rgba(0, 240, 255, 0.25);
-+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.12), rgba(255, 77, 255, 0.12));
-+        min-height: 240px;
-+        display: grid;
-+        place-items: center;
-+        color: rgba(244, 243, 255, 0.78);
-+        text-align: center;
-+        padding: 2rem;
-+        overflow: hidden;
-+      }
-+
-+      .demo-video::before {
-+        content: "";
-+        position: absolute;
-+        inset: 0;
-+        background: radial-gradient(circle at 30% 30%, rgba(0, 240, 255, 0.18), transparent 55%),
-+          radial-gradient(circle at 70% 70%, rgba(255, 77, 255, 0.2), transparent 60%);
-+        opacity: 0.8;
-+        pointer-events: none;
-+      }
-+
-+      .demo-video span {
-+        position: relative;
-+        font-size: 1.05rem;
-+        max-width: 420px;
-+      }
-+
-+      .demo-cta {
-+        justify-self: center;
-+      }
-+
-+      .demo-note {
-+        text-align: center;
-+        font-size: 0.98rem;
-+        color: rgba(244, 243, 255, 0.76);
-+      }
-+
-+      .proof {
-+        background: rgba(9, 0, 25, 0.85);
-+        border-radius: 24px;
-+        padding: 3rem;
-+        display: grid;
-+        gap: 2rem;
-+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-+        box-shadow: 0 35px 90px rgba(0, 0, 0, 0.55), 0 0 30px rgba(0, 240, 255, 0.22);
-+        border: 1px solid rgba(0, 240, 255, 0.25);
-+      }
-+
-+      .proof-highlight {
-+        display: flex;
-+        flex-direction: column;
-+        gap: 1.2rem;
-+      }
-+
-+      .proof-feature-block {
-+        background: rgba(4, 0, 22, 0.78);
-+        border-radius: 18px;
-+        border: 1px solid rgba(0, 240, 255, 0.28);
-+        box-shadow: inset 0 0 35px rgba(0, 240, 255, 0.18), 0 0 30px rgba(255, 77, 255, 0.16);
-+        padding: 1.8rem;
-+        display: grid;
-+        gap: 1.1rem;
-+        position: relative;
-+        overflow: hidden;
-+      }
-+
-+      .proof-feature-block::after {
-+        content: "";
-+        position: absolute;
-+        inset: 0;
-+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.12), transparent 65%),
-+          radial-gradient(circle at 85% 15%, rgba(255, 77, 255, 0.18), transparent 55%);
-+        opacity: 0.6;
-+        pointer-events: none;
-+      }
-+
-+      .proof-feature-block > * {
-+        position: relative;
-+        z-index: 1;
-+      }
-+
-+      .proof-feature-title {
-+        font-size: 0.9rem;
-+        text-transform: uppercase;
-+        letter-spacing: 0.18em;
-+        color: rgba(244, 243, 255, 0.64);
-+      }
-+
-+      .proof-feature-list {
-+        display: grid;
-+        gap: 0.75rem;
-+        list-style: none;
-+        padding: 0;
-+        margin: 0;
-+      }
-+
-+      .proof-feature-list li {
-+        display: flex;
-+        gap: 0.65rem;
-+        align-items: center;
-+        padding: 0.85rem 1rem;
-+        border-radius: 14px;
-+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.14), rgba(255, 77, 255, 0.12));
-+        border: 1px solid rgba(139, 93, 255, 0.28);
-+        box-shadow: inset 0 0 22px rgba(0, 240, 255, 0.14);
-+      }
-+
-+      .proof-feature-list span.icon {
-+        font-size: 1.3rem;
-+      }
-+
-+      .proof-support {
-+        color: rgba(244, 243, 255, 0.78);
-+        font-size: 1.05rem;
-+      }
-+
-+      .offer-intro {
-+        margin: 2rem auto 0;
-+        padding: 2.4rem;
-+        display: grid;
-+        gap: 1rem;
-+        background: rgba(4, 0, 19, 0.75);
-+        border-radius: 22px;
-+        border: 1px solid rgba(0, 240, 255, 0.25);
-+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), inset 0 0 28px rgba(255, 77, 255, 0.18);
-+        line-height: 1.65;
-+        color: rgba(244, 243, 255, 0.86);
-+      }
-+
-+      .offer-intro p strong {
-+        color: var(--primary);
-+      }
-+
-+      .bonuses {
-+        background: rgba(11, 4, 37, 0.9);
-+        border-radius: 20px;
-+        padding: 3rem;
-+        display: grid;
-+        gap: 1.8rem;
-+        border: 1px solid rgba(139, 93, 255, 0.35);
-+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 35px rgba(139, 93, 255, 0.2);
-+      }
-+
-+      .bonuses-title {
-+        font-size: 1.35rem;
-+        font-weight: 700;
-+        text-transform: uppercase;
-+        letter-spacing: 0.08em;
-+        color: var(--primary);
-+        text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
-+      }
-+
-+      .bonus-grid {
-+        display: grid;
-+        gap: 1.5rem;
-+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-+      }
-+
-+      .bonus-card {
-+        display: grid;
-+        gap: 1rem;
-+        grid-template-columns: minmax(0, 1fr);
-+        background: rgba(4, 0, 19, 0.75);
-+        border-radius: 16px;
-+        padding: 1.6rem;
-+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 240, 255, 0.25);
-+        border: 1px solid rgba(0, 240, 255, 0.25);
-+      }
-+
-+      .offer-details {
-+        margin-top: 2.5rem;
-+        display: grid;
-+        gap: 1.2rem;
-+        justify-items: center;
-+        text-align: center;
-+      }
-+
-+      .guarantee-block {
-+        margin-top: 2rem;
-+        padding: 2.1rem 2.4rem;
-+        border-radius: 18px;
-+        background: rgba(4, 0, 19, 0.8);
-+        border: 1px solid rgba(255, 77, 255, 0.28);
-+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), inset 0 0 32px rgba(0, 240, 255, 0.18);
-+        display: grid;
-+        gap: 0.9rem;
-+      }
-+
-+      .guarantee-block h3 {
-+        font-size: 1.2rem;
-+        text-transform: uppercase;
-+        letter-spacing: 0.08em;
-+        color: var(--secondary);
-+        text-shadow: 0 0 20px rgba(255, 77, 255, 0.45);
-+      }
-+
-+      .guarantee-block p {
-+        color: rgba(244, 243, 255, 0.82);
-+        line-height: 1.6;
-+      }
-+
-+      .price-highlight {
-+        position: relative;
-+        display: grid;
-+        gap: 0.75rem;
-+        justify-items: center;
-+        padding: 1.9rem 2.4rem;
-+        border-radius: 20px;
-+        background: rgba(4, 0, 19, 0.82);
-+        border: 1px solid rgba(255, 77, 255, 0.35);
-+        box-shadow: 0 35px 90px rgba(0, 0, 0, 0.55), 0 0 40px rgba(0, 240, 255, 0.28);
-+        overflow: hidden;
-+        z-index: 1;
-+      }
-+
-+      .price-highlight::before {
-+        content: "";
-+        position: absolute;
-+        inset: 0;
-+        background: radial-gradient(circle at 20% 0%, rgba(0, 240, 255, 0.28), transparent 55%),
-+          radial-gradient(circle at 80% 100%, rgba(255, 77, 255, 0.25), transparent 60%);
-+        opacity: 0.9;
-+        pointer-events: none;
-+      }
-+
-+      .price-highlight > * {
-+        position: relative;
-+        z-index: 1;
-+      }
-+
-+      .price-badge {
-+        position: relative;
-+        font-size: 0.95rem;
-+        font-weight: 700;
-+        letter-spacing: 0.08em;
-+        text-transform: uppercase;
-+        padding: 0.45rem 1.4rem;
-+        border-radius: 999px;
-+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.8), rgba(255, 77, 255, 0.85));
-+        color: #040013;
-+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.45);
-+      }
-+
-+      .price-old {
-+        position: relative;
-+        font-size: 1.05rem;
-+        color: rgba(244, 243, 255, 0.75);
-+        text-decoration: line-through;
-+        letter-spacing: 0.08em;
-+        text-transform: uppercase;
-+      }
-+
-+      .price-savings {
-+        font-size: 1.15rem;
-+        font-weight: 700;
-+        letter-spacing: 0.12em;
-+        text-transform: uppercase;
-+        color: var(--secondary);
-+        text-shadow: 0 0 18px rgba(255, 77, 255, 0.6);
-+      }
-+
-+      .price-new {
-+        font-size: clamp(2.8rem, 5vw, 3.6rem);
-+        font-weight: 800;
-+        color: #ffffff;
-+        text-shadow: 0 0 35px rgba(255, 77, 255, 0.55), 0 0 25px rgba(0, 240, 255, 0.55);
-+      }
-+
-+      .price-note {
-+        font-size: 0.95rem;
-+        color: rgba(244, 243, 255, 0.78);
-+        max-width: 420px;
-+        display: block;
-+        line-height: 1.5;
-+        margin: 0 auto;
-+      }
-+
-+      .bonus-card h4 {
-+        color: var(--secondary);
-+        text-shadow: 0 0 15px rgba(255, 77, 255, 0.4);
-+      }
-+
-+      .offer-progress {
-+        background: rgba(4, 0, 19, 0.78);
-+        border-radius: 16px;
-+        padding: 1.6rem 1.8rem;
-+        border: 1px solid rgba(0, 240, 255, 0.32);
-+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 35px rgba(255, 77, 255, 0.24);
-+        display: grid;
-+        gap: 0.9rem;
-+        position: relative;
-+        overflow: hidden;
-+        width: min(520px, 100%);
-+      }
-+
-+      .offer-progress::before {
-+        content: "";
-+        position: absolute;
-+        inset: 0;
-+        background: linear-gradient(120deg, rgba(0, 240, 255, 0.12), rgba(255, 77, 255, 0.12));
-+        filter: blur(0.5px);
-+        opacity: 0.8;
-+        pointer-events: none;
-+      }
-+
-+      .progress-info {
-+        display: flex;
-+        justify-content: space-between;
-+        align-items: center;
-+        gap: 0.5rem;
-+        position: relative;
-+        z-index: 1;
-+        font-size: 0.95rem;
-+        letter-spacing: 0.04em;
-+        text-transform: uppercase;
-+        color: rgba(244, 243, 255, 0.78);
-+      }
-+
-+      .progress-date {
-+        font-weight: 700;
-+        color: var(--primary);
-+        text-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
-+      }
-+
-+      .progress-bar {
-+        position: relative;
-+        z-index: 1;
-+        height: 12px;
-+        border-radius: 999px;
-+        background: rgba(255, 255, 255, 0.08);
-+        border: 1px solid rgba(0, 240, 255, 0.35);
-+        overflow: hidden;
-+        box-shadow: inset 0 0 25px rgba(139, 93, 255, 0.25);
-+      }
-+
-+      .progress-fill {
-+        display: block;
-+        height: 100%;
-+        width: 82%;
-+        background: linear-gradient(90deg, rgba(0, 240, 255, 0.95), rgba(139, 93, 255, 0.95), rgba(255, 77, 255, 0.95));
-+        background-size: 220% 100%;
-+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.65);
-+        border-radius: inherit;
-+        position: relative;
-+        animation: pulseFill 2.8s ease-in-out infinite, progressFlow 5.5s linear infinite;
-+      }
-+
-+      .progress-fill::after {
-+        content: "";
-+        position: absolute;
-+        inset: 0;
-+        background: linear-gradient(
-+          120deg,
-+          transparent 0%,
-+          rgba(255, 255, 255, 0.35) 15%,
-+          rgba(255, 255, 255, 0.55) 30%,
-+          rgba(255, 255, 255, 0.35) 45%,
-+          transparent 60%
-+        );
-+        mix-blend-mode: screen;
-+        opacity: 0.9;
-+        animation: sweepGlow 2.8s ease-in-out infinite;
-+      }
-+
-+      @keyframes pulseFill {
-+        0%,
-+        100% {
-+          filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.65));
-+        }
-+        50% {
-+          filter: drop-shadow(0 0 18px rgba(255, 77, 255, 0.75));
-+        }
-+      }
-+
-+      @keyframes progressFlow {
-+        0% {
-+          background-position: 0% 50%;
-+        }
-+        100% {
-+          background-position: 200% 50%;
-+        }
-+      }
-+
-+      @keyframes sweepGlow {
-+        0% {
-+          transform: translateX(-100%);
-+          opacity: 0;
-+        }
-+        35% {
-+          opacity: 0.9;
-+        }
-+        70% {
-+          opacity: 0.4;
-+        }
-+        100% {
-+          transform: translateX(120%);
-+          opacity: 0;
-+        }
-+      }
-+
-+      .testimonials {
-+        display: grid;
-+        gap: 1.5rem;
-+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-+      }
-+
-+      .testimonial {
-+        background: rgba(9, 0, 25, 0.82);
-+        border-radius: 18px;
-+        padding: 2rem;
-+        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55), 0 0 20px rgba(139, 93, 255, 0.22);
-+        position: relative;
-+        overflow: hidden;
-+        border: 1px solid rgba(139, 93, 255, 0.35);
-+      }
-+
-+      .testimonial::before {
-+        content: "\f10d";
-+        font-family: "Font Awesome 6 Free";
-+        font-weight: 900;
-+        color: rgba(0, 240, 255, 0.25);
-+        font-size: 3.5rem;
-+        position: absolute;
-+        top: 1rem;
-+        right: 1.5rem;
-+      }
-+
-+      .testimonial p {
-+        color: var(--gray);
-+        margin-bottom: 1.5rem;
-+      }
-+
-+      .testimonial strong {
-+        font-size: 1.05rem;
-+        color: #fff;
-+      }
-+
-+      .guarantee {
-+        background: rgba(9, 0, 25, 0.85);
-+        border-radius: 22px;
-+        padding: 3rem;
-+        text-align: center;
-+        box-shadow: 0 35px 90px rgba(0, 0, 0, 0.55), 0 0 30px rgba(0, 240, 255, 0.25);
-+        border: 1px solid rgba(0, 240, 255, 0.25);
-+      }
-+
-+      .guarantee img {
-+        width: 120px;
-+        margin-bottom: 1.5rem;
-+        filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.4));
-+      }
-+
-+      .faq {
-+        display: grid;
-+        gap: 1rem;
-+      }
-+
-+      details {
-+        background: rgba(4, 0, 19, 0.75);
-+        border-radius: 14px;
-+        padding: 1.2rem 1.4rem;
-+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45), 0 0 20px rgba(0, 240, 255, 0.2);
-+        border: 1px solid rgba(139, 93, 255, 0.35);
-+      }
-+
-+      summary {
-+        font-weight: 600;
-+        cursor: pointer;
-+        display: flex;
-+        align-items: center;
-+        justify-content: space-between;
-+        gap: 1rem;
-+        color: #fff;
-+      }
-+
-+      summary::after {
-+        content: "\f107";
-+        font-family: "Font Awesome 6 Free";
-+        font-weight: 900;
-+      }
-+
-+      details[open] summary::after {
-+        transform: rotate(180deg);
-+      }
-+
-+      footer {
-+        background: linear-gradient(160deg, rgba(4, 0, 19, 0.95), rgba(12, 0, 32, 0.95));
-+        color: #a89ed9;
-+        padding: 3rem 0;
-+        text-align: center;
-+        font-size: 0.9rem;
-+        box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.6);
-+      }
-+
-+      footer a {
-+        color: #fff;
-+        font-weight: 600;
-+      }
-+
-+      .final-cta {
-+        background: linear-gradient(135deg, rgba(9, 0, 25, 0.92), rgba(4, 0, 19, 0.92));
-+        color: #fff;
-+        border-radius: 24px;
-+        padding: 3rem;
-+        text-align: center;
-+        display: grid;
-+        gap: 1.5rem;
-+        justify-items: center;
-+        border: 1px solid rgba(0, 240, 255, 0.25);
-+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55), 0 0 40px rgba(255, 77, 255, 0.3);
-+        position: relative;
-+        overflow: hidden;
-+      }
-+
-+      .final-cta::before {
-+        content: "";
-+        position: absolute;
-+        inset: -40% -60%;
-+        background: radial-gradient(circle, rgba(0, 240, 255, 0.18), transparent 60%);
-+        animation: pulse 6s infinite linear;
-+        z-index: 0;
-+      }
-+
-+      .final-cta > * {
-+        position: relative;
-+        z-index: 1;
-+      }
-+
-+      .final-cta .final-note {
-+        margin: 0;
-+        color: rgba(244, 243, 255, 0.82);
-+        font-size: 1.05rem;
-+      }
-+
-+      .final-cta h2 {
-+        color: #fff;
-+        margin-bottom: 0;
-+      }
-+
-+      .price {
-+        font-size: 2.8rem;
-+        font-weight: 800;
-+        color: var(--primary);
-+        text-shadow: 0 0 20px rgba(0, 240, 255, 0.45);
-+      }
-+
-+      .price small {
-+        font-size: 1rem;
-+        font-weight: 500;
-+        display: block;
-+        color: #fff;
-+        opacity: 0.75;
-+      }
-+
-+      .highlight {
-+        background: rgba(0, 240, 255, 0.18);
-+        padding: 0.8rem 1.4rem;
-+        border-radius: 999px;
-+        font-weight: 600;
-+        border: 1px solid rgba(255, 77, 255, 0.4);
-+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
-+      }
-+
-+      @media (max-width: 768px) {
-+        header {
-+          padding-bottom: 4rem;
-+        }
-+
-+        .cta-group {
-+          flex-direction: column;
-+          align-items: stretch;
-+        }
-+
-+        .cta-primary,
-+        .cta-secondary {
-+          justify-content: center;
-+          width: 100%;
-+        }
-+
-+        .program-card {
-+          padding: 2.25rem;
-+        }
-+
-+        .program-head {
-+          justify-items: stretch;
-+        }
-+
-+        .program-tags {
-+          justify-content: center;
-+        }
-+
-+        .program-intro p {
-+          text-align: left;
-+        }
-+      }
-+    </style>
-+  </head>
-+  <body>
-+    <header>
-+      <div class="container hero">
-+        <div class="hero-heading">
-+          <h1>Curso “I.A. Me Clonei”</h1>
-+        </div>
-+        <div class="hero-media">
-+          <iframe
-+            id="heroYoutube"
-+            src="https://www.youtube.com/embed/dNRDvLACg5Q?enablejsapi=1&rel=0&controls=1&playsinline=1&mute=1"
-+            title="Vídeo 1 – Você Real (I.A. Me Clonei)"
-+            loading="lazy"
-+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-+            allowfullscreen
-+          ></iframe>
-+        </div>
-+        <div class="hero-content">
-+          <div class="hero-badges">
-+            <span class="badge">
-+              <i class="fa-solid fa-clone"></i> Clones digitais criados com IA real
-+            </span>
-+            <span class="badge">
-+              <i class="fa-solid fa-microphone-lines"></i> Vozes, vídeos e personas sob medida
-+            </span>
-+            <span class="badge">
-+              <i class="fa-solid fa-face-laugh-beam"></i> Método leve pra quem não é tech
-+            </span>
-+          </div>
-+          <p class="hero-subtitle">
-+            “Eu sempre quis criar conteúdo, mas faltava tudo: tempo, equipamento, paciência...”
-+          </p>
-+          <p class="hero-support">
-+            A IA chegou e me mostrou que posso ser quem eu quiser — inclusive várias versões de mim
-+            mesmo. É assim que nasce o <strong>I.A. Me Clonei</strong>.
-+          </p>
-+          <p class="hero-support">
-+            Aqui você entende, na prática, como multiplicar sua presença em vídeo sem precisar virar
-+            engenheiro de robô: clones que apresentam, vendem e entretêm enquanto você cuida das
-+            ideias.
-+          </p>
-+          <div class="cta-group">
-+            <a class="cta-primary" href="https://wa.me/49988971962" target="_blank">
-+              <i class="fa-solid fa-cart-shopping"></i> Quero criar meu clone agora por R$ 497
-+            </a>
-+            <a class="cta-secondary" href="#programa">
-+              <i class="fa-solid fa-circle-play"></i> Ver como os clones ganham vida
-+            </a>
-+          </div>
-+          <p class="hero-microcopy">
-+            Acesso imediato, aulas práticas e linguagem de gente normal — porque a IA é futurista,
-+            mas aprender com ela pode (e deve) ser leve.
-+          </p>
-+        </div>
-       </div>
--      <div class="slider-handle"></div>
--    </div>
--    <div class="card-content">
--      <h3><i class="fa-solid fa-wand-magic-sparkles"></i> ${style.name}</h3>
--      <div class="prompt-box" id="prompt-${style.name.replace(/\s/g,'')}">${style.prompt}</div>
--      <button class="copy-btn" onclick="copyPrompt('${style.name.replace(/\s/g,'')}')"><i class="fa-solid fa-copy"></i> Copiar Prompt</button>
--    </div>
--  `;
--  gallery.appendChild(card);
--});
--
--function copyPrompt(id){
--  const promptText=document.getElementById(`prompt-${id}`).innerText;
--  navigator.clipboard.writeText(promptText).then(()=>alert("✅ Prompt copiado!"));
--}
--
--function moveSlider(e,container){
--  const rect=container.getBoundingClientRect();
--  let x=e.clientX-rect.left;
--  if(x<0) x=0;
--  if(x>rect.width) x=rect.width;
--  const afterWrapper=container.querySelector('.after-wrapper');
--  const handle=container.querySelector('.slider-handle');
--  afterWrapper.style.width=x+"px";
--  handle.style.left=x+"px";
--}
--</script>
--
--</body>
-+    </header>
-+
-+    <main>
-+      <section class="story-section">
-+        <div class="container">
-+          <p class="section-title">avatar 1 · corretor de imóveis</p>
-+          <h2>Avatar 1: Corretor de Imóveis (Charme e Persuasão)</h2>
-+          <div class="authority">
-+            <article class="authority-card story-card">
-+              <p>
-+                <span class="story-highlight"
-+                  >“Eu sempre achei corretores incríveis. Sabem falar, gesticular, encantar.”</span
-+                >
-+              </p>
-+              <p>
-+                <span class="story-highlight-alt"
-+                  >“Então pensei: e se eu pudesse ser um também? Com IA, é só clonar minha voz, gerar
-+                  um vídeo e pronto — tenho um corretor digital que vende até gelo pro
-+                  pinguim.”</span
-+                >
-+              </p>
-+              <div class="story-points">
-+                <span><i class="fa-solid fa-video"></i> 🎥 Vídeo 2 – Avatar Corretor</span>
-+                <span><i class="fa-solid fa-handshake"></i> Charme e persuasão sem precisar aparecer</span>
-+                <span><i class="fa-solid fa-house"></i> Perfeito para apresentações de imóveis e propostas</span>
-+              </div>
-+              <p>
-+                Mostra o poder da IA pra comunicação e persuasão: enquanto você cuida da estratégia,
-+                seu clone vende com carisma e consistência.
-+              </p>
-+              <a
-+                class="cta-secondary highlight-cta"
-+                href="https://wa.me/49988971962"
-+                target="_blank"
-+                >Quero ativar meu corretor digital</a
-+              >
-+            </article>
-+          </div>
-+        </div>
-+      </section>
-+
-+      <div class="divider"></div>
-+
-+      <section id="programa" class="program-section">
-+        <div class="container">
-+          <div class="program-card">
-+            <div class="program-head">
-+              <p class="section-title">avatar 2 · gamer rgb</p>
-+              <h2>
-+                Avatar 2: Gamer RGB (Personalidade e Entretenimento)
-+              </h2>
-+              <div class="program-intro">
-+                <p>
-+                  “Eu adoro games, e sempre quis ter um canal com luz neon piscando no fundo e
-+                  microfone que parece da NASA.”
-+                </p>
-+                <p>
-+                  “Agora eu posso. Eu clonei minha voz, criei meu avatar gamer e ele fala por mim —
-+                  enquanto eu só penso nas ideias.”
-+                </p>
-+                <p>
-+                  <span class="glow-text">
-+                    Liberdade criativa em modo turbo: você vive nos bastidores e o clone apresenta,
-+                    reage e diverte a audiência.
-+                  </span>
-+                </p>
-+              </div>
-+              <div class="program-tags">
-+                <span><i class="fa-solid fa-gamepad"></i> Estética RGB pronta pra streaming</span>
-+                <span><i class="fa-solid fa-wave-square"></i> Voz clonada com energia gamer</span>
-+                <span><i class="fa-solid fa-fire"></i> Conteúdo constante sem gravar todo dia</span>
-+              </div>
-+            </div>
-+            <div class="program-body">
-+              <h3>Entretenimento neon sem travar diante da câmera.</h3>
-+              <div class="program-narrative">
-+                <p>
-+                  O avatar gamer mostra o lado mais divertido da clonagem: visual futurista, cortes
-+                  rápidos e reações que seguram qualquer audiência.
-+                </p>
-+                <p>
-+                  Ideal pra quem quer lançar canal, manter lives e reviews com presença marcante —
-+                  mesmo que o tempo de gravação seja zero.
-+                </p>
-+              </div>
-+              <ul class="program-list">
-+                <li>
-+                  <span class="icon">🎮</span>
-+                  <span>Monte o cenário RGB, sincronize luzes e deixe o avatar sempre pronto pra entrar ao vivo.</span>
-+                </li>
-+                <li>
-+                  <span class="icon">🧬</span>
-+                  <span>Clone a voz com entonação gamer e ajuste expressões faciais com poucos cliques.</span>
-+                </li>
-+                <li>
-+                  <span class="icon">📅</span>
-+                  <span>Crie calendários de conteúdo automáticos pra reviews, reações e gameplays.</span>
-+                </li>
-+                <li>
-+                  <span class="icon">💬</span>
-+                  <span>Use roteiros e prompts que mantêm o ritmo acelerado e divertido nas gravações.</span>
-+                </li>
-+              </ul>
-+              <div class="program-demo">
-+                <div class="demo-video">
-+                  <span>
-+                    🎥 Vídeo 3 – Avatar Gamer (energético e divertido). O clone neon comenta, reage e
-+                    entretém enquanto você pensa na próxima missão.
-+                  </span>
-+                </div>
-+                <a class="cta-secondary demo-cta" href="#" target="_blank">Assistir ao Avatar Gamer em ação</a>
-+                <p class="demo-note">
-+                  Criatividade sem esgotar a agenda: deixe o clone pilotar a experiência enquanto você
-+                  comanda o roteiro.
-+                </p>
-+              </div>
-+            </div>
-+          </div>
-+        </div>
-+      </section>
-+
-+      <section>
-+        <div class="container">
-+          <p class="section-title">avatar 3 · professor especialista</p>
-+          <h2>Avatar 3: Professor / Especialista (Autoridade e Ensino)</h2>
-+          <div class="proof">
-+            <div class="proof-highlight">
-+              <p class="story-highlight">
-+                “E se eu pudesse ensinar tudo que sei sem precisar gravar vídeo todo dia? A IA faz isso
-+                pra mim.”
-+              </p>
-+              <p>
-+                Seu clone professor apresenta, explica e entrega cada aula com segurança — sem perder
-+                o calor humano que transforma aluno em fã.
-+              </p>
-+              <div class="proof-feature-block">
-+                <p class="proof-feature-title">🎥 Vídeo 4 – Avatar Professor</p>
-+                <ul class="proof-feature-list">
-+                  <li><span class="icon">🧑‍🏫</span><span>Explica com clareza, sem travar e sem esquecer o roteiro.</span></li>
-+                  <li><span class="icon">📚</span><span>Ideal para cursos, mentorias, aulas de apoio e lançamentos.</span></li>
-+                  <li><span class="icon">⏱️</span><span>Conteúdo novo no ar mesmo quando você não pode gravar.</span></li>
-+                </ul>
-+              </div>
-+              <p class="proof-support">
-+                Perfeito pra quem quer ensinar, vender conhecimento e gerar autoridade com IA. Você
-+                mantém a inteligência, o clone cuida da performance.
-+              </p>
-+            </div>
-+            <div class="proof-highlight">
-+              <p>
-+                “Meu clone explica, apresenta, e ainda não esquece o texto.” Essa liberdade te deixa
-+                livre pra criar novos módulos, responder alunos e ampliar sua comunidade.
-+              </p>
-+              <p>
-+                Enquanto o avatar ensina, você planeja a próxima turma — com consistência digna de um
-+                estúdio profissional.
-+              </p>
-+            </div>
-+          </div>
-+        </div>
-+      </section>
-+
-+      <section class="story-section influencer-section">
-+        <div class="container">
-+          <p class="section-title">avatar 4 · influencer</p>
-+          <h2>Avatar 4: Influencer (Presença e Impacto)</h2>
-+          <div class="authority">
-+            <article class="authority-card story-card">
-+              <p>
-+                <span class="story-highlight"
-+                  >“Sempre achei que só dava pra ser influencer com carão e carisma.”</span
-+                >
-+              </p>
-+              <p>
-+                <span class="story-highlight-alt"
-+                  >“Mas agora o carisma é em 4K e falado por um clone meu com filtro automático.”</span
-+                >
-+              </p>
-+              <div class="story-points">
-+                <span><i class="fa-solid fa-camera"></i> 🎥 Vídeo 5 – Avatar Influencer</span>
-+                <span><i class="fa-solid fa-wand-magic-sparkles"></i> Presença impactante em qualquer feed</span>
-+                <span><i class="fa-solid fa-users"></i> Engaja público sem precisar aparecer todo dia</span>
-+              </div>
-+              <p>
-+                Mostra o poder de imagem e presença que a IA proporciona — mesmo pra quem prefere
-+                ficar nos bastidores.
-+              </p>
-+              <p>
-+                Enquanto o clone atrai seguidores com confiança, você foca em criar produtos, fechar
-+                parcerias e comandar a estratégia.
-+              </p>
-+            </article>
-+          </div>
-+        </div>
-+      </section>
-+
-+      <section>
-+        <div class="container">
-+          <p class="section-title">o valor · a oferta · o método profissional</p>
-+          <h2>Curso completo: I.A. Me Clonei</h2>
-+          <div class="offer-intro">
-+            <p>
-+              Aprenda a criar seus clones digitais, gerar vídeos, vozes e personagens completos com a
-+              mesma tecnologia usada por grandes criadores e marcas do mundo inteiro.
-+            </p>
-+            <p>
-+              Nada de perder horas testando mil sites de IA. Aqui você aprende um método único, direto,
-+              que te leva do zero ao resultado real — com qualidade profissional e sem confusão.
-+            </p>
-+            <p>
-+              O acesso é vitalício, as aulas são práticas e o suporte é de verdade (feito por humanos —
-+              por enquanto).
-+            </p>
-+          </div>
-+          <div class="bonuses">
-+            <h3 class="bonuses-title">🎓 Você vai receber:</h3>
-+            <div class="bonus-grid">
-+              <article class="bonus-card">
-+                <h4>✅ Acesso vitalício ao curso completo</h4>
-+                <p>
-+                  Videoaulas que mostram passo a passo como criar clones digitais realistas — do
-+                  planejamento à publicação.
-+                </p>
-+              </article>
-+              <article class="bonus-card">
-+                <h4>✅ Passo a passo pra criar clones digitais</h4>
-+                <p>
-+                  Templates, ajustes finos e bastidores das configurações que uso nas produções reais.
-+                </p>
-+              </article>
-+              <article class="bonus-card">
-+                <h4>✅ Biblioteca de prompts e roteiros prontos</h4>
-+                <p>
-+                  Modelos testados para vídeos, vozes e personas — é copiar, adaptar e deixar o clone no
-+                  ponto.
-+                </p>
-+              </article>
-+              <article class="bonus-card">
-+                <h4>✅ Modelos configurados + suporte humano</h4>
-+                <p>
-+                  Acesso a setups prontos, comunidade ativa, atendimento por e-mail e atualizações
-+                  gratuitas sempre que surgir tecnologia nova.
-+                </p>
-+              </article>
-+            </div>
-+          </div>
-+          <div class="offer-text">
-+            <p>
-+              💬 Sobre o uso das ferramentas: durante o curso você aprende a trabalhar com a mesma
-+              tecnologia que uso nas produções reais. Ela tem um plano pago, acessível e direto — e é o
-+              que garante o resultado profissional que você vai alcançar.
-+            </p>
-+            <p>
-+              Nada de prometer atalhos com ferramentas gratuitas que travam ou limitam o resultado. O
-+              curso ensina o caminho certo: eficiente, confiável e pronto pra escalar.
-+            </p>
-+            <p>💡 Em outras palavras: o investimento é pequeno, mas o salto na qualidade é gigante.</p>
-+          </div>
-+          <div class="offer-testimonial testimonial">
-+            <p>
-+              “Nunca tinha entendido nada de IA. Agora crio imagens, vídeos e até memes pro meu canal.
-+              Valeu cada centavo.”
-+            </p>
-+            <strong>Lucas S., aluno do curso</strong>
-+          </div>
-+          <div class="guarantee-block">
-+            <h3>🔒 Garantia sem drama</h3>
-+            <p>
-+              Você tem 7 dias pra testar o curso. Se não fizer sentido — ou se preferir investir o
-+              dinheiro em pizza — basta pedir o reembolso.
-+            </p>
-+            <p>Sem burocracia, sem culpa, sem cara feia.</p>
-+          </div>
-+          <div class="offer-details">
-+            <p class="offer-text"><strong>💸 Valor real do conteúdo:</strong> R$ 1.400,00</p>
-+            <div class="price-highlight">
-+              <span class="price-badge">🔖 OFERTA DE LANÇAMENTO — 64% OFF por tempo limitado!</span>
-+              <span class="price-old">De R$ 1.400,00</span>
-+              <span class="price-savings">64% de desconto</span>
-+              <span class="price-new">Por R$ 497 à vista ou 12x de R$ 49,70</span>
-+              <span class="price-note">
-+                💬 “É basicamente um terço do preço — e o triplo da liberdade criativa.”
-+              </span>
-+            </div>
-+            <div class="offer-progress">
-+              <div class="progress-info">
-+                <span>Oferta disponível até</span>
-+                <span class="progress-date">20/11/2025</span>
-+              </div>
-+              <div class="progress-bar">
-+                <span class="progress-fill"></span>
-+              </div>
-+            </div>
-+            <p class="price-note">
-+              R$ 497 dividido por 12 meses = R$ 1,36 por dia. Menos que o preço de um café pra aprender
-+              a se clonar com IA e criar vídeos dignos de estúdio.
-+            </p>
-+            <p class="price-note">
-+              🎯 Formato 100% online, acesso via computador, tablet ou celular. Duração vitalícia, nível
-+              do iniciante ao intermediário.
-+            </p>
-+            <div class="cta-group">
-+              <a class="cta-primary" href="https://wa.me/49988971962" target="_blank">
-+                <i class="fa-solid fa-bolt"></i> Quero criar meu clone agora por R$ 497
-+              </a>
-+              <a class="cta-secondary" href="https://wa.me/49988971962" target="_blank">
-+                <i class="fa-solid fa-clipboard-check"></i> Quero garantir 64% de desconto e acesso completo
-+              </a>
-+            </div>
-+          </div>
-+        </div>
-+      </section>
-+      <section>
-+        <div class="container">
-+          <div class="final-cta">
-+            <span class="highlight">🛡️ Garantia total de 7 dias</span>
-+            <h2>A IA não vai esperar você entender.</h2>
-+            <p>
-+              Você tem 7 dias de garantia total pra testar o curso. Se não fizer sentido, devolvemos o
-+              seu dinheiro — sem perguntas e sem enrolação.
-+            </p>
-+            <p>
-+              Enquanto você pensa, tem gente criando clones, vídeos e vozes com IA. A diferença é que
-+              agora você também pode fazer parte disso.
-+            </p>
-+            <p>
-+              O futuro não é sobre ter o melhor equipamento, e sim poder se multiplicar, aparecer,
-+              ensinar e criar — mesmo quando você não pode.
-+            </p>
-+            <a class="cta-primary" href="https://wa.me/49988971962" target="_blank">
-+              <i class="fa-solid fa-bolt"></i> Quero meu acesso ao I.A. Me Clonei por R$ 497
-+            </a>
-+            <small>Oferta de lançamento — 64% OFF + acesso vitalício + garantia total de 7 dias.</small>
-+            <p class="offer-text final-note">
-+              I.A. Me Clonei — menos que um café por dia pra aprender a ser quem você quiser (e todas as
-+              versões de você ao mesmo tempo).
-+            </p>
-+          </div>
-+        </div>
-+      </section>
-+    </main>
-+
-+    <footer>
-+      <div class="container">
-+        <p>
-+          © 2024 I.A. Me Clonei · Desenvolvido por
-+          <a href="https://teckbird.com" target="_blank">Teck Bird</a>
-+        </p>
-+        <p>
-+          Dúvidas? Fale com nossa equipe no WhatsApp: <a href="https://wa.me/49988971962" target="_blank">(49) 9889-71962</a>
-+        </p>
-+      </div>
-+    </footer>
-+
-+    <script src="https://www.youtube.com/iframe_api"></script>
-+    <script>
-+      let heroPlayer;
-+
-+      function onYouTubeIframeAPIReady() {
-+        const heroFrame = document.getElementById("heroYoutube");
-+
-+        if (!heroFrame) {
-+          return;
-+        }
-+
-+        const pageParams = new URLSearchParams(window.location.search);
-+        const isPreviewMode = pageParams.get("mode") === "preview";
-+
-+        heroPlayer = new YT.Player("heroYoutube", {
-+          events: {
-+            onReady: (event) => {
-+              if (isPreviewMode) {
-+                event.target.stopVideo();
-+                return;
-+              }
-+
-+              event.target.mute();
-+
-+              setTimeout(() => {
-+                try {
-+                  event.target.playVideo();
-+                } catch (error) {
-+                  /* Caso o navegador bloqueie a reprodução automática, o usuário ainda pode iniciar manualmente. */
-+                }
-+              }, 2000);
-+            },
-+          },
-+        });
-+      }
-+    </script>
-+  </body>
- </html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K5NK3XV6');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>I.A. Me Clonei – Curso de IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #00f0ff;
+        --secondary: #ff4dff;
+        --accent: #8b5dff;
+        --dark: #040013;
+        --light: #090019;
+        --gray: #b0a9d9;
+        --text: #f4f3ff;
+        --gradient: linear-gradient(135deg, rgba(0, 240, 255, 0.92), rgba(255, 77, 255, 0.92));
+        --glass: rgba(10, 4, 32, 0.7);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        color: var(--text);
+        background: radial-gradient(circle at 20% 20%, rgba(255, 77, 255, 0.12), transparent 45%),
+          radial-gradient(circle at 80% 0%, rgba(0, 240, 255, 0.15), transparent 50%),
+          var(--dark);
+        line-height: 1.7;
+        min-height: 100vh;
+        position: relative;
+        z-index: 0;
+        overflow-x: hidden;
+        font-weight: 500;
+      }
+
+      p {
+        font-size: clamp(1.05rem, 2.3vw, 1.22rem);
+      }
+
+      p,
+      li,
+      .section-text,
+      .section-lede,
+      .story-text,
+      .module-copy,
+      .offer-text,
+      .cta-caption {
+        font-weight: 500;
+        letter-spacing: 0.01em;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        inset: -30%;
+        pointer-events: none;
+        z-index: -2;
+      }
+
+      body::before {
+        background: radial-gradient(circle at 15% 20%, rgba(0, 240, 255, 0.25), transparent 55%),
+          radial-gradient(circle at 85% 75%, rgba(255, 77, 255, 0.2), transparent 60%);
+        filter: blur(90px);
+        opacity: 0.85;
+      }
+
+      body::after {
+        background-image: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(255, 77, 255, 0.08)),
+          linear-gradient(90deg, rgba(0, 240, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(255, 77, 255, 0.08) 1px, transparent 1px);
+        background-size: cover, 180px 180px, 180px 180px;
+        mix-blend-mode: screen;
+        opacity: 0.65;
+        z-index: -1;
+      }
+
+      header,
+      main,
+      footer {
+        position: relative;
+        z-index: 1;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1200px, 92vw);
+        margin: 0 auto;
+      }
+
+      .container.hero {
+        width: min(1280px, 94vw);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      header {
+        background: linear-gradient(160deg, rgba(4, 0, 19, 0.92), rgba(26, 0, 54, 0.92));
+        color: #fff;
+        padding: 2rem 0 6rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6);
+      }
+
+      header::before {
+        content: "";
+        position: absolute;
+        inset: -10%;
+        background: conic-gradient(from 120deg at 50% 50%, rgba(0, 240, 255, 0.18), rgba(255, 77, 255, 0.25), rgba(0, 240, 255, 0.18));
+        filter: blur(60px);
+        opacity: 0.9;
+      }
+
+      header::after {
+        content: none;
+      }
+
+      .hero-ribbon {
+        display: grid;
+        grid-template-columns: auto 1fr auto auto;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.85rem 1.5rem;
+        background: linear-gradient(90deg, rgba(0, 240, 255, 0.22), rgba(255, 77, 255, 0.22));
+        border-bottom: 1px solid rgba(0, 240, 255, 0.35);
+        color: #f8f8ff;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+        position: sticky;
+        top: 0;
+        z-index: 3;
+      }
+
+      .countdown {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.35rem 0.9rem;
+        border-radius: 14px;
+        background: linear-gradient(115deg, rgba(0, 240, 255, 0.18), rgba(255, 77, 255, 0.18));
+        border: 1px solid rgba(0, 240, 255, 0.4);
+        box-shadow: 0 0 18px rgba(0, 240, 255, 0.35), 0 0 24px rgba(255, 77, 255, 0.25);
+        text-shadow: 0 0 12px rgba(0, 240, 255, 0.45);
+        font-weight: 800;
+      }
+
+      .countdown .fa-clock {
+        color: #8ef6ff;
+      }
+
+      .countdown-values {
+        display: inline-flex;
+        gap: 0.45rem;
+        align-items: center;
+      }
+
+      .countdown-chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+        padding: 0.4rem 0.75rem;
+        border-radius: 10px;
+        background: rgba(4, 0, 19, 0.75);
+        border: 1px solid rgba(255, 77, 255, 0.35);
+        box-shadow: 0 0 16px rgba(0, 240, 255, 0.35);
+        color: #fff;
+        letter-spacing: 0.02em;
+      }
+
+      .countdown.expired {
+        background: linear-gradient(115deg, rgba(255, 77, 255, 0.18), rgba(255, 77, 255, 0.08));
+        border-color: rgba(255, 77, 255, 0.45);
+        box-shadow: 0 0 18px rgba(255, 77, 255, 0.35);
+        text-shadow: none;
+      }
+
+      .ribbon-pill {
+        padding: 0.4rem 1rem;
+        border-radius: 999px;
+        background: #0b001f;
+        border: 1px solid rgba(0, 240, 255, 0.35);
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        box-shadow: 0 0 14px rgba(0, 240, 255, 0.25);
+      }
+
+      .ribbon-copy {
+        font-weight: 700;
+        color: #eaf7ff;
+      }
+
+      .ribbon-deadline {
+        font-weight: 800;
+        color: #ffdeff;
+        text-shadow: 0 0 12px rgba(255, 77, 255, 0.6);
+      }
+
+      .hero {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        z-index: 2;
+        text-align: center;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(320px, 1fr);
+        gap: clamp(1.8rem, 3vw, 2.4rem);
+        align-items: stretch;
+        width: 100%;
+      }
+
+      .hero-col {
+        display: grid;
+        gap: 1.25rem;
+        align-content: start;
+      }
+
+      .hero-copy {
+        text-align: left;
+      }
+
+      .hero-heading,
+      .hero-content {
+        max-width: min(900px, 100%);
+        margin: 0 auto;
+      }
+
+      .hero-video-block {
+        display: grid;
+        gap: 0.7rem;
+        align-items: center;
+        margin: 0.75rem 0 1.4rem;
+      }
+
+      .hero-video-subtitle {
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        color: #eaf9ff;
+        text-align: left;
+      }
+
+      .hero-video-frame {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 9 / 16;
+        border-radius: 18px;
+        overflow: hidden;
+        background: linear-gradient(145deg, rgba(0, 240, 255, 0.12), rgba(255, 77, 255, 0.12));
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55), 0 0 32px rgba(0, 240, 255, 0.25);
+      }
+
+      .hero-video-frame video,
+      .hero-video-frame iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 16px;
+      }
+
+      .hero-heading {
+        display: grid;
+        gap: 0.75rem;
+        justify-items: center;
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 7vw, 4.6rem);
+        font-weight: 900;
+        letter-spacing: 0.015em;
+        text-align: center;
+        color: #0b001f;
+        padding: 1rem 1.5rem;
+        border-radius: 32px;
+        background: linear-gradient(135deg, #00f0ff, #ff4dff);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 55px rgba(0, 240, 255, 0.35);
+      }
+
+      .hero-subhead {
+        font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+        color: rgba(244, 243, 255, 0.92);
+        text-align: left;
+        background: linear-gradient(120deg, rgba(0, 240, 255, 0.16), rgba(255, 77, 255, 0.14));
+        border: 1px solid rgba(0, 240, 255, 0.28);
+        padding: 1rem 1.2rem;
+        border-radius: 18px;
+        max-width: 880px;
+        box-shadow: inset 0 0 26px rgba(255, 77, 255, 0.14), 0 18px 45px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-whatsapp {
+        display: grid;
+        gap: 0.75rem;
+        align-items: center;
+        justify-items: start;
+        padding: 1.1rem 1.2rem;
+        margin-top: 1rem;
+        border-radius: 16px;
+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(255, 77, 255, 0.08));
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        box-shadow: inset 0 0 22px rgba(0, 240, 255, 0.12), 0 16px 40px rgba(0, 0, 0, 0.48);
+      }
+
+      .hero-whatsapp p {
+        margin: 0;
+        color: rgba(244, 243, 255, 0.9);
+        font-weight: 700;
+      }
+
+      .hero-content {
+        display: grid;
+        gap: 1rem;
+        justify-items: center;
+      }
+
+      .hero-bullets {
+        list-style: none;
+        display: grid;
+        gap: 0.65rem;
+        padding: 0;
+        margin: 0;
+        color: rgba(244, 243, 255, 0.92);
+      }
+
+      .hero-bullets li {
+        display: flex;
+        gap: 0.6rem;
+        align-items: flex-start;
+        padding: 0.85rem 1rem;
+        border-radius: 14px;
+        background: rgba(4, 0, 19, 0.65);
+        border: 1px solid rgba(0, 240, 255, 0.28);
+        box-shadow: inset 0 0 18px rgba(255, 77, 255, 0.12);
+        font-weight: 700;
+      }
+
+      .hero-bullets i {
+        color: var(--primary);
+        margin-top: 0.2rem;
+      }
+
+      .hero-intro-block {
+        display: grid;
+        gap: 1rem;
+        text-align: center;
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: clamp(1.4rem, 3vw, 2rem) clamp(1.6rem, 3.6vw, 2.4rem);
+        background: rgba(4, 0, 19, 0.7);
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        border-radius: 28px;
+        box-shadow: inset 0 0 35px rgba(255, 77, 255, 0.12), 0 24px 60px rgba(0, 0, 0, 0.55);
+      }
+
+      .hero-promise {
+        font-size: clamp(2.3rem, 5vw, 3rem);
+        line-height: 1.2;
+        color: #fff;
+        text-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+      }
+
+      .hero-sublead {
+        background: rgba(4, 0, 19, 0.55);
+        border: 1px solid rgba(0, 240, 255, 0.28);
+        padding: 1.1rem 1.3rem;
+        border-radius: 18px;
+        color: rgba(244, 243, 255, 0.92);
+        line-height: 1.7;
+        box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.14);
+      }
+
+      .hero-benefits {
+        list-style: none;
+        display: grid;
+        gap: 0.55rem;
+        padding: 0;
+        margin: 0;
+        color: rgba(244, 243, 255, 0.92);
+      }
+
+      .hero-benefits li {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        padding: 0.85rem 1rem;
+        border-radius: 12px;
+        background: rgba(4, 0, 19, 0.6);
+        border: 1px solid rgba(0, 240, 255, 0.22);
+        box-shadow: inset 0 0 18px rgba(255, 77, 255, 0.12);
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .prompt-section {
+        align-items: stretch;
+        gap: 2.2rem;
+      }
+
+      .prompt-header {
+        display: grid;
+        gap: 0.5rem;
+        justify-items: center;
+        text-align: center;
+      }
+
+      .prompt-title-row {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.6rem 1.2rem;
+        border-radius: 999px;
+        background: rgba(4, 0, 19, 0.65);
+        border: 1px solid rgba(0, 240, 255, 0.28);
+        box-shadow: 0 0 22px rgba(0, 240, 255, 0.28);
+      }
+
+      .hero-cta-inline {
+        justify-content: center;
+      }
+
+      .sparkles-icon {
+        font-size: 1.2rem;
+        color: var(--primary);
+        text-shadow: 0 0 14px rgba(0, 240, 255, 0.6);
+      }
+
+      .prompt-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(320px, 1fr);
+        gap: clamp(1.6rem, 3vw, 2.4rem);
+        width: 100%;
+      }
+
+      .prompt-left,
+      .prompt-right {
+        display: grid;
+        gap: 1.4rem;
+      }
+
+      .prompt-card,
+      .output-card {
+        background: rgba(4, 0, 19, 0.72);
+        border: 1px solid rgba(0, 240, 255, 0.26);
+        border-radius: 22px;
+        padding: clamp(0.95rem, 1.8vw, 1.4rem);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), inset 0 0 24px rgba(255, 77, 255, 0.14);
+      }
+
+      .prompt-card h2,
+      .output-card h2,
+      .output-header-title {
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: 0.02em;
+        margin: 0 0 0.35rem;
+      }
+
+      .output-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 0.6rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .prompt-card p.label,
+      .output-subtext {
+        color: rgba(244, 243, 255, 0.76);
+        font-size: 0.95rem;
+        margin: 0 0 0.5rem;
+      }
+
+      .prompt-textarea {
+        width: 100%;
+        min-height: 130px;
+        background: rgba(6, 0, 22, 0.8);
+        border: 1px solid rgba(0, 240, 255, 0.26);
+        border-radius: 14px;
+        padding: 0.9rem 1rem;
+        color: #fff;
+        font-family: "Montserrat", sans-serif;
+        font-size: 1rem;
+        resize: vertical;
+        box-shadow: inset 0 0 16px rgba(0, 240, 255, 0.14);
+      }
+
+      .prompt-textarea::placeholder {
+        color: rgba(244, 243, 255, 0.65);
+      }
+
+      .prompt-textarea:focus {
+        outline: none;
+        border-color: rgba(255, 77, 255, 0.6);
+        box-shadow: 0 0 18px rgba(255, 77, 255, 0.3);
+      }
+
+      .prompt-button-grid,
+      .prompt-hairstyle-grid,
+      .prompt-style-grid {
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .prompt-button-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .prompt-hairstyle-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .prompt-style-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .option-button {
+        text-align: left;
+        padding: 0.85rem 1rem;
+        border-radius: 14px;
+        background: rgba(6, 0, 22, 0.78);
+        border: 1px solid rgba(0, 240, 255, 0.2);
+        color: #fff;
+        cursor: pointer;
+        transition: border 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        display: grid;
+        gap: 0.2rem;
+      }
+
+      .option-button:hover {
+        border-color: rgba(255, 77, 255, 0.55);
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.22);
+        transform: translateY(-1px);
+      }
+
+      .option-button.selected {
+        border-color: rgba(255, 77, 255, 0.8);
+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.16), rgba(255, 77, 255, 0.14));
+        box-shadow: 0 0 26px rgba(255, 77, 255, 0.35);
+      }
+
+      .option-label {
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+
+      .option-desc {
+        font-size: 0.9rem;
+        color: rgba(244, 243, 255, 0.76);
+      }
+
+      .generate-button {
+        width: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        padding: 1rem 1.4rem;
+        border-radius: 16px;
+        background: var(--gradient);
+        color: #050015;
+        font-weight: 800;
+        font-size: 1.05rem;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 24px 60px rgba(0, 240, 255, 0.32), 0 0 28px rgba(255, 77, 255, 0.26);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .generate-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 32px 70px rgba(255, 77, 255, 0.38);
+      }
+
+      .gemini-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        width: 100%;
+        margin: 0.85rem 0 0.35rem;
+        padding: 0.95rem 1.2rem;
+        border-radius: 16px;
+        background: linear-gradient(125deg, rgba(0, 240, 255, 0.95), rgba(255, 77, 255, 0.92));
+        color: #050015;
+        font-weight: 850;
+        letter-spacing: 0.02em;
+        box-shadow: 0 24px 60px rgba(0, 240, 255, 0.32), 0 0 30px rgba(255, 77, 255, 0.32);
+        border: 1px solid rgba(0, 240, 255, 0.32);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .gemini-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 32px 72px rgba(255, 77, 255, 0.42), 0 0 34px rgba(0, 240, 255, 0.35);
+      }
+
+      .gemini-note {
+        margin: 0 0 0.8rem;
+        font-size: 0.98rem;
+        color: rgba(244, 243, 255, 0.86);
+        text-align: center;
+        line-height: 1.5;
+      }
+
+      .output-card .badge {
+        background: rgba(0, 240, 255, 0.16);
+        border: 1px solid rgba(0, 240, 255, 0.45);
+        padding: 0.35rem 0.8rem;
+        border-radius: 12px;
+        color: #e6f9ff;
+        letter-spacing: 0.05em;
+      }
+
+      .prompt-container {
+        background: rgba(6, 0, 22, 0.9);
+        border: 1px dashed rgba(0, 240, 255, 0.28);
+        border-radius: 14px;
+        padding: 1.1rem;
+        min-height: 220px;
+      }
+
+      .prompt-display {
+        background: rgba(4, 0, 19, 0.78);
+        border: 1px solid rgba(255, 77, 255, 0.25);
+        border-radius: 12px;
+        padding: 1rem 1.1rem;
+        color: #e8e6ff;
+        font-family: "Courier New", monospace;
+        white-space: pre-wrap;
+        line-height: 1.55;
+        box-shadow: inset 0 0 18px rgba(0, 240, 255, 0.14);
+        margin-bottom: 0.9rem;
+      }
+
+      .copy-button {
+        width: 100%;
+        padding: 0.9rem 1rem;
+        border-radius: 12px;
+        background: transparent;
+        border: 1px solid rgba(0, 240, 255, 0.28);
+        color: #fff;
+        font-weight: 700;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: border 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      }
+
+      .copy-button:hover {
+        border-color: rgba(255, 77, 255, 0.6);
+        box-shadow: 0 0 18px rgba(0, 240, 255, 0.24);
+        transform: translateY(-1px);
+      }
+
+      .copy-button.copied {
+        border-color: rgba(0, 240, 255, 0.85);
+        background: rgba(0, 240, 255, 0.08);
+        color: #d5faff;
+      }
+
+      .empty-state {
+        display: grid;
+        place-items: center;
+        gap: 0.6rem;
+        color: rgba(244, 243, 255, 0.78);
+        text-align: center;
+        min-height: 120px;
+      }
+
+      .empty-icon {
+        font-size: 1.4rem;
+        opacity: 0.6;
+      }
+
+      .hero-subtitle {
+        background: linear-gradient(120deg, rgba(0, 240, 255, 0.12), rgba(255, 77, 255, 0.08));
+        border-left: 3px solid rgba(255, 77, 255, 0.55);
+        padding: 1rem 1.25rem;
+        border-radius: 18px;
+        box-shadow: 0 20px 45px rgba(0, 240, 255, 0.18);
+        display: inline-block;
+        text-align: left;
+        max-width: 780px;
+        margin: 0 auto;
+      }
+
+      .hero-support {
+        background: rgba(4, 0, 19, 0.65);
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        padding: 1.2rem 1.35rem;
+        border-radius: 20px;
+        backdrop-filter: blur(8px);
+        box-shadow: inset 0 0 25px rgba(255, 77, 255, 0.12), 0 18px 40px rgba(0, 0, 0, 0.45);
+        opacity: 0.95;
+        text-align: left;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      .hero-support-title {
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #fff;
+        margin-bottom: 0.75rem;
+      }
+
+      .hero-microcopy {
+        font-size: 0.98rem;
+        margin-top: 0.25rem;
+        max-width: 480px;
+        color: rgba(244, 243, 255, 0.82);
+        text-align: center;
+      }
+
+      .hero-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        justify-content: center;
+      }
+
+      .badge {
+        background: rgba(4, 0, 19, 0.55);
+        border: 1px solid rgba(0, 240, 255, 0.5);
+        border-radius: 999px;
+        padding: 0.6rem 1.2rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        box-shadow: 0 0 15px rgba(0, 240, 255, 0.35);
+      }
+
+      .cta-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .offer-pricing .cta-group {
+        justify-content: center;
+      }
+
+      .cta-primary,
+      .cta-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 1rem 2.6rem;
+        border-radius: 999px;
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      }
+      .cta-primary {
+        background: var(--gradient);
+        color: #0b001f;
+        box-shadow: 0 24px 60px rgba(0, 240, 255, 0.38), 0 0 28px rgba(255, 77, 255, 0.35);
+      }
+
+      .cta-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 30px 60px rgba(255, 77, 255, 0.45);
+      }
+
+      .cta-secondary {
+        border: 2px solid rgba(0, 240, 255, 0.4);
+        color: #fff;
+        background: rgba(4, 0, 19, 0.65);
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
+      }
+
+      .cta-secondary:hover {
+        transform: translateY(-3px);
+        border-color: rgba(255, 77, 255, 0.8);
+        box-shadow: 0 0 30px rgba(255, 77, 255, 0.35);
+      }
+
+      .cta-whatsapp {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        padding: 0.95rem 1.6rem;
+        border-radius: 12px;
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        background: linear-gradient(125deg, #1bd741, #0b9c2f);
+        color: #03110a;
+        border: 1px solid rgba(0, 240, 255, 0.32);
+        box-shadow: 0 16px 40px rgba(27, 215, 65, 0.32), 0 0 28px rgba(0, 240, 255, 0.2);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .cta-whatsapp:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 24px 50px rgba(27, 215, 65, 0.38), 0 0 32px rgba(0, 240, 255, 0.22);
+      }
+
+      .down-link {
+        background: rgba(4, 0, 19, 0.7);
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        color: #fff;
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+        padding: 0.75rem 1.4rem;
+      }
+
+      .scroll-hint {
+        justify-content: center;
+        margin-top: 1rem;
+      }
+
+      .avatar-section .cta-group {
+        justify-content: center;
+      }
+
+      .hero-media {
+        display: none;
+      }
+
+      .hero-visual {
+        background: rgba(4, 0, 19, 0.6);
+        border-radius: 26px;
+        padding: clamp(1.1rem, 2.6vw, 1.7rem);
+        border: 1px solid rgba(0, 240, 255, 0.28);
+        box-shadow: 0 32px 80px rgba(0, 0, 0, 0.55), 0 0 38px rgba(0, 240, 255, 0.22);
+        width: min(1080px, 96vw);
+        margin: 0 auto;
+      }
+
+      .hero-comparison {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: clamp(0.9rem, 2.5vw, 1.4rem);
+        justify-items: center;
+        align-items: stretch;
+      }
+      .comparison-card {
+        display: grid;
+        gap: 0.65rem;
+        justify-items: center;
+        background: linear-gradient(140deg, rgba(0, 240, 255, 0.12), rgba(255, 77, 255, 0.12));
+        border: 1px solid rgba(0, 240, 255, 0.28);
+        border-radius: 18px;
+        padding: 1.1rem 1.2rem;
+        box-shadow: inset 0 0 24px rgba(0, 240, 255, 0.18), 0 18px 45px rgba(0, 0, 0, 0.5);
+      }
+
+      .comparison-chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        padding: 0.55rem 1.15rem;
+        border-radius: 999px;
+        background: rgba(4, 0, 19, 0.75);
+        border: 1px solid rgba(0, 240, 255, 0.35);
+        font-weight: 800;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-size: 0.95rem;
+        box-shadow: 0 0 22px rgba(0, 240, 255, 0.28);
+      }
+
+      .comparison-clip {
+        position: relative;
+        width: min(360px, 100%);
+        aspect-ratio: 9 / 16;
+        border-radius: 16px;
+        overflow: hidden;
+        background: radial-gradient(circle at 30% 30%, rgba(0, 240, 255, 0.22), transparent 58%),
+          radial-gradient(circle at 70% 70%, rgba(255, 77, 255, 0.2), transparent 60%),
+          rgba(4, 0, 19, 0.85);
+        border: 1px solid rgba(0, 240, 255, 0.32);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 30px rgba(0, 240, 255, 0.2);
+      }
+
+      .comparison-clip video,
+      .comparison-clip iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 16px;
+      }
+
+      .comparison-clip .clip-fallback {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 1.2rem;
+        color: rgba(244, 243, 255, 0.78);
+        text-align: center;
+        font-weight: 700;
+        line-height: 1.5;
+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(255, 77, 255, 0.08));
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .section-video {
+        position: relative;
+        border-radius: 18px;
+        padding: clamp(0.75rem, 2vw, 1rem);
+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.12), rgba(255, 77, 255, 0.12));
+        border: 1px solid rgba(0, 240, 255, 0.28);
+        box-shadow: 0 25px 65px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 240, 255, 0.18);
+        overflow: hidden;
+        margin: 0 auto clamp(1.2rem, 3vw, 1.8rem);
+        width: min(1100px, 100%);
+      }
+
+      .section-video::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 25% 25%, rgba(0, 240, 255, 0.2), transparent 55%),
+          radial-gradient(circle at 70% 75%, rgba(255, 77, 255, 0.22), transparent 60%);
+        opacity: 0.85;
+        pointer-events: none;
+      }
+
+      .section-video iframe {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.24);
+      }
+
+      section {
+        padding: 5rem 0;
+        position: relative;
+      }
+
+      section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(1200px, 92vw);
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.4), transparent);
+        opacity: 0.4;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      section::after {
+        content: "";
+        position: absolute;
+        width: 70%;
+        height: 70%;
+        top: 45%;
+        left: 25%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, rgba(0, 240, 255, 0.18), transparent 60%);
+        filter: blur(70px);
+        opacity: 0.8;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      section:nth-of-type(even)::after {
+        left: auto;
+        right: 20%;
+        top: 35%;
+        transform: translate(50%, -50%);
+        background: radial-gradient(circle, rgba(255, 77, 255, 0.2), transparent 60%);
+      }
+
+      section:not(:last-of-type) > .container {
+        padding: clamp(1.6rem, 4vw, 3.4rem);
+        background: linear-gradient(135deg, rgba(4, 0, 19, 0.72), rgba(11, 0, 34, 0.78));
+        border-radius: 28px;
+        border: 1px solid rgba(0, 240, 255, 0.22);
+        box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6), 0 0 45px rgba(0, 240, 255, 0.18);
+        backdrop-filter: blur(18px);
+        overflow: hidden;
+      }
+
+      section:not(:last-of-type) > .container::before {
+        content: "";
+        position: absolute;
+        inset: 12% 8% auto 8%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.4), transparent);
+        opacity: 0.2;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      section > .container {
+        position: relative;
+        z-index: 1;
+      }
+
+      section:not(:last-of-type) > .container > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      main p + p {
+        margin-top: 1rem;
+      }
+
+      .section-title {
+        text-transform: uppercase;
+        color: var(--primary);
+        font-size: 0.9rem;
+        letter-spacing: 0.2rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+      }
+
+      h2 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        margin-bottom: 1.5rem;
+        color: #fff;
+        text-shadow: 0 0 18px rgba(139, 93, 255, 0.45);
+      }
+
+      .authority {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .authority-card {
+        background: rgba(11, 4, 37, 0.8);
+        border-radius: 18px;
+        padding: 2rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 25px rgba(0, 240, 255, 0.18);
+        border: 1px solid rgba(139, 93, 255, 0.35);
+      }
+
+      .story-section .authority {
+        justify-items: center;
+      }
+
+      .benefits-section .benefits-list {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .benefits-section .benefits-list li {
+        font-weight: 600;
+        color: #fdfbff;
+      }
+
+      .avatar-showcase .avatar-grid,
+      .avatar-section .avatar-grid {
+        display: grid;
+        gap: 1.6rem;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        width: 100%;
+      }
+
+      .avatar-card {
+        display: grid;
+        gap: 1rem;
+        text-align: left;
+      }
+
+      .avatar-card h3 {
+        color: #fff;
+        font-size: 1.35rem;
+      }
+
+      .avatar-card p {
+        color: rgba(244, 243, 255, 0.9);
+        line-height: 1.65;
+      }
+
+      .avatar-media {
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5), 0 0 28px rgba(255, 77, 255, 0.18);
+      }
+
+      .avatar-media img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .about-section .container,
+      .technology-section .container,
+      .faq-section .container,
+      .pricing-section .container,
+      .final-section .container {
+        display: grid;
+        gap: 1.6rem;
+      }
+
+      .about-section .container {
+        justify-items: center;
+        text-align: center;
+        max-width: 960px;
+      }
+
+      .instructor-card {
+        display: grid;
+        gap: 1.5rem;
+        justify-items: center;
+        max-width: 840px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .instructor-copy {
+        display: grid;
+        gap: 1rem;
+        color: rgba(244, 243, 255, 0.9);
+        text-align: center;
+      }
+
+      .instructor-photo {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid rgba(0, 240, 255, 0.4);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), 0 0 28px rgba(255, 77, 255, 0.25);
+      }
+
+      .testimonials-section .testimonials {
+        margin-top: 1rem;
+      }
+
+      .testimonial-photo {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        border: 2px solid rgba(0, 240, 255, 0.35);
+        box-shadow: 0 0 18px rgba(0, 240, 255, 0.3);
+      }
+
+      .technology-section .offer-tools {
+        margin-top: 0.5rem;
+      }
+
+      .pricing-section .offer-pricing {
+        margin-top: 1rem;
+      }
+
+      .pricing-section .price-highlight {
+        width: min(520px, 100%);
+      }
+
+      .story-card {
+        max-width: 820px;
+        text-align: center;
+        background: linear-gradient(140deg, rgba(9, 0, 28, 0.9), rgba(26, 0, 59, 0.82));
+        border: 1px solid rgba(255, 77, 255, 0.35);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 55px rgba(255, 77, 255, 0.2);
+        position: relative;
+        overflow: hidden;
+        padding: clamp(2rem, 4vw, 3rem);
+      }
+
+      .story-card::before {
+        content: "";
+        position: absolute;
+        inset: -40% -10% auto -10%;
+        height: 65%;
+        background: radial-gradient(circle, rgba(0, 240, 255, 0.3), transparent 70%);
+        opacity: 0.7;
+        filter: blur(70px);
+        pointer-events: none;
+      }
+
+      .story-card p {
+        color: rgba(245, 242, 255, 0.96);
+        font-size: clamp(1.15rem, 2.6vw, 1.35rem);
+        line-height: 1.85;
+      }
+
+      .story-card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .avatar-section .container {
+        display: grid;
+        justify-items: center;
+        gap: clamp(1.8rem, 4vw, 2.8rem);
+        text-align: center;
+      }
+
+      .avatar-copy {
+        display: grid;
+        gap: 1.2rem;
+        max-width: 820px;
+        color: rgba(244, 243, 255, 0.9);
+        line-height: 1.75;
+      }
+
+      .avatar-copy p {
+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(255, 77, 255, 0.08));
+        border-radius: 18px;
+        padding: 1.2rem 1.5rem;
+        border: 1px solid rgba(0, 240, 255, 0.16);
+        box-shadow: inset 0 0 22px rgba(0, 240, 255, 0.12);
+      }
+
+      .avatar-copy strong {
+        color: #fff;
+      }
+
+      .avatar-section .cta-group {
+        justify-content: center;
+      }
+
+      .avatar-section .story-points {
+        justify-content: center;
+      }
+
+      .story-highlight {
+        color: #fff;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        text-shadow: 0 0 20px rgba(0, 240, 255, 0.5), 0 0 35px rgba(255, 77, 255, 0.4);
+        font-size: clamp(1.2rem, 2.8vw, 1.4rem);
+      }
+
+      .story-highlight-alt {
+        color: var(--primary);
+        font-weight: 700;
+        background: linear-gradient(120deg, rgba(0, 240, 255, 0.25), rgba(255, 77, 255, 0.25));
+        padding: 0.1rem 0.45rem;
+        border-radius: 6px;
+        box-shadow: inset 0 0 18px rgba(0, 240, 255, 0.2);
+        font-size: clamp(1.18rem, 2.7vw, 1.38rem);
+      }
+
+      .story-points {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+        margin: 1.8rem 0 0;
+      }
+
+      .story-points span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.7rem 1.25rem;
+        border-radius: 999px;
+        background: rgba(4, 0, 19, 0.7);
+        border: 1px solid rgba(0, 240, 255, 0.45);
+        box-shadow: 0 0 18px rgba(0, 240, 255, 0.2);
+        font-size: clamp(1.05rem, 2.3vw, 1.2rem);
+        color: #fefbff;
+        font-weight: 600;
+      }
+      .story-section .highlight-cta {
+        margin-top: 2.2rem;
+        background: linear-gradient(130deg, rgba(0, 240, 255, 0.95), rgba(255, 77, 255, 0.95));
+        color: #080015;
+        border: none;
+        box-shadow: 0 22px 60px rgba(0, 240, 255, 0.35), 0 0 38px rgba(255, 77, 255, 0.4);
+        letter-spacing: 0.04em;
+      }
+
+      .story-section .highlight-cta:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 30px 70px rgba(255, 77, 255, 0.5), 0 0 45px rgba(0, 240, 255, 0.4);
+      }
+      .authority-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.6rem;
+        color: #fff;
+      }
+
+      .authority-card p {
+        color: var(--gray);
+        font-size: 0.95rem;
+      }
+
+      .authority-card p + p {
+        margin-top: 1rem;
+      }
+
+      .authority-card .cta-secondary {
+        margin-top: 1.5rem;
+      }
+
+      .divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.35), transparent);
+        margin: 4rem 0;
+      }
+
+      .program-section {
+        position: relative;
+        padding: 6rem 0;
+      }
+
+      .program-section::before {
+        content: "";
+        position: absolute;
+        inset: 10% 0 20% 0;
+        background: radial-gradient(circle at 30% 20%, rgba(0, 240, 255, 0.16), transparent 60%),
+          radial-gradient(circle at 70% 80%, rgba(255, 77, 255, 0.14), transparent 60%);
+        opacity: 0.9;
+        filter: blur(70px);
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .program-card {
+        position: relative;
+        background: linear-gradient(160deg, rgba(12, 2, 40, 0.9), rgba(33, 0, 68, 0.78));
+        border-radius: 26px;
+        padding: clamp(2.5rem, 5vw, 3.5rem);
+        box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6), 0 0 50px rgba(139, 93, 255, 0.25);
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        overflow: hidden;
+      }
+
+      .program-card::before {
+        content: "";
+        position: absolute;
+        inset: -40% -20% auto 50%;
+        width: 120%;
+        height: 70%;
+        background: radial-gradient(circle, rgba(0, 240, 255, 0.22), transparent 70%);
+        filter: blur(90px);
+        opacity: 0.9;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+
+      .program-card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .program-head {
+        display: grid;
+        gap: 1.5rem;
+        justify-items: start;
+      }
+
+      .program-intro {
+        display: grid;
+        gap: 1.2rem;
+        max-width: 860px;
+        font-size: 1.1rem;
+        line-height: 1.75;
+        color: rgba(244, 243, 255, 0.92);
+      }
+
+      .program-intro p {
+        margin: 0;
+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(255, 77, 255, 0.08));
+        border-left: 3px solid rgba(0, 240, 255, 0.45);
+        padding: 1.2rem 1.5rem;
+        border-radius: 18px;
+        box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.35);
+      }
+
+      .hero-offer {
+        align-self: stretch;
+      }
+
+      .hero-offer-card {
+        background: linear-gradient(160deg, rgba(4, 0, 19, 0.88), rgba(18, 0, 32, 0.9));
+        border: 1px solid rgba(0, 240, 255, 0.32);
+        border-radius: 22px;
+        padding: clamp(1.6rem, 3vw, 2rem);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 35px rgba(255, 77, 255, 0.28);
+        display: grid;
+        gap: 1rem;
+        text-align: left;
+      }
+
+      .hero-offer-title {
+        margin: 0;
+        font-size: 1.05rem;
+        color: rgba(244, 243, 255, 0.86);
+        line-height: 1.6;
+      }
+
+      .hero-price-block {
+        display: grid;
+        gap: 0.35rem;
+        padding: 1rem 1.1rem;
+        border-radius: 14px;
+        background: rgba(0, 240, 255, 0.08);
+        border: 1px solid rgba(0, 240, 255, 0.35);
+      }
+
+      .hero-price-block .price-note {
+        margin: 0;
+        color: rgba(244, 243, 255, 0.82);
+        font-size: 0.95rem;
+      }
+
+      .offer-list {
+        list-style: none;
+        display: grid;
+        gap: 0.6rem;
+        padding: 0;
+        margin: 0;
+        color: rgba(244, 243, 255, 0.9);
+      }
+
+      .offer-list li {
+        display: flex;
+        gap: 0.65rem;
+        align-items: center;
+        background: rgba(9, 0, 25, 0.78);
+        border: 1px solid rgba(139, 93, 255, 0.35);
+        padding: 0.75rem 0.85rem;
+        border-radius: 12px;
+      }
+
+      .offer-list i {
+        color: var(--secondary);
+      }
+
+      .cta-full {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-deadline {
+        margin: 0;
+        font-size: 0.95rem;
+        color: rgba(255, 221, 255, 0.92);
+        text-shadow: 0 0 14px rgba(255, 77, 255, 0.4);
+      }
+
+      .hero-guarantee {
+        margin: 0;
+        color: rgba(244, 243, 255, 0.82);
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .program-intro strong {
+        color: #fff;
+      }
+
+      .glow-text {
+        color: var(--primary);
+        font-weight: 700;
+        text-shadow: 0 0 18px rgba(0, 240, 255, 0.6);
+      }
+
+      .program-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .program-tags span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.65rem 1.1rem;
+        border-radius: 999px;
+        background: rgba(0, 240, 255, 0.12);
+        border: 1px solid rgba(255, 77, 255, 0.35);
+        color: rgba(244, 243, 255, 0.9);
+        font-size: 0.95rem;
+        letter-spacing: 0.01em;
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.18);
+      }
+
+      .program-tags i {
+        color: var(--secondary);
+      }
+
+      .program-body {
+        margin-top: 2.5rem;
+        display: grid;
+        gap: 2rem;
+      }
+
+      .program-body h3 {
+        font-size: clamp(1.4rem, 3vw, 1.9rem);
+        color: #fff;
+        text-shadow: 0 0 22px rgba(255, 77, 255, 0.4);
+      }
+
+      .program-narrative {
+        display: grid;
+        gap: 1.1rem;
+        font-size: 1.06rem;
+        line-height: 1.8;
+        color: rgba(244, 243, 255, 0.92);
+        background: linear-gradient(140deg, rgba(9, 0, 32, 0.78), rgba(32, 0, 64, 0.72));
+        border: 1px solid rgba(0, 240, 255, 0.22);
+        border-radius: 20px;
+        padding: 1.6rem 1.9rem;
+        box-shadow: inset 0 0 30px rgba(255, 77, 255, 0.16), 0 25px 60px rgba(0, 0, 0, 0.55);
+      }
+
+      .program-narrative p {
+        margin: 0;
+        background: rgba(4, 0, 19, 0.45);
+        padding: 1.2rem 1.4rem;
+        border-radius: 16px;
+        border-left: 3px solid rgba(255, 77, 255, 0.4);
+        box-shadow: inset 0 0 18px rgba(0, 240, 255, 0.14);
+      }
+
+      .program-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .program-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        background: rgba(9, 0, 25, 0.82);
+        border-radius: 16px;
+        padding: 1.1rem 1.4rem;
+        border: 1px solid rgba(0, 240, 255, 0.22);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), inset 0 0 20px rgba(255, 77, 255, 0.12);
+      }
+
+      .program-list .icon {
+        font-size: 1.4rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: rgba(0, 240, 255, 0.18);
+        box-shadow: 0 0 18px rgba(0, 240, 255, 0.35);
+      }
+
+      .program-list span + span {
+        flex: 1;
+        color: rgba(244, 243, 255, 0.88);
+        font-size: 1.05rem;
+        line-height: 1.6;
+      }
+
+      .program-demo {
+        display: grid;
+        gap: 1.4rem;
+        background: rgba(9, 0, 32, 0.78);
+        border-radius: 20px;
+        padding: 1.8rem;
+        border: 1px solid rgba(255, 77, 255, 0.28);
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), inset 0 0 25px rgba(0, 240, 255, 0.14);
+      }
+
+      .demo-video {
+        position: relative;
+        border-radius: 18px;
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.12), rgba(255, 77, 255, 0.12));
+        overflow: hidden;
+      }
+
+      .demo-video::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 30% 30%, rgba(0, 240, 255, 0.18), transparent 55%),
+          radial-gradient(circle at 70% 70%, rgba(255, 77, 255, 0.2), transparent 60%);
+        opacity: 0.8;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .demo-video iframe {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: none;
+        display: block;
+      }
+
+      .demo-cta {
+        justify-self: center;
+      }
+
+      .demo-note {
+        text-align: center;
+        font-size: 0.98rem;
+        color: rgba(244, 243, 255, 0.76);
+      }
+      .offer-section .container {
+        display: grid;
+        gap: clamp(1.8rem, 4vw, 2.6rem);
+        padding: clamp(1.8rem, 4vw, 3.2rem);
+        background: linear-gradient(135deg, rgba(4, 0, 19, 0.74), rgba(11, 0, 34, 0.78));
+        border-radius: 28px;
+        border: 1px solid rgba(0, 240, 255, 0.22);
+        box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6), 0 0 45px rgba(0, 240, 255, 0.18);
+        backdrop-filter: blur(18px);
+      }
+
+      .offer-copy {
+        display: grid;
+        gap: 1rem;
+        line-height: 1.7;
+        color: rgba(244, 243, 255, 0.88);
+      }
+
+      .offer-copy p strong {
+        color: var(--primary);
+      }
+
+      .offer-benefits {
+        background: rgba(4, 0, 19, 0.75);
+        border-radius: 20px;
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        box-shadow: 0 28px 75px rgba(0, 0, 0, 0.55), inset 0 0 28px rgba(255, 77, 255, 0.18);
+        padding: clamp(1.8rem, 3.2vw, 2.4rem);
+        display: grid;
+        gap: 1.2rem;
+      }
+
+      .offer-benefits h3 {
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--primary);
+        text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+      }
+
+      .offer-benefit-list {
+        list-style: none;
+        display: grid;
+        gap: 0.85rem;
+        margin: 0;
+        padding: 0;
+      }
+
+      .offer-benefit-list li {
+        display: flex;
+        gap: 0.65rem;
+        align-items: flex-start;
+        padding: 0.9rem 1.2rem;
+        border-radius: 14px;
+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.14), rgba(255, 77, 255, 0.12));
+        border: 1px solid rgba(139, 93, 255, 0.28);
+        box-shadow: inset 0 0 22px rgba(0, 240, 255, 0.14);
+        color: rgba(244, 243, 255, 0.9);
+      }
+
+      .offer-benefit-list li span {
+        font-size: 1.05rem;
+        line-height: 1.6;
+      }
+
+      .offer-tools {
+        background: rgba(4, 0, 19, 0.78);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 77, 255, 0.28);
+        box-shadow: 0 28px 75px rgba(0, 0, 0, 0.55), inset 0 0 26px rgba(0, 240, 255, 0.16);
+        padding: clamp(1.8rem, 3.2vw, 2.3rem);
+        display: grid;
+        gap: 1rem;
+        color: rgba(244, 243, 255, 0.86);
+      }
+
+      .founder-schedule {
+        margin: 2.4rem auto 0;
+        padding: 2.2rem 2.6rem;
+        display: grid;
+        gap: 0.9rem;
+        background: rgba(4, 0, 19, 0.8);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 77, 255, 0.32);
+        box-shadow: 0 28px 75px rgba(0, 0, 0, 0.55), inset 0 0 26px rgba(0, 240, 255, 0.16);
+        color: rgba(244, 243, 255, 0.88);
+      }
+
+      .founder-schedule h3 {
+        font-size: 1.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--primary);
+        text-shadow: 0 0 18px rgba(0, 240, 255, 0.45);
+      }
+
+      .founder-schedule p {
+        line-height: 1.6;
+      }
+
+      .founder-schedule .schedule-note {
+        margin-top: 0.4rem;
+        font-weight: 600;
+        color: rgba(255, 173, 255, 0.95);
+        text-shadow: 0 0 18px rgba(255, 77, 255, 0.4);
+      }
+
+      .bonuses {
+        background: rgba(11, 4, 37, 0.9);
+        border-radius: 20px;
+        padding: 3rem;
+        display: grid;
+        gap: 1.8rem;
+        border: 1px solid rgba(139, 93, 255, 0.35);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 35px rgba(139, 93, 255, 0.2);
+      }
+
+      .bonuses-title {
+        font-size: 1.35rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--primary);
+        text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+      }
+
+      .bonus-grid {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+      .bonus-card {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: minmax(0, 1fr);
+        background: rgba(4, 0, 19, 0.75);
+        border-radius: 16px;
+        padding: 1.6rem;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 240, 255, 0.25);
+        border: 1px solid rgba(0, 240, 255, 0.25);
+      }
+
+      .offer-pricing {
+        margin-top: 2.5rem;
+        display: grid;
+        gap: 1.2rem;
+        justify-items: center;
+        text-align: center;
+      }
+
+      .guarantee-block {
+        margin-top: 2rem;
+        padding: 2.1rem 2.4rem;
+        border-radius: 18px;
+        background: rgba(4, 0, 19, 0.8);
+        border: 1px solid rgba(255, 77, 255, 0.28);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), inset 0 0 32px rgba(0, 240, 255, 0.18);
+        display: grid;
+        gap: 0.9rem;
+      }
+
+      .guarantee-block h3 {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--secondary);
+        text-shadow: 0 0 20px rgba(255, 77, 255, 0.45);
+      }
+
+      .guarantee-block p {
+        color: rgba(244, 243, 255, 0.82);
+        line-height: 1.6;
+      }
+
+      .price-highlight {
+        position: relative;
+        display: grid;
+        gap: 0.75rem;
+        justify-items: center;
+        padding: 1.9rem 2.4rem;
+        border-radius: 20px;
+        background: rgba(4, 0, 19, 0.82);
+        border: 1px solid rgba(255, 77, 255, 0.35);
+        box-shadow: 0 35px 90px rgba(0, 0, 0, 0.55), 0 0 40px rgba(0, 240, 255, 0.28);
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .price-highlight::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 20% 0%, rgba(0, 240, 255, 0.28), transparent 55%),
+          radial-gradient(circle at 80% 100%, rgba(255, 77, 255, 0.25), transparent 60%);
+        opacity: 0.9;
+        pointer-events: none;
+      }
+
+      .price-highlight > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .price-badge {
+        position: relative;
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.45rem 1.4rem;
+        border-radius: 999px;
+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.8), rgba(255, 77, 255, 0.85));
+        color: #040013;
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.45);
+      }
+
+      .price-offer {
+        font-size: 1.05rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(244, 243, 255, 0.82);
+      }
+
+      .price-savings {
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        text-shadow: 0 0 18px rgba(255, 77, 255, 0.6);
+      }
+
+      .price-new {
+        font-size: clamp(2.8rem, 5vw, 3.6rem);
+        font-weight: 800;
+        color: #ffffff;
+        text-shadow: 0 0 35px rgba(255, 77, 255, 0.55), 0 0 25px rgba(0, 240, 255, 0.55);
+      }
+
+      .price-split {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: rgba(244, 243, 255, 0.88);
+      }
+
+      .price-note {
+        font-size: 0.95rem;
+        color: rgba(244, 243, 255, 0.78);
+        max-width: 420px;
+        display: block;
+        line-height: 1.5;
+        margin: 0 auto;
+      }
+
+      .price-note .price-breakdown {
+        display: block;
+        margin-bottom: 0.4rem;
+        padding: 0.75rem 1rem;
+        border-radius: 14px;
+        background: linear-gradient(135deg, rgba(0, 240, 255, 0.18), rgba(255, 77, 255, 0.16));
+        border: 1px solid rgba(0, 240, 255, 0.35);
+        color: #ffffff;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-align: center;
+        box-shadow: 0 0 24px rgba(0, 240, 255, 0.25);
+      }
+
+      .bonus-card h4 {
+        color: var(--secondary);
+        text-shadow: 0 0 15px rgba(255, 77, 255, 0.4);
+      }
+      .offer-progress {
+        background: rgba(4, 0, 19, 0.78);
+        border-radius: 16px;
+        padding: 1.6rem 1.8rem;
+        border: 1px solid rgba(0, 240, 255, 0.32);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 35px rgba(255, 77, 255, 0.24);
+        display: grid;
+        gap: 0.9rem;
+        position: relative;
+        overflow: hidden;
+        width: min(520px, 100%);
+      }
+
+      .offer-progress::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, rgba(0, 240, 255, 0.12), rgba(255, 77, 255, 0.12));
+        filter: blur(0.5px);
+        opacity: 0.8;
+        pointer-events: none;
+      }
+
+      .progress-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        position: relative;
+        z-index: 1;
+        font-size: 0.95rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: rgba(244, 243, 255, 0.78);
+      }
+
+      .progress-date {
+        font-weight: 700;
+        color: var(--primary);
+        text-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
+      }
+
+      .progress-bar {
+        position: relative;
+        z-index: 1;
+        height: 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(0, 240, 255, 0.35);
+        overflow: hidden;
+        box-shadow: inset 0 0 25px rgba(139, 93, 255, 0.25);
+      }
+
+      .progress-fill {
+        display: block;
+        height: 100%;
+        width: 82%;
+        background: linear-gradient(90deg, rgba(0, 240, 255, 0.95), rgba(139, 93, 255, 0.95), rgba(255, 77, 255, 0.95));
+        background-size: 220% 100%;
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.65);
+        border-radius: inherit;
+        position: relative;
+        animation: pulseFill 2.8s ease-in-out infinite, progressFlow 5.5s linear infinite;
+      }
+
+      .progress-fill::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          120deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.35) 15%,
+          rgba(255, 255, 255, 0.55) 30%,
+          rgba(255, 255, 255, 0.35) 45%,
+          transparent 60%
+        );
+        mix-blend-mode: screen;
+        opacity: 0.9;
+        animation: sweepGlow 2.8s ease-in-out infinite;
+      }
+
+      @keyframes pulseFill {
+        0%,
+        100% {
+          filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.65));
+        }
+        50% {
+          filter: drop-shadow(0 0 18px rgba(255, 77, 255, 0.75));
+        }
+      }
+
+      @keyframes progressFlow {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 200% 50%;
+        }
+      }
+
+      @keyframes sweepGlow {
+        0% {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+        35% {
+          opacity: 0.9;
+        }
+        70% {
+          opacity: 0.4;
+        }
+        100% {
+          transform: translateX(120%);
+          opacity: 0;
+        }
+      }
+
+      .testimonials {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+
+      .testimonial {
+        background: rgba(9, 0, 25, 0.82);
+        border-radius: 18px;
+        padding: 2rem;
+        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55), 0 0 20px rgba(139, 93, 255, 0.22);
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(139, 93, 255, 0.35);
+      }
+
+      .testimonial::before {
+        content: "\f10d";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        color: rgba(0, 240, 255, 0.25);
+        font-size: 3.5rem;
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+      }
+
+      .testimonial p {
+        color: var(--gray);
+        margin-bottom: 1.5rem;
+      }
+
+      .testimonial strong {
+        font-size: 1.05rem;
+        color: #fff;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: clamp(2.1rem, 7vw, 3.1rem);
+          padding: 0.75rem 1rem;
+        }
+
+        .hero-video-block {
+          text-align: center;
+        }
+
+        .hero-video-subtitle {
+          text-align: center;
+        }
+
+        .prompt-title-row {
+          padding: 0.45rem 0.9rem;
+        }
+
+        .prompt-section {
+          gap: 1.6rem;
+        }
+
+        .prompt-layout {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .prompt-left,
+        .prompt-right {
+          gap: 1rem;
+        }
+
+        .prompt-title-row {
+          padding: 0.35rem 0.75rem;
+          border-radius: 16px;
+        }
+
+        .hero-title {
+          font-size: clamp(2.05rem, 5.8vw, 2.6rem);
+          padding: 0.6rem 0.9rem;
+          border-radius: 18px;
+        }
+
+        .prompt-card,
+        .output-card {
+          padding: 0.85rem 0.95rem;
+          border-radius: 16px;
+        }
+
+        .prompt-hairstyle-grid,
+        .prompt-style-grid,
+        .prompt-button-grid {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 0.65rem;
+        }
+
+        .output-header {
+          margin-bottom: 0.5rem;
+          flex-wrap: wrap;
+        }
+
+        .prompt-textarea {
+          min-height: 110px;
+          padding: 0.85rem 0.9rem;
+          font-size: 0.95rem;
+        }
+
+        .option-button {
+          padding: 0.75rem 0.85rem;
+          gap: 0.1rem;
+        }
+
+        .option-label {
+          font-size: 0.98rem;
+        }
+
+        .option-desc {
+          font-size: 0.85rem;
+        }
+
+        .generate-button,
+        .gemini-cta {
+          padding: 0.9rem 1rem;
+        }
+
+        .prompt-container {
+          padding: 0.9rem;
+          min-height: 180px;
+        }
+
+        .prompt-display {
+          padding: 0.9rem;
+          font-size: 0.95rem;
+        }
+
+        .hero-visual {
+          width: 100%;
+          padding: 0.55rem 0.25rem 0.85rem;
+          overflow: visible;
+        }
+
+        .hero-comparison {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(46vw, 1fr));
+          gap: clamp(0.6rem, 2vw, 0.9rem);
+          justify-items: center;
+          align-items: stretch;
+        }
+
+        .comparison-card {
+          width: 100%;
+          max-width: none;
+        }
+
+        .comparison-clip {
+          width: 100%;
+        }
+
+        body {
+          background: #050016;
+          line-height: 1.6;
+        }
+
+        body::before,
+        body::after,
+        header::before,
+        header::after,
+        section::before,
+        section::after,
+        section:not(:last-of-type) > .container::before,
+        .program-section::before,
+        .program-card::before,
+        .story-card::before,
+        .final-section .container::before,
+        .section-video::before {
+          content: none;
+        }
+
+        header {
+          padding: 1.75rem 0 3.5rem;
+          box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
+        }
+
+        section {
+          padding: 3.5rem 0;
+        }
+
+        .container {
+          width: min(640px, 92vw);
+        }
+
+        .hero {
+          gap: 1.8rem;
+        }
+
+        .hero-whatsapp {
+          justify-items: center;
+          text-align: center;
+        }
+
+        .hero-media,
+      .hero-support,
+      .story-card,
+      .authority-card,
+      .program-card,
+      .program-intro p,
+        .program-demo,
+        .founder-schedule,
+        .bonuses,
+        .bonus-card,
+        .offer-testimonial,
+        .offer-progress,
+        .guarantee-block,
+        .final-section .container,
+        details,
+        .testimonial,
+        .section-video {
+          background: rgba(6, 0, 22, 0.94);
+          box-shadow: 0 14px 32px rgba(0, 0, 0, 0.48);
+          backdrop-filter: none;
+        }
+
+        .avatar-section .container {
+          gap: 1.6rem;
+        }
+
+        .avatar-copy {
+          gap: 1rem;
+        }
+
+        .avatar-copy p {
+          padding: 1rem 1.2rem;
+        }
+
+        .hero-media {
+          padding: 1rem;
+          border-radius: 18px;
+        }
+
+        .hero-media iframe {
+          min-height: 220px;
+        }
+
+        .hero-support,
+        .program-intro p,
+        .program-demo,
+        .founder-schedule,
+        .bonuses,
+        .bonus-card,
+        .offer-progress,
+        .guarantee-block,
+        .final-section .container,
+        details,
+        .testimonial {
+          padding: 1.6rem;
+        }
+
+        section:not(:last-of-type) > .container {
+          background: rgba(8, 0, 24, 0.95);
+          box-shadow: 0 18px 42px rgba(0, 0, 0, 0.55);
+          border: 1px solid rgba(0, 240, 255, 0.18);
+          backdrop-filter: none;
+        }
+
+        .bonuses {
+          gap: 1.4rem;
+        }
+
+        .bonus-card {
+          padding: 1.4rem;
+        }
+
+        .offer-progress {
+          width: 100%;
+        }
+
+        .offer-progress::before,
+        .program-section::before {
+          display: none;
+        }
+
+        .progress-bar {
+          box-shadow: none;
+        }
+
+        .progress-fill {
+          animation: none;
+          background-size: 100% 100%;
+        }
+
+        .hero-video-frame {
+          box-shadow: 0 18px 45px rgba(0, 0, 0, 0.48);
+        }
+
+        .progress-fill::after {
+          animation: none;
+          opacity: 0.25;
+        }
+
+        .final-section .container {
+          padding: 2.4rem 1.6rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-media iframe {
+          min-height: 200px;
+        }
+
+        .hero-badges {
+          gap: 0.75rem;
+        }
+
+        .cta-group {
+          justify-content: center;
+        }
+
+        .cta-primary,
+        .cta-secondary {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+
+      .guarantee {
+        background: rgba(9, 0, 25, 0.85);
+        border-radius: 22px;
+        padding: 3rem;
+        text-align: center;
+        box-shadow: 0 35px 90px rgba(0, 0, 0, 0.55), 0 0 30px rgba(0, 240, 255, 0.25);
+        border: 1px solid rgba(0, 240, 255, 0.25);
+      }
+
+      .guarantee img {
+        width: 120px;
+        margin-bottom: 1.5rem;
+        filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.4));
+      }
+
+      .faq {
+        display: grid;
+        gap: 1rem;
+      }
+
+      details {
+        background: rgba(4, 0, 19, 0.75);
+        border-radius: 14px;
+        padding: 1.2rem 1.4rem;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45), 0 0 20px rgba(0, 240, 255, 0.2);
+        border: 1px solid rgba(139, 93, 255, 0.35);
+      }
+
+      summary {
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        color: #fff;
+      }
+
+      summary::after {
+        content: "\f107";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+      }
+
+      details[open] summary::after {
+        transform: rotate(180deg);
+      }
+
+      footer {
+        background: linear-gradient(160deg, rgba(4, 0, 19, 0.95), rgba(12, 0, 32, 0.95));
+        color: #a89ed9;
+        padding: 3rem 0;
+        text-align: center;
+        font-size: 0.9rem;
+        box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.6);
+      }
+
+      footer a {
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .footer-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        margin-top: 1.5rem;
+        padding: 0.85rem 2rem;
+        border-radius: 999px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        background: var(--gradient);
+        color: #050015;
+        box-shadow: 0 22px 55px rgba(0, 240, 255, 0.32);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .footer-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 30px 65px rgba(255, 77, 255, 0.4);
+      }
+
+      .final-section .container {
+        background: linear-gradient(135deg, rgba(9, 0, 25, 0.92), rgba(4, 0, 19, 0.92));
+        color: #fff;
+        border-radius: 24px;
+        padding: 3rem;
+        text-align: center;
+        display: grid;
+        gap: 1.5rem;
+        justify-items: center;
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55), 0 0 40px rgba(255, 77, 255, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .final-section .container::before {
+        content: "";
+        position: absolute;
+        inset: -40% -60%;
+        background: radial-gradient(circle, rgba(0, 240, 255, 0.18), transparent 60%);
+        animation: pulse 6s infinite linear;
+        z-index: 0;
+      }
+
+      .final-section .container > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .final-section .final-note {
+        margin: 0;
+        color: rgba(244, 243, 255, 0.82);
+        font-size: 1.05rem;
+      }
+
+      .final-section h2 {
+        color: #fff;
+        margin-bottom: 0;
+      }
+
+      .price {
+        font-size: 2.8rem;
+        font-weight: 800;
+        color: var(--primary);
+        text-shadow: 0 0 20px rgba(0, 240, 255, 0.45);
+      }
+
+      .price small {
+        font-size: 1rem;
+        font-weight: 500;
+        display: block;
+        color: #fff;
+        opacity: 0.75;
+      }
+
+      .highlight {
+        background: rgba(0, 240, 255, 0.18);
+        padding: 0.8rem 1.4rem;
+        border-radius: 999px;
+        font-weight: 600;
+        border: 1px solid rgba(255, 77, 255, 0.4);
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+      }
+
+      @media (max-width: 768px) {
+        .hero-ribbon {
+          grid-template-columns: 1fr;
+          justify-items: center;
+          text-align: center;
+          position: static;
+        }
+
+        .countdown {
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+          text-align: center;
+        }
+
+        .countdown-values {
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 0.35rem;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-copy {
+          text-align: center;
+        }
+
+        .hero-subhead {
+          text-align: center;
+        }
+
+        .hero-bullets li {
+          justify-content: center;
+          text-align: left;
+        }
+
+        .hero-offer-card {
+          padding: 1.2rem 1.35rem;
+        }
+
+        header {
+          padding-bottom: 4rem;
+        }
+
+        .cta-group {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .cta-primary,
+        .cta-secondary {
+          justify-content: center;
+          width: 100%;
+        }
+
+        .program-card {
+          padding: 2.25rem;
+        }
+
+        .program-head {
+          justify-items: stretch;
+        }
+
+        .program-tags {
+          justify-content: center;
+        }
+
+        .program-intro p {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5NK3XV6"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <header>
+      <div class="hero-ribbon" role="status">
+        <span class="ribbon-pill">Turma fundadora · 64% OFF</span>
+        <span class="ribbon-copy">Últimos dias com bônus ativos e acesso vitalício</span>
+        <span class="ribbon-deadline">Válido até 10/12/2025</span>
+        <div class="countdown" id="offerCountdown" aria-live="polite">
+          <span class="countdown-label"><i class="fa-solid fa-clock" aria-hidden="true"></i> Tempo restante:</span>
+          <div class="countdown-values" aria-label="Tempo restante para o fim da oferta">
+            <span class="countdown-chip" data-part="days">--d</span>
+            <span class="countdown-chip" data-part="hours">--h</span>
+            <span class="countdown-chip" data-part="minutes">--m</span>
+            <span class="countdown-chip" data-part="seconds">--s</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container hero">
+        <div class="hero-grid">
+          <div class="hero-col hero-copy">
+            <span class="section-title">curso i.a. me clonei</span>
+            <h1 class="hero-title">Grave vídeos sem aparecer e sem depender de equipamentos caros.</h1>
+            <div class="hero-video-block">
+              <p class="hero-video-subtitle">Assista o vídeo para entender a oferta em detalhes:</p>
+              <div class="hero-video-frame">
+                <iframe
+                  id="heroOfferVideo"
+                  data-yt-managed="hero"
+                  src="https://www.youtube.com/embed/_1X2k4B284I?rel=0&controls=1&playsinline=1"
+                  title="Apresentação da oferta"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+            <div class="hero-whatsapp">
+              <p>Ficou com dúvida? Fale com o Maurício pessoalmente.</p>
+              <a class="cta-whatsapp" href="https://wa.me/49988971962" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i> Falar com o Maurício no WhatsApp
+              </a>
+            </div>
+            <p class="hero-subhead">
+              Crie um avatar hiper-realista que expressa sua essência, autoridade e presença — mesmo nos dias em que você não pode (ou não quer) aparecer.
+              Você não está comprando um curso. Está ativando a versão de você que o mundo precisava conhecer.
+            </p>
+
+            <ul class="hero-bullets">
+              <li><i class="fa-solid fa-check"></i> Avatar que mantém seu rosto, voz e energia de forma fiel.</li>
+              <li><i class="fa-solid fa-check"></i> Acesso vitalício ao método e às futuras atualizações.</li>
+              <li><i class="fa-solid fa-check"></i> Sem equipamentos caros: basta um vídeo de referência.</li>
+            </ul>
+
+            <div class="cta-group hero-cta-inline" role="group" aria-label="CTA principal do curso">
+              <a
+                class="cta-primary"
+                href="https://pay.hotmart.com/H102137847D?bid=1763505435528"
+                target="_blank"
+              >
+                <i class="fa-solid fa-bolt" aria-hidden="true"></i> Criar minha versão do futuro agora
+              </a>
+              <a class="cta-secondary" href="#gerador">
+                <i class="fa-solid fa-arrow-down"></i> Ver o gerador de prompt
+              </a>
+            </div>
+
+            <p class="hero-guarantee">Garantia de 7 dias Hotmart • Suporte da equipe Teckbird • Bônus liberados automaticamente</p>
+          </div>
+
+          <aside class="hero-col hero-offer" aria-label="Resumo da oferta">
+            <div class="hero-offer-card">
+              <div class="price-badge">Oferta Ultrablack</div>
+              <p class="hero-offer-title">Combo completo para criar seu clone digital em poucos cliques</p>
+              <div class="hero-price-block">
+                <span class="price-new">R$ 497 à vista</span>
+                <span class="price-split">ou 12x de R$ 51,40</span>
+                <span class="price-note">Menos que R$ 2 por dia para ter um avatar profissional.</span>
+              </div>
+              <ul class="offer-list">
+                <li><i class="fa-solid fa-gift"></i> Bônus exclusivos desta turma fundadora</li>
+                <li><i class="fa-solid fa-shield-halved"></i> Garantia de 7 dias sem perguntas</li>
+                <li><i class="fa-solid fa-infinity"></i> Acesso vitalício ao conteúdo e atualizações</li>
+              </ul>
+              <a class="cta-primary cta-full" href="https://pay.hotmart.com/H102137847D?bid=1763505435528" target="_blank">
+                <i class="fa-solid fa-rocket"></i> Garantir meu acesso com 64% OFF
+              </a>
+              <p class="hero-deadline">Oferta disponível até 10/12/2025. Após essa data, volta ao preço original.</p>
+            </div>
+          </aside>
+        </div>
+
+        <div class="cta-group scroll-hint" aria-label="Ver gerador de prompt no final da página">
+          <a class="cta-secondary down-link" href="#gerador">
+            <i class="fa-solid fa-arrow-down"></i> Ir para o gerador de prompt
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="avatar-section" id="avatars">
+        <div class="container">
+          <div class="avatar-grid">
+            <article class="authority-card avatar-card">
+              <h3>Corretor de Imóveis – Charme e Persuasão</h3>
+              <div class="section-video">
+                <iframe
+                  id="avatarCorretorVideo"
+                  data-yt-managed="avatar"
+                  src="https://www.youtube.com/embed/XUQtjPC2luY?enablejsapi=1&rel=0&controls=1&playsinline=1"
+                  title="Vídeo 2 – Avatar Corretor"
+                  loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p>
+                Perfeito para corretores que desejam apresentar imóveis de forma profissional e persuasiva
+                sem gravar pessoalmente. A voz e o rosto digitais mantêm a elegância e criam conexão
+                instantânea com seu público.
+              </p>
+              <div class="cta-group">
+                <a class="cta-primary" href="https://pay.hotmart.com/H102137847D?bid=1763505435528" target="_blank">
+                  <i class="fa-solid fa-handshake"></i> Ativar Corretor Digital
+                </a>
+              </div>
+            </article>
+
+            <article class="authority-card avatar-card">
+              <h3>Gamer RGB – Personalidade e Entretenimento</h3>
+              <div class="section-video">
+                <iframe
+                  id="avatarGamerVideo"
+                  data-yt-managed="avatar"
+                  src="https://www.youtube.com/embed/rxGCVk6BPds?enablejsapi=1&rel=0&controls=1&playsinline=1"
+                  title="Vídeo 3 – Avatar Gamer"
+                  loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p>
+                Criado para streamers e criadores de conteúdo gamer que querem uma identidade única e
+                carismática. Faça lives e vídeos com seu avatar digital, mantendo consistência sem se expor.
+              </p>
+              <div class="cta-group">
+                <a class="cta-primary" href="https://pay.hotmart.com/H102137847D?bid=1763505435528" target="_blank">
+                  <i class="fa-solid fa-headset"></i> Quero meu Avatar Gamer
+                </a>
+              </div>
+            </article>
+
+            <article class="authority-card avatar-card">
+              <h3>Influencer – Presença e Impacto</h3>
+              <div class="section-video">
+                <iframe
+                  id="avatarInfluencerVideo"
+                  data-yt-managed="avatar"
+                  src="https://www.youtube.com/embed/LzwmKIyPV4U?enablejsapi=1&rel=0&controls=1&playsinline=1"
+                  title="Vídeo 5 – Avatar Influencer"
+                  loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p>
+                Se você é criador de conteúdo ou deseja crescer nas redes, tenha um avatar digital com voz e
+                presença marcantes. Crie campanhas e publis de forma escalável, mantendo consistência e alcance.
+              </p>
+              <div class="cta-group">
+                <a class="cta-primary" href="https://pay.hotmart.com/H102137847D?bid=1763505435528" target="_blank">
+                  <i class="fa-solid fa-star"></i> Meu Clone Influencer
+                </a>
+              </div>
+            </article>
+          </div>
+          <div class="cta-group scroll-hint" aria-label="Seguir para o gerador de prompt">
+            <a class="cta-secondary down-link" href="#gerador">
+              <i class="fa-solid fa-arrow-down"></i> Ir para o gerador de prompt
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section">
+        <div class="container">
+          <p class="section-title">quem é o instrutor</p>
+          
+          <div class="story-card instructor-card">
+            <img
+              src="mauricio-grigol.png"
+              alt="Maurício Grigol"
+              class="instructor-photo"
+              loading="lazy"
+            />
+            <div class="instructor-copy">
+              <p>
+                Me chamo <strong>Maurício Grigol</strong>, criador da Teckbird. Trabalho com IA aplicada ao mundo real —
+                desde clones digitais até automações que simplificam conteúdo e economizam tempo.
+              </p>
+           
+            </div>
+          </div>
+          <div class="cta-group scroll-hint" aria-label="Ir para o gerador de prompt">
+            <a class="cta-secondary down-link" href="#gerador">
+              <i class="fa-solid fa-arrow-down"></i> Gerar meu prompt agora
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="testimonials-section">
+        <div class="container">
+          <p class="section-title">depoimentos de alunos</p>
+          <h2>Quem já está criando com IA</h2>
+          <div class="testimonials">
+            <div class="testimonial">
+              <img
+                src="ana-paula-zanetti.jpeg"
+                alt="Foto de Ana Paula Zanetti"
+                class="testimonial-photo"
+                loading="lazy"
+              />
+              <p>“Descobri que criar clones com IA abre um mundo de possibilidades para produzir conteúdo sem limites.”</p>
+              <strong>— Ana Paula Zanetti</strong>
+            </div>
+            <div class="testimonial">
+              <img
+                src="heitor-hermes.PNG"
+                alt="Foto de Heitor Hermes"
+                class="testimonial-photo"
+                loading="lazy"
+              />
+              <p>
+                “Percebi que o curso oferece uma liberdade criativa imensa, permitindo explorar diversas formas de
+                expressão digital.”
+              </p>
+              <strong>— Heitor Hermes</strong>
+            </div>
+          </div>
+          <div class="cta-group scroll-hint" aria-label="Seguir para o gerador de prompt">
+            <a class="cta-secondary down-link" href="#gerador">
+              <i class="fa-solid fa-arrow-down"></i> Ir para o gerador de prompt
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="technology-section">
+        <div class="container">
+          <p class="section-title">como funciona</p>
+          <h2>Como funciona a tecnologia?</h2>
+          <div class="offer-tools">
+            <p>
+              Durante o curso você aprenderá a utilizar uma plataforma profissional de clonagem de voz e rosto. Esse
+              serviço possui um plano acessível e garante resultados de qualidade de estúdio. Você aprenderá a gravar
+              seu vídeo base e a gerar conteúdos ilimitados sem travamentos.
+            </p>
+            <p>
+              Também explicamos opções de ferramentas gratuitas, seus limites e quando vale a pena investir em um
+              upgrade.
+            </p>
+          </div>
+          <div class="cta-group scroll-hint" aria-label="Seguir para o gerador de prompt">
+            <a class="cta-secondary down-link" href="#gerador">
+              <i class="fa-solid fa-arrow-down"></i> Ir para o gerador de prompt
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <div class="container">
+          <p class="section-title">perguntas frequentes</p>
+          <h2>Perguntas Frequentes</h2>
+          <div class="faq">
+            <details>
+              <summary>Preciso ter experiência com IA ou vídeo?</summary>
+              <p>Não. O curso é para iniciantes e começa do básico. Você será guiado passo a passo para criar e personalizar seu clone digital.</p>
+            </details>
+            <details>
+              <summary>Quais equipamentos são necessários?</summary>
+              <p>Apenas um computador ou celular com câmera para gravar seu vídeo de referência. O restante é feito online.</p>
+            </details>
+            <details>
+              <summary>Há custos adicionais?</summary>
+              <p>A clonagem de voz e rosto usa uma plataforma profissional com plano mensal acessível. Durante o curso mostramos a diferença entre opções gratuitas e pagas para que você escolha a mais adequada ao seu projeto.</p>
+            </details>
+            <details>
+              <summary>Por quanto tempo terei acesso ao curso?</summary>
+              <p>O acesso é vitalício e inclui futuras atualizações sem custo adicional.</p>
+            </details>
+            <details>
+              <summary>Quando o curso começa?</summary>
+              <p>O curso começa em janeiro de 2026, mas o preço promocional é somente até 10/12/2025, depois disto o preço volta ao valor original. Essa é uma oportunidade única por um preço imperdivel.</p>
+            </details>
+          </div>
+          <div class="cta-group scroll-hint" aria-label="Seguir para o gerador de prompt">
+            <a class="cta-secondary down-link" href="#gerador">
+              <i class="fa-solid fa-arrow-down"></i> Ir para o gerador de prompt
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="pricing-section offer-section" id="pricing">
+        <div class="container">
+          <p class="section-title">oferta da turma fundadora</p>
+          
+          <div class="offer-copy">
+       
+          </div>
+          <div class="offer-pricing">
+            <div class="price-highlight">
+              <span class="price-badge">Turma Fundadora · 64% OFF</span>
+              <span class="price-new">R$ 497 à vista</span>
+              <span class="price-split">ou 12x de R$ 51,40</span>
+              <span class="price-savings">Disponível até 10/12/2025</span>
+            </div>
+            <p class="price-note">
+              <span class="price-breakdown">R$ 497 dividido por 12 meses = R$ 1,36 por dia.</span>
+              Preço de um cafézinho.
+            </p>
+            <div class="cta-group">
+              <a class="cta-primary" href="https://pay.hotmart.com/H102137847D?bid=1763505435528" target="_blank">
+                <i class="fa-solid fa-bolt"></i> Quero garantir meu desconto de 64%
+              </a>
+            </div>
+            <div class="cta-group scroll-hint" aria-label="Seguir para o gerador de prompt">
+              <a class="cta-secondary down-link" href="#gerador">
+                <i class="fa-solid fa-arrow-down"></i> Ir para o gerador de prompt
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-section" id="call-to-action">
+        <div class="container">
+          <span class="highlight">Pronto para criar o seu clone digital?</span>
+          <h2>Garantia de 7 dias que você já conhece da hotmart</h2>
+          <p>
+Se você não gostar ou se arrepender é só pedir o dinheiro de volta de forma segura e confiavel.
+          </p>
+          <a class="cta-primary" href="https://pay.hotmart.com/H102137847D?bid=1763505435528" target="_blank">
+            <i class="fa-solid fa-rocket"></i> Começar agora
+          </a>
+          <div class="cta-group scroll-hint" aria-label="Ir para o gerador de prompt">
+            <a class="cta-secondary down-link" href="#gerador">
+              <i class="fa-solid fa-arrow-down"></i> Ver o gerador de prompt
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="gerador" class="prompt-section">
+        <div class="container hero prompt-section">
+          <div class="prompt-header">
+            <span class="section-title">gerador de prompts</span>
+            <div class="prompt-title-row">
+              
+              <h2 class="hero-title">Monte seu prompt gratuito</h2>
+            </div>
+            <p class="hero-microcopy">Preencha as opções, veja a prévia em tempo real e copie para usar no Gemini.</p>
+          </div>
+          <div class="prompt-layout">
+            <div class="prompt-left">
+              <div class="prompt-card">
+                <h2>Descrição da Imagem</h2>
+                <p class="label">Descreva o que você deseja na imagem</p>
+                <textarea
+                  id="description"
+                  class="prompt-textarea"
+                  placeholder="Ex: mulher caminhando na praia ao pôr do sol, cabelo ao vento e expressão tranquila"
+                ></textarea>
+              </div>
+
+              <div class="prompt-card">
+                <h2>Formato</h2>
+                <div class="prompt-button-grid">
+                  <button class="option-button selected" data-format="vertical">
+                    <span class="option-label">Horizontal (1080x1920)</span>
+                    <span class="option-desc">Para retratos</span>
+                  </button>
+                  <button class="option-button" data-format="horizontal">
+                    <span class="option-label">Vertical (16:9)</span>
+                    <span class="option-desc">Formato de celular</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="prompt-card">
+                <h2>Estilo de Cabelo</h2>
+                <p class="label">Escolha como você deseja que o cabelo apareça</p>
+                <div class="prompt-hairstyle-grid">
+                  <button class="option-button selected hairstyle-option" data-hairstyle="Sem alteração">Sem alteração</button>
+                  <button class="option-button hairstyle-option" data-hairstyle="🌊 Ondas Soltas">🌊 Ondas Soltas</button>
+                  <button class="option-button hairstyle-option" data-hairstyle="💇 Liso Brilhante">💇 Liso Brilhante</button>
+                  <button class="option-button hairstyle-option" data-hairstyle="🌀 Cachos Definidos">🌀 Cachos Definidos</button>
+                  <button class="option-button hairstyle-option" data-hairstyle="🎀 Rabo de Cavalo">🎀 Rabo de Cavalo</button>
+                  <button class="option-button hairstyle-option" data-hairstyle="✨ Coque Alto">✨ Coque Alto</button>
+                  <button class="option-button hairstyle-option" data-hairstyle="🌙 Meia Praia">🌙 Meia Praia</button>
+                  <button class="option-button hairstyle-option" data-hairstyle="💃 Cabelo Curto">💃 Cabelo Curto</button>
+                  <button class="option-button hairstyle-option" data-hairstyle="🌸 Cabelo Comprido">🌸 Cabelo Comprido</button>
+                </div>
+              </div>
+
+              <div class="prompt-card">
+                <h2>Estilos Visuais</h2>
+                <p class="label">Selecione um ou mais estilos para sua imagem</p>
+                <div class="prompt-style-grid">
+                  <button class="option-button style-option" data-style="📸 Polaroid Vintage">📸 Polaroid Vintage</button>
+                  <button class="option-button style-option" data-style="🎞️ Preto e Branco Artístico">🎞️ P&B Artístico</button>
+                  <button class="option-button style-option" data-style="🌅 Golden Hour">🌅 Golden Hour</button>
+                  <button class="option-button style-option" data-style="🏙️ Urbana Neon">🏙️ Urbana Neon</button>
+                  <button class="option-button style-option" data-style="👔 Retrato Corporativo">👔 Corporativo</button>
+                  <button class="option-button style-option" data-style="💎 Editorial de Luxo">💎 Editorial de Luxo</button>
+                  <button class="option-button style-option" data-style="🌿 Retrato Externo Natural">🌿 Natural</button>
+                  <button class="option-button style-option" data-style="✨ Bokeh Suave">✨ Bokeh Suave</button>
+                  <button class="option-button style-option" data-style="❄️ Luz Fria / Urbana">❄️ Luz Fria</button>
+                </div>
+              </div>
+
+              <button class="generate-button" id="generateBtn">
+                <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                Gerar Prompt
+              </button>
+            </div>
+
+            <aside class="prompt-right">
+              <div class="output-card">
+                <div class="output-header">
+                  <div>
+                    <h2 class="output-header-title">Seu Prompt</h2>
+                    <p class="output-subtext">Copie e use direto no gerador de IA</p>
+                  </div>
+                </div>
+                <div id="promptContainer" class="prompt-container"></div>
+                <a class="gemini-cta" href="https://pay.hotmart.com/H102137847D?bid=1763505435528" target="_blank" rel="noopener">
+                  <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                  Abrir o Gemini e colar o prompt
+                </a>
+                <p class="gemini-note">Clique para abrir o Gemini, cole o prompt e não esqueça de anexar uma foto sua.</p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>
+          © 2025 I.A. Me Clonei · Desenvolvido por
+          <a href="https://teckbird.com" target="_blank">Teckbird</a>
+        </p>
+        <p>Quer falar com nossa equipe? Estamos a um clique de distância.</p>
+        <a class="footer-cta" href="https://wa.me/49988971962" target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp"></i>
+          Falar com a equipe pelo WhatsApp
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      const STYLE_MAP = {
+        "📸 Polaroid Vintage":
+          "Luz suave difusa, aparência de filme com granulação leve e vinheta discreta. Tons quentes, levemente desbotados, estética retrô com textura orgânica.",
+        "🎞️ Preto e Branco Artístico":
+          "Iluminação de alto contraste, pretos profundos, realce controlado nas áreas claras. Estilo film noir com granulação sutil e atmosfera dramática.",
+        "🌅 Golden Hour":
+          "Contraluz quente de pôr do sol, flare natural e sombras suaves. Pele iluminada com tom dourado, composição romântica e cinematográfica.",
+        "🏙️ Urbana Neon":
+          "Reflexos de luz neon, bokeh de cidade ao fundo, atmosfera moderna e energética. Contraste médio e cores vibrantes com brilho controlado.",
+        "👔 Retrato Corporativo":
+          "Fundo neutro, luz de estúdio equilibrada, aparência limpa e profissional. Fidelidade de pele e tecido com contraste moderado.",
+        "💎 Editorial de Luxo":
+          "Luz key a 45° com rim sutil, recorte de contorno suave. Estilo de revista, foco em textura de pele e tecidos premium, acabamento refinado.",
+        "🌿 Retrato Externo Natural":
+          "Iluminação difusa natural, sombras leves, tons suaves e realistas. Autenticidade e integração com o ambiente, sensação leve e natural.",
+        "✨ Bokeh Suave":
+          "Luz direcionada no rosto, fundo propositalmente desfocado com bokeh cremoso. Cores neutras, foco preciso e contraste equilibrado.",
+        "❄️ Luz Fria / Urbana":
+          "Tom azulado, key lateral e fill suave. Aparência contemporânea e cinematográfica, sensação de elegância e calma moderna."
+      };
+
+      const HAIRSTYLE_MAP = {
+        "Sem alteração": "Mantendo o cabelo exatamente como na foto original",
+        "🌊 Ondas Soltas": "Cabelo com ondas suaves e soltas, textura natural e movimentado, aparência descontraída",
+        "💇 Liso Brilhante": "Cabelo completamente liso e brilhante, acabamento refinado e sofisticado",
+        "🌀 Cachos Definidos": "Cabelo com cachos bem definidos e texturizados, volume natural e movimento elegante",
+        "🎀 Rabo de Cavalo": "Cabelo preso em rabo de cavalo limpo, penteado elegante e estruturado",
+        "✨ Coque Alto": "Cabelo em coque alto e volumoso, penteado sofisticado e polido",
+        "🌙 Meia Praia": "Cabelo preso na meia praia de forma descontraída, aspecto beach-casual",
+        "💃 Cabelo Curto": "Cabelo curto e bem cortado, corte moderno e bem definido",
+        "🌸 Cabelo Comprido": "Cabelo longo e voluminoso, caindo natural sobre os ombros e costas"
+      };
+
+      const promptState = {
+        styles: new Set(),
+        hairstyle: "Sem alteração",
+        format: "vertical",
+      };
+
+      const copyPrompt = (text, button) => {
+        navigator.clipboard.writeText(text).then(() => {
+          const original = button.innerHTML;
+          button.classList.add("copied");
+          button.innerHTML =
+            '<i class="fa-solid fa-check"></i> Copiado!';
+          setTimeout(() => {
+            button.classList.remove("copied");
+            button.innerHTML = original;
+          }, 1800);
+        });
+      };
+
+      const buildPrompt = (description) => {
+        let prompt =
+          "Crie uma imagem hiper-realista em 8K mantendo exatamente o rosto, tom de pele e identidade corporal da pessoa da foto enviada — sem alterações físicas.\n\n";
+
+        if (promptState.hairstyle !== "Sem alteração") {
+          prompt += `Modificação de Cabelo:\n${HAIRSTYLE_MAP[promptState.hairstyle]}\n\n`;
+        }
+
+        if (description) {
+          prompt += `Com base na descrição: ${description}\n\n`;
+        }
+
+        if (promptState.styles.size) {
+          prompt += "Modificadores de estilo:\n";
+          promptState.styles.forEach((style) => {
+            prompt += `• ${style}\n${STYLE_MAP[style]}\n\n`;
+          });
+        }
+
+        prompt += "Detalhes técnicos:\n";
+        prompt += "• Lente: 50mm ou 85mm f/1.8\n";
+        prompt += `• Enquadramento: ${
+          promptState.format === "vertical"
+            ? "vertical, foco no rosto e textura realista da pele"
+            : "horizontal, cena ampla"
+        }\n`;
+        prompt += "• Estilo: realismo elevado, fidelidade fotográfica, iluminação cinematográfica\n";
+        prompt += "• Acabamento: nítido, equilibrado, natural\n\n";
+        prompt +=
+          "Negativas: sem distorções, sem pele plástica, sem exageros de nitidez, sem alteração facial, sem artefatos digitais.";
+
+        return prompt;
+      };
+
+      const renderPrompt = () => {
+        const descriptionInput = document.getElementById("description");
+        const promptContainer = document.getElementById("promptContainer");
+
+        if (!promptContainer || !descriptionInput) {
+          return;
+        }
+
+        const description = descriptionInput.value.trim();
+        const prompt = buildPrompt(description);
+
+        const display = document.createElement("div");
+        display.className = "prompt-display";
+        display.textContent = prompt;
+
+        const copyBtn = document.createElement("button");
+        copyBtn.className = "copy-button";
+        copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copiar Prompt';
+        copyBtn.addEventListener("click", () => copyPrompt(prompt, copyBtn));
+
+        promptContainer.replaceChildren(display, copyBtn);
+      };
+
+      const attachPromptGenerator = () => {
+        const descriptionInput = document.getElementById("description");
+        const generateBtn = document.getElementById("generateBtn");
+
+        if (!descriptionInput || !generateBtn) {
+          return;
+        }
+
+        document.querySelectorAll("[data-format]").forEach((btn) => {
+          btn.addEventListener("click", (event) => {
+            document
+              .querySelectorAll("[data-format]")
+              .forEach((b) => b.classList.remove("selected"));
+            const target = event.currentTarget;
+            target.classList.add("selected");
+            promptState.format = target.dataset.format || "vertical";
+            renderPrompt();
+          });
+        });
+
+        document.querySelectorAll(".hairstyle-option").forEach((btn) => {
+          btn.addEventListener("click", (event) => {
+            document
+              .querySelectorAll(".hairstyle-option")
+              .forEach((b) => b.classList.remove("selected"));
+            const target = event.currentTarget;
+            target.classList.add("selected");
+            promptState.hairstyle = target.dataset.hairstyle || "Sem alteração";
+            renderPrompt();
+          });
+        });
+
+        document.querySelectorAll(".style-option").forEach((btn) => {
+          btn.addEventListener("click", (event) => {
+            const target = event.currentTarget;
+            const style = target.dataset.style;
+            if (!style) return;
+
+            if (promptState.styles.has(style)) {
+              promptState.styles.delete(style);
+              target.classList.remove("selected");
+            } else {
+              promptState.styles.add(style);
+              target.classList.add("selected");
+            }
+
+            renderPrompt();
+          });
+        });
+
+        generateBtn.addEventListener("click", renderPrompt);
+        descriptionInput.addEventListener("input", renderPrompt);
+
+        renderPrompt();
+      };
+
+      document.addEventListener("DOMContentLoaded", attachPromptGenerator);
+
+      const QUALITY_PRIORITY = ["highres", "hd2880", "hd2160", "hd1440", "hd1080", "hd720"];
+      const MIN_QUALITY = "hd720";
+      const managedIframes = Array.from(document.querySelectorAll("[data-yt-managed]"));
+      const ytPlayers = new Map();
+      let youTubeAPIRequested = false;
+
+      const enforceMinimumQuality = (player) => {
+        if (!player || typeof player.getAvailableQualityLevels !== "function") {
+          return;
+        }
+
+        const levels = player.getAvailableQualityLevels();
+        if (!levels || !levels.length) {
+          player.setPlaybackQuality("hd1080");
+          return;
+        }
+
+        const preferred = QUALITY_PRIORITY.find((quality) => levels.includes(quality));
+        const targetQuality = preferred || MIN_QUALITY;
+        const currentQuality =
+          typeof player.getPlaybackQuality === "function" ? player.getPlaybackQuality() : null;
+
+        if (currentQuality !== targetQuality) {
+          player.setPlaybackQuality(targetQuality);
+        }
+      };
+
+      const handleReady = (iframe) => (event) => {
+        const player = event.target;
+
+        if (iframe.dataset.unmute === "true") {
+          player.unMute();
+          player.setVolume(100);
+        }
+
+        enforceMinimumQuality(player);
+      };
+
+      const handleStateChange = (event) => {
+        if (
+          event.data === window.YT.PlayerState.BUFFERING ||
+          event.data === window.YT.PlayerState.PLAYING
+        ) {
+          enforceMinimumQuality(event.target);
+        }
+      };
+
+      const handleQualityChange = (event) => {
+        enforceMinimumQuality(event.target);
+      };
+
+      const initPlayer = (iframe) => {
+        if (!iframe.id) {
+          iframe.id = `yt-managed-${ytPlayers.size + 1}`;
+        }
+
+        if (ytPlayers.has(iframe.id)) {
+          return;
+        }
+
+        const player = new YT.Player(iframe.id, {
+          events: {
+            onReady: handleReady(iframe),
+            onStateChange: handleStateChange,
+            onPlaybackQualityChange: handleQualityChange,
+          },
+        });
+
+        ytPlayers.set(iframe.id, player);
+      };
+
+      const initAllPlayers = () => {
+        managedIframes.forEach((iframe) => initPlayer(iframe));
+      };
+
+      function onYouTubeIframeAPIReady() {
+        initAllPlayers();
+      }
+
+      window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+
+      const requestYouTubeAPI = () => {
+        if (window.YT && window.YT.Player) {
+          initAllPlayers();
+          return;
+        }
+
+        if (youTubeAPIRequested) {
+          return;
+        }
+
+        const script = document.createElement("script");
+        script.src = "https://www.youtube.com/iframe_api";
+        script.async = true;
+        document.head.appendChild(script);
+        youTubeAPIRequested = true;
+      };
+
+      const primaryFrame = managedIframes[0];
+
+      if (primaryFrame) {
+        primaryFrame.setAttribute("tabindex", "-1");
+      }
+
+      if ("IntersectionObserver" in window && primaryFrame) {
+        const heroObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                observer.disconnect();
+                requestYouTubeAPI();
+              }
+            });
+          },
+          { rootMargin: "200px" }
+        );
+
+        heroObserver.observe(primaryFrame);
+      } else if (primaryFrame) {
+        window.addEventListener("load", () => {
+          if ("requestIdleCallback" in window) {
+            requestIdleCallback(requestYouTubeAPI);
+          } else {
+            setTimeout(requestYouTubeAPI, 600);
+          }
+        });
+      }
+
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+
+      const countdownEl = document.getElementById("offerCountdown");
+      const OFFER_DEADLINE = new Date("2025-12-10T23:59:59");
+
+      const updateCountdown = () => {
+        if (!countdownEl) return;
+
+        const now = new Date();
+        const diff = OFFER_DEADLINE.getTime() - now.getTime();
+        const valuesEl = countdownEl.querySelector(".countdown-values");
+
+        if (diff <= 0) {
+          countdownEl.classList.add("expired");
+          if (valuesEl) {
+            valuesEl.textContent = "Oferta encerrada";
+          }
+          return;
+        }
+
+        const totalSeconds = Math.floor(diff / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        const setPart = (part, value, suffix) => {
+          const el = countdownEl.querySelector(`[data-part="${part}"]`);
+          if (el) {
+            el.textContent = `${String(value).padStart(2, "0")}${suffix}`;
+          }
+        };
+
+        setPart("days", days, "d");
+        setPart("hours", hours, "h");
+        setPart("minutes", minutes, "m");
+        setPart("seconds", seconds, "s");
+      };
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      const ensureScrollTop = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      };
+
+      const scheduleScrollReset = () => {
+        ensureScrollTop();
+        setTimeout(ensureScrollTop, 120);
+      };
+
+      document.addEventListener("DOMContentLoaded", scheduleScrollReset);
+      window.addEventListener("load", scheduleScrollReset);
+      window.addEventListener("pageshow", (event) => {
+        if (event.persisted) {
+          scheduleScrollReset();
+        }
+      });
+    </script>
+  </body>
+</html>
